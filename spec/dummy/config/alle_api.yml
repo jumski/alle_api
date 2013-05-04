@@ -1,0 +1,22 @@
+---
+production:
+  webapi_key: keykeykeyk
+  login: webapi_login
+  password: webapi_password
+  default_duration: <%= AlleApi::Type::Auction::DURATION_30 %>
+  default_type: <%= AlleApi::Type::Auction::TYPE_SHOP %>
+  description_renderer: <%= lambda { |auction| 'test string' } %>
+test:
+  webapi_key: keykeykeyk
+  login: webapi_login
+  password: webapi_password
+  default_duration: <%= AlleApi::Type::Auction::DURATION_3 %>
+  default_type: <%= AlleApi::Type::Auction::TYPE_AUCTION %>
+  description_renderer: <%= lambda { |auction| 'test string' } %>
+development:
+  webapi_key: keykeykeyk
+  login: webapi_login
+  password: webapi_password
+  default_duration: <%= AlleApi::Type::Auction::DURATION_3 %>
+  default_type: <%= AlleApi::Type::Auction::TYPE_AUCTION %>
+  description_renderer: <%= lambda { |auction| 'test string' } %>

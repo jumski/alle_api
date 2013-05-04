@@ -1,0 +1,14 @@
+
+module AlleApi
+  module Job
+    class TriggerAuctionEvents < Base
+      sidekiq_options unique: true, unique_job_expiration: 60
+
+      def perform(account_id)
+        account = AlleApi::Account.find(account_id)
+
+        account.untriggered_events.each(&:trigger)
+      end
+    end
+  end
+end

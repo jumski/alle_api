@@ -1,0 +1,21 @@
+module AlleApi
+  module Job
+    class ProcessNewEvents < Base
+      sidekiq_options unique: true, unique_job_expiration: 60
+
+      def perform(account_id)
+        account = AlleApi::Account.find(account_id)
+        api, client = account.api, account.api.client
+
+        events = api.get_journal(account.last_processed_event_id)
+
+        if events.length > 0
+          events.each(&:trigger)
+
+          account.last_processed_event_id = events.last.remote_id
+          account.save
+        end
+      end
+    end
+  end
+end

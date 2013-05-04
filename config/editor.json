@@ -1,0 +1,41 @@
+
+{
+  "classifications": {
+    "job": {
+      "prefix": "lib/alle_api/job/",
+      "suffix": ".rb"
+    },
+    "action": {
+      "prefix": "lib/alle_api/action/",
+      "suffix": ".rb"
+    },
+    "type": {
+      "prefix": "lib/alle_api/type/",
+      "suffix": ".rb"
+    },
+    "wrapper": {
+      "prefix": "lib/alle_api/wrapper/",
+      "suffix": ".rb"
+    },
+    "apihelper": {
+      "prefix": "lib/alle_api/helper/",
+      "suffix": ".rb"
+    },
+    "concern": {
+      "prefix": "app/models/alle_api/concerns/",
+      "suffix": ".rb"
+    },
+    "model": {
+      "prefix": "app/models/alle_api/",
+      "suffix": ".rb"
+    },
+    "controller": {
+      "prefix": "app/controllers/alle_api/",
+      "suffix": "_controller.rb"
+    },
+    "lib": {
+      "prefix": "lib/alle_api/",
+      "suffix": ".rb"
+    },
+  }
+}

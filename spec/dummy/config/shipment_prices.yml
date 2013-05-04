@@ -1,0 +1,29 @@
+---
+
+# paczka priorytet
+priority_package_price:
+  1000:  12.00
+  2000:  14.00
+  5000:  15.50
+  10000: 22
+
+# paczka ekonomiczna
+economic_package_price:
+  1000:  10
+  2000:  12.00
+  5000:  15.00
+  10000: 20.00
+
+# list priorytet
+priority_letter_price:
+  350: 6.50
+  500: 7
+  1000: 10
+  2000: 13
+
+# list ekonomiczny
+economic_letter_price:
+  350: 5
+  500: 6
+  1000: 8.50
+  2000: 10.50

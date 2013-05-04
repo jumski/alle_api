@@ -1,0 +1,9 @@
+
+1. fill WebAPI credentials in config/alle_api.yml
+2. set up description renderer in config/initializers/alle_api.rb
+3. run migrations
+4. include AlleApi::Categorizable into model that will be categorized with Allegro categories
+5. include AlleApi::Auctionable into models that will be put into auctions
+6. implement missing methods on your auctionables
+  - #title_for_auction: this will be used as an auction title
+  - #category_id_for_auction: this will be used to provide auction category

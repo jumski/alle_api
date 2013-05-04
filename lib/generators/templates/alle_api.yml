@@ -1,0 +1,13 @@
+---
+production:
+  webapi_key: keykeykeyk
+  default_duration: <%= AlleApi::Type::Auction::DURATION_30 %>
+  default_type: <%= AlleApi::Type::Auction::TYPE_SHOP %>
+test:
+  webapi_key: keykeykeyk
+  default_duration: <%= AlleApi::Type::Auction::DURATION_3 %>
+  default_type: <%= AlleApi::Type::Auction::TYPE_AUCTION %>
+development:
+  webapi_key: keykeykeyk
+  default_duration: <%= AlleApi::Type::Auction::DURATION_3 %>
+  default_type: <%= AlleApi::Type::Auction::TYPE_AUCTION %>

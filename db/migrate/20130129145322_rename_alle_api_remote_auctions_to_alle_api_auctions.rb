@@ -1,0 +1,9 @@
+class RenameAlleApiRemoteAuctionsToAlleApiAuctions < ActiveRecord::Migration
+  def up
+    rename_table :alle_api_remote_auctions, :alle_api_auctions
+  end
+
+  def down
+    rename_table :alle_api_auctions, :alle_api_remote_auctions
+  end
+end
