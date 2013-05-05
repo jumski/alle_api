@@ -236,4 +236,20 @@ describe AlleApi::AuctionTemplate do
       subject.end_publishing!
     end
   end
+
+  describe '#finish_current_immediately' do
+    subject { create :template }
+
+    it 'finishes current auction after update if #finish is set to true' do
+      subject.expects(:finish_current_auction!)
+
+      subject.update_attributes(finish_current_immediately: true)
+    end
+
+    it 'does not finishes current auction after update if #finis is set to false' do
+      subject.expects(:finish_current_auction!).never
+
+      subject.update_attributes(finish_current_immediately: false)
+    end
+  end
 end

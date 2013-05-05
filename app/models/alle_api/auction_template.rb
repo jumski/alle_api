@@ -10,11 +10,13 @@ class AlleApi::AuctionTemplate < ActiveRecord::Base
     priority_package_price priority_letter_price
   )
   ACCESSIBLE_ATTRIBUTES = SHARED_ATTRIBUTES.map(&:to_sym) +
-    [:publishing_enabled, :auctionable, :auctionable_id, :auctionable_type]
+    [:publishing_enabled, :auctionable, :auctionable_id, :auctionable_type, :finish_current_immediately]
+  attr_accessor :finish_current_immediately
 
   attr_accessible *ACCESSIBLE_ATTRIBUTES
 
   before_validation :steal_title_from_auctionable, unless: :title
+  after_update :finish_current_auction!, if: :finish_current_immediately
 
   class << self
     def create_from_auction(auction)
