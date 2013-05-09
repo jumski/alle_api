@@ -198,14 +198,14 @@ describe AlleApi::AuctionTemplate do
       expect(subject.current_auction).to eq(auction)
     end
 
-    it 'equals last auction if last auction is queued_for_finishing' do
+    it 'is nil if last auction is queued_for_finishing' do
       auction = build_stubbed :auction, :queued_for_finishing
       subject.stubs(last_auction: auction)
 
-      expect(subject.current_auction).to eq(auction)
+      expect(subject.current_auction).to be_nil
     end
 
-    it 'is nil if last auction is not published' do
+    it 'is nil if last auction is ended' do
       auction = build_stubbed :auction, :ended
       subject.stubs(last_auction: auction)
 

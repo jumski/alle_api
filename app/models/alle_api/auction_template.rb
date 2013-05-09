@@ -62,9 +62,7 @@ class AlleApi::AuctionTemplate < ActiveRecord::Base
   end
 
   def current_auction
-    if last_auction.try(:published?) || last_auction.try(:queued_for_finishing?)
-      last_auction
-    end
+    last_auction if last_auction.try(:published?)
   end
 
   def last_auction
