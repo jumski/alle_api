@@ -5,7 +5,9 @@ FactoryGirl.define do
     sequence(:name) { |n| "Category #{n}"}
 
     trait :with_children do
-      children
+      after(:create) do |category, evaluator|
+        FactoryGirl.create(:category, parent: category)
+      end
     end
 
     trait(:branch)  { leaf_node false }
