@@ -1,9 +1,9 @@
 
 module StateMachineMacros
-  def it_does_not_allow_event(event)
+  def it_does_not_allow_event(event, *args)
     it "does not allow ##{event}" do
       expect {
-        subject.send("#{event}!", *event_args)
+        subject.send("#{event}!", *args)
       }.to raise_error(Workflow::NoTransitionAllowed)
     end
   end
