@@ -22,7 +22,10 @@ module StateMachineMacros
       subject.send("#{event}!", *event_args)
       subject.reload
 
-      timestamp = subject.send(attribute).utc.in_time_zone.to_s
+      attr = subject.send(attribute)
+      expect(attr).to_not be_nil
+
+      timestamp = attr.utc.in_time_zone.to_s
       now = time_now.utc.in_time_zone.to_s
 
       expect(timestamp).to eq(now)
