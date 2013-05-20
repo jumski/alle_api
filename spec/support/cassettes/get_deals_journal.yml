@@ -1,0 +1,474 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://webapi.allegro.pl/uploader.php
+    body:
+      encoding: US-ASCII
+      string: <?xml version="1.0" encoding="UTF-8"?><env:Envelope xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:typens="urn:AllegroWebApi"
+        xmlns:env="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ins0="urn:AllegroWebApi"><env:Body><typens:doQueryAllSysStatus><country-id>1</country-id><webapi-key>***REMOVED***</webapi-key></typens:doQueryAllSysStatus></env:Body></env:Envelope>
+    headers:
+      Soapaction:
+      - ! '"#doqueryallsysstatus"'
+      Content-Type:
+      - text/xml;charset=UTF-8
+      Content-Length:
+      - '423'
+      Accept:
+      - ! '*/*'
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Mon, 20 May 2013 10:09:19 GMT
+      Server:
+      - Apache
+      Vary:
+      - Accept-Encoding
+      Set-Cookie:
+      - ws2=f7de5500cfdcba96c1c8f2d101016c19; expires=Mon, 20-May-2013 10:39:19 GMT;
+        path=/; domain=.allegro.pl
+      - ws3=Nb3b545d72f6cc2edd2ff1af35308e1d0; expires=Sun, 13-Dec-2111 10:09:19 GMT;
+        path=/; domain=.allegro.pl
+      - ws4=x; path=/; domain=.allegro.pl
+      Status:
+      - 200 OK
+      X-Cnection:
+      - Close
+      Content-Length:
+      - '5750'
+      Content-Type:
+      - text/xml; charset=UTF-8
+      X-Frame-Options:
+      - SAMEORIGIN
+    body:
+      encoding: US-ASCII
+      string: ! '<?xml version="1.0" encoding="UTF-8"?>
+
+        <SOAP-ENV:Envelope  xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/"
+        xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:typens="urn:AllegroWebApi"
+        xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+
+        <SOAP-ENV:Body SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+
+        <typens:doQueryAllSysStatusResponse><sys-country-status xsi:type="SOAP-ENC:Array"
+        SOAP-ENC:arrayType="typens:SysStatusType[10]"><item xsi:type="typens:SysStatusType">
+
+        <country-id xsi:type="xsd:int">1</country-id>
+
+        <program-version xsi:type="xsd:string">1.0.0</program-version>
+
+        <cats-version xsi:type="xsd:string">1.1.23</cats-version>
+
+        <api-version xsi:type="xsd:string">1.0.0</api-version>
+
+        <attrib-version xsi:type="xsd:string">1.0.0</attrib-version>
+
+        <form-sell-version xsi:type="xsd:string">1.1.73</form-sell-version>
+
+        <site-version xsi:type="xsd:string">1.0.0</site-version>
+
+        <ver-key xsi:type="xsd:long">94719734</ver-key>
+
+        </item>
+
+        <item xsi:type="typens:SysStatusType">
+
+        <country-id xsi:type="xsd:int">22</country-id>
+
+        <program-version xsi:type="xsd:string">1.0.0</program-version>
+
+        <cats-version xsi:type="xsd:string">1.0.1</cats-version>
+
+        <api-version xsi:type="xsd:string">1.0.0</api-version>
+
+        <attrib-version xsi:type="xsd:string">1.0.0</attrib-version>
+
+        <form-sell-version xsi:type="xsd:string">1.0.5</form-sell-version>
+
+        <site-version xsi:type="xsd:string">1.0.0</site-version>
+
+        <ver-key xsi:type="xsd:long">10370921</ver-key>
+
+        </item>
+
+        <item xsi:type="typens:SysStatusType">
+
+        <country-id xsi:type="xsd:int">34</country-id>
+
+        <program-version xsi:type="xsd:string">1.0.0</program-version>
+
+        <cats-version xsi:type="xsd:string">1.0.1</cats-version>
+
+        <api-version xsi:type="xsd:string">1.0.0</api-version>
+
+        <attrib-version xsi:type="xsd:string">1.0.0</attrib-version>
+
+        <form-sell-version xsi:type="xsd:string">1.0.4</form-sell-version>
+
+        <site-version xsi:type="xsd:string">1.0.0</site-version>
+
+        <ver-key xsi:type="xsd:long">25990757</ver-key>
+
+        </item>
+
+        <item xsi:type="typens:SysStatusType">
+
+        <country-id xsi:type="xsd:int">56</country-id>
+
+        <program-version xsi:type="xsd:string">1.0.1</program-version>
+
+        <cats-version xsi:type="xsd:string">1.0.38</cats-version>
+
+        <api-version xsi:type="xsd:string">1.0.2</api-version>
+
+        <attrib-version xsi:type="xsd:string">1.0.22</attrib-version>
+
+        <form-sell-version xsi:type="xsd:string">1.0.63</form-sell-version>
+
+        <site-version xsi:type="xsd:string">1.0.1</site-version>
+
+        <ver-key xsi:type="xsd:long">75963571</ver-key>
+
+        </item>
+
+        <item xsi:type="typens:SysStatusType">
+
+        <country-id xsi:type="xsd:int">107</country-id>
+
+        <program-version xsi:type="xsd:string">1.0.0</program-version>
+
+        <cats-version xsi:type="xsd:string">1.0.2</cats-version>
+
+        <api-version xsi:type="xsd:string">1.0.0</api-version>
+
+        <attrib-version xsi:type="xsd:string">1.0.0</attrib-version>
+
+        <form-sell-version xsi:type="xsd:string">1.0.6</form-sell-version>
+
+        <site-version xsi:type="xsd:string">1.0.0</site-version>
+
+        <ver-key xsi:type="xsd:long">78320424</ver-key>
+
+        </item>
+
+        <item xsi:type="typens:SysStatusType">
+
+        <country-id xsi:type="xsd:int">168</country-id>
+
+        <program-version xsi:type="xsd:string">1.0.0</program-version>
+
+        <cats-version xsi:type="xsd:string">1.1.1</cats-version>
+
+        <api-version xsi:type="xsd:string">1.0.0</api-version>
+
+        <attrib-version xsi:type="xsd:string">1.0.1</attrib-version>
+
+        <form-sell-version xsi:type="xsd:string">1.0.96</form-sell-version>
+
+        <site-version xsi:type="xsd:string">1.0.0</site-version>
+
+        <ver-key xsi:type="xsd:long">16332162</ver-key>
+
+        </item>
+
+        <item xsi:type="typens:SysStatusType">
+
+        <country-id xsi:type="xsd:int">181</country-id>
+
+        <program-version xsi:type="xsd:string">1.0.0</program-version>
+
+        <cats-version xsi:type="xsd:string">1.0.1</cats-version>
+
+        <api-version xsi:type="xsd:string">1.0.0</api-version>
+
+        <attrib-version xsi:type="xsd:string">1.0.0</attrib-version>
+
+        <form-sell-version xsi:type="xsd:string">1.0.4</form-sell-version>
+
+        <site-version xsi:type="xsd:string">1.0.0</site-version>
+
+        <ver-key xsi:type="xsd:long">84908153</ver-key>
+
+        </item>
+
+        <item xsi:type="typens:SysStatusType">
+
+        <country-id xsi:type="xsd:int">209</country-id>
+
+        <program-version xsi:type="xsd:string">1.0.0</program-version>
+
+        <cats-version xsi:type="xsd:string">1.0.59</cats-version>
+
+        <api-version xsi:type="xsd:string">1.0.1</api-version>
+
+        <attrib-version xsi:type="xsd:string">1.0.0</attrib-version>
+
+        <form-sell-version xsi:type="xsd:string">1.0.80</form-sell-version>
+
+        <site-version xsi:type="xsd:string">1.0.0</site-version>
+
+        <ver-key xsi:type="xsd:long">54045132</ver-key>
+
+        </item>
+
+        <item xsi:type="typens:SysStatusType">
+
+        <country-id xsi:type="xsd:int">228</country-id>
+
+        <program-version xsi:type="xsd:string">1.0.0</program-version>
+
+        <cats-version xsi:type="xsd:string">1.0.1</cats-version>
+
+        <api-version xsi:type="xsd:string">1.0.0</api-version>
+
+        <attrib-version xsi:type="xsd:string">1.0.0</attrib-version>
+
+        <form-sell-version xsi:type="xsd:string">1.0.5</form-sell-version>
+
+        <site-version xsi:type="xsd:string">1.0.0</site-version>
+
+        <ver-key xsi:type="xsd:long">73445643</ver-key>
+
+        </item>
+
+        <item xsi:type="typens:SysStatusType">
+
+        <country-id xsi:type="xsd:int">232</country-id>
+
+        <program-version xsi:type="xsd:string">1.0.0</program-version>
+
+        <cats-version xsi:type="xsd:string">1.0.56</cats-version>
+
+        <api-version xsi:type="xsd:string">1.0.1</api-version>
+
+        <attrib-version xsi:type="xsd:string">1.0.0</attrib-version>
+
+        <form-sell-version xsi:type="xsd:string">1.0.79</form-sell-version>
+
+        <site-version xsi:type="xsd:string">1.0.0</site-version>
+
+        <ver-key xsi:type="xsd:long">86576005</ver-key>
+
+        </item>
+
+        </sys-country-status>
+
+        </typens:doQueryAllSysStatusResponse></SOAP-ENV:Body>
+
+        </SOAP-ENV:Envelope>
+
+'
+    http_version: 
+  recorded_at: Mon, 20 May 2013 10:09:19 GMT
+- request:
+    method: post
+    uri: https://webapi.allegro.pl/uploader.php
+    body:
+      encoding: US-ASCII
+      string: <?xml version="1.0" encoding="UTF-8"?><env:Envelope xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:typens="urn:AllegroWebApi"
+        xmlns:env="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ins0="urn:AllegroWebApi"><env:Body><typens:doLogin><user-login>gudson</user-login><user-password>gudi23</user-password><country-code>1</country-code><webapi-key>***REMOVED***</webapi-key><local-version>94719734</local-version></typens:doLogin></env:Body></env:Envelope>
+    headers:
+      Soapaction:
+      - ! '"#dologin"'
+      Content-Type:
+      - text/xml;charset=UTF-8
+      Content-Length:
+      - '510'
+      Accept:
+      - ! '*/*'
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Mon, 20 May 2013 10:09:21 GMT
+      Server:
+      - Apache
+      Vary:
+      - Accept-Encoding
+      Set-Cookie:
+      - QXLDATA=rwnesuVDv8wRROYZydM8NRd9pULEcXg5HbVuFz0zbPs%3D%23%23%23CH5J0FyRQcT56YbJfwRYzA%2FWqfKQG5SURUe%2FaZ78nIHUteHUl74dleIJhsZMNDTlMsHv9DeUuiOnjEXx8rU2OH9zdugx97kkX4MYSEHoR36NwfjvIDowrEopOK7uUKdV9rSxvRiQu5pEcozQMw%3D%3D;
+        expires=Mon, 20-May-2013 10:39:21 GMT; path=/; domain=.allegro.pl
+      - QXLSESSID=1701863f234cf3504efad3b8417987c5f67427ad0bcc68bb00; path=/; domain=.allegro.pl;
+        HttpOnly
+      - captcha=0; expires=Mon, 20-May-2013 09:09:21 GMT; path=/; domain=.allegro.pl
+      - captcha=0; expires=Mon, 20-May-2013 09:09:21 GMT; path=/; domain=.allegro.pl
+      - qeppo_login2=%7B%22welcome%22%3A%22Witaj%2C%22%2C%22id%22%3A%222783112%22%2C%22username%22%3A%22gudson%22%2C%22qeppo_hash%22%3A%22M8FyECuVNKMZrmPREuOSo5N4h7aF35J6GqjXBKHrjfc%3D%22%7D;
+        path=/; domain=.allegro.pl
+      - ws2=de9691d672ef9fa94e58cf5946c87a1a; expires=Mon, 20-May-2013 10:39:21 GMT;
+        path=/; domain=.allegro.pl
+      - ws3=N8965f2ef1d3a3e73c415a241881fa565; expires=Sun, 13-Dec-2111 10:09:21 GMT;
+        path=/; domain=.allegro.pl
+      - ws4=x; path=/; domain=.allegro.pl
+      Expires:
+      - Thu, 19 Nov 1981 08:52:00 GMT
+      Cache-Control:
+      - no-store, no-cache, must-revalidate, post-check=0, pre-check=0
+      Pragma:
+      - no-cache
+      Status:
+      - 200 OK
+      X-Cnection:
+      - Close
+      Content-Length:
+      - '800'
+      Content-Type:
+      - text/xml; charset=UTF-8
+      X-Frame-Options:
+      - SAMEORIGIN
+    body:
+      encoding: US-ASCII
+      string: ! '<?xml version="1.0" encoding="UTF-8"?>
+
+        <SOAP-ENV:Envelope  xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/"
+        xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:typens="urn:AllegroWebApi"
+        xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+
+        <SOAP-ENV:Body SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+
+        <typens:doLoginResponse><session-handle-part xsi:type="xsd:string">1701863f234cf3504efad3b8417987c5f67427ad0bcc68bb00_1</session-handle-part>
+
+        <user-id xsi:type="xsd:long">2783112</user-id>
+
+        <server-time xsi:type="xsd:long">1369044561</server-time>
+
+        </typens:doLoginResponse></SOAP-ENV:Body>
+
+        </SOAP-ENV:Envelope>
+
+'
+    http_version: 
+  recorded_at: Mon, 20 May 2013 10:09:21 GMT
+- request:
+    method: post
+    uri: https://webapi.allegro.pl/uploader.php
+    body:
+      encoding: US-ASCII
+      string: <?xml version="1.0" encoding="UTF-8"?><env:Envelope xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:typens="urn:AllegroWebApi"
+        xmlns:env="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ins0="urn:AllegroWebApi"><env:Body><typens:doGetSiteJournalDeals><session-id>1701863f234cf3504efad3b8417987c5f67427ad0bcc68bb00_1</session-id><journal-start
+        xsi:nil="true"/></typens:doGetSiteJournalDeals></env:Body></env:Envelope>
+    headers:
+      Soapaction:
+      - ! '"#dogetsitejournaldeals"'
+      Content-Type:
+      - text/xml;charset=UTF-8
+      Content-Length:
+      - '474'
+      Accept:
+      - ! '*/*'
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Mon, 20 May 2013 10:09:21 GMT
+      Server:
+      - Apache
+      Vary:
+      - Accept-Encoding
+      Set-Cookie:
+      - QXLSESSID=1701863f234cf3504efad3b8417987c5f67427ad0bcc68bb00; path=/; domain=.allegro.pl;
+        HttpOnly
+      - ws2=9513fe262a007f8eda4218f088bf4c3c; expires=Mon, 20-May-2013 10:39:22 GMT;
+        path=/; domain=.allegro.pl
+      - ws3=N92798c353e9556ca7eb28b521dd07940; expires=Sun, 13-Dec-2111 10:09:22 GMT;
+        path=/; domain=.allegro.pl
+      - ws4=x; path=/; domain=.allegro.pl
+      Expires:
+      - Thu, 19 Nov 1981 08:52:00 GMT
+      Cache-Control:
+      - no-store, no-cache, must-revalidate, post-check=0, pre-check=0
+      Pragma:
+      - no-cache
+      Status:
+      - 200 OK
+      X-Cnection:
+      - Close
+      Content-Length:
+      - '1901'
+      Content-Type:
+      - text/xml; charset=UTF-8
+      X-Frame-Options:
+      - SAMEORIGIN
+    body:
+      encoding: US-ASCII
+      string: ! '<?xml version="1.0" encoding="UTF-8"?>
+
+        <SOAP-ENV:Envelope  xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/"
+        xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:typens="urn:AllegroWebApi"
+        xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+
+        <SOAP-ENV:Body SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+
+        <typens:doGetSiteJournalDealsResponse><site-journal-deals xsi:type="SOAP-ENC:Array"
+        SOAP-ENC:arrayType="typens:SiteJournalDealsStruct[2]"><item xsi:type="typens:SiteJournalDealsStruct">
+
+        <deal-event-id xsi:type="xsd:long">775599262</deal-event-id>
+
+        <deal-event-type xsi:type="xsd:int">1</deal-event-type>
+
+        <deal-event-time xsi:type="xsd:long">1369042031</deal-event-time>
+
+        <deal-id xsi:type="xsd:long">896009896</deal-id>
+
+        <deal-transaction-id xsi:type="xsd:long">0</deal-transaction-id>
+
+        <deal-seller-id xsi:type="xsd:int">2783112</deal-seller-id>
+
+        <deal-item-id xsi:type="xsd:long">3263045863</deal-item-id>
+
+        <deal-buyer-id xsi:type="xsd:int">5697909</deal-buyer-id>
+
+        <deal-quantity xsi:type="xsd:int">1</deal-quantity>
+
+        </item>
+
+        <item xsi:type="typens:SiteJournalDealsStruct">
+
+        <deal-event-id xsi:type="xsd:long">775601305</deal-event-id>
+
+        <deal-event-type xsi:type="xsd:int">2</deal-event-type>
+
+        <deal-event-time xsi:type="xsd:long">1369042118</deal-event-time>
+
+        <deal-id xsi:type="xsd:long">896009896</deal-id>
+
+        <deal-transaction-id xsi:type="xsd:long">243241703</deal-transaction-id>
+
+        <deal-seller-id xsi:type="xsd:int">2783112</deal-seller-id>
+
+        <deal-item-id xsi:type="xsd:long">3263045863</deal-item-id>
+
+        <deal-buyer-id xsi:type="xsd:int">5697909</deal-buyer-id>
+
+        <deal-quantity xsi:type="xsd:int">1</deal-quantity>
+
+        </item>
+
+        </site-journal-deals>
+
+        </typens:doGetSiteJournalDealsResponse></SOAP-ENV:Body>
+
+        </SOAP-ENV:Envelope>
+
+'
+    http_version: 
+  recorded_at: Mon, 20 May 2013 10:09:22 GMT
+recorded_with: VCR 2.4.0

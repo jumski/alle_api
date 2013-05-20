@@ -23,6 +23,10 @@ module AlleApi
       Action::GetJournal.new(client).do(starting_point)
     end
 
+    def get_deals_journal(starting_point = nil)
+      Action::GetDealsJournal.new(client).do(starting_point)
+    end
+
     def get_fields
       Action::GetFields.new(client).do
     end

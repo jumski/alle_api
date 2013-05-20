@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130301123341) do
+ActiveRecord::Schema.define(:version => 20130520095818) do
 
   create_table "alle_api_accounts", :force => true do |t|
     t.datetime "created_at",                                           :null => false
@@ -121,6 +121,28 @@ ActiveRecord::Schema.define(:version => 20130301123341) do
   end
 
   add_index "alle_api_categories", ["ancestry"], :name => "index_alle_api_categories_on_ancestry"
+
+  create_table "alle_api_deal_events", :force => true do |t|
+    t.integer  "remote_id",             :limit => 8, :null => false
+    t.integer  "remote_auction_id",     :limit => 8, :null => false
+    t.datetime "occured_at",                         :null => false
+    t.integer  "remote_seller_id",      :limit => 8, :null => false
+    t.integer  "remote_buyer_id",       :limit => 8, :null => false
+    t.integer  "remote_deal_id",        :limit => 8, :null => false
+    t.integer  "remote_transaction_id", :limit => 8, :null => false
+    t.string   "type",                               :null => false
+    t.integer  "quantity",                           :null => false
+    t.datetime "created_at",                         :null => false
+    t.datetime "updated_at",                         :null => false
+  end
+
+  add_index "alle_api_deal_events", ["remote_auction_id"], :name => "index_alle_api_deal_events_on_remote_auction_id"
+  add_index "alle_api_deal_events", ["remote_buyer_id"], :name => "index_alle_api_deal_events_on_remote_buyer_id"
+  add_index "alle_api_deal_events", ["remote_deal_id"], :name => "index_alle_api_deal_events_on_remote_deal_id"
+  add_index "alle_api_deal_events", ["remote_id"], :name => "index_alle_api_deal_events_on_remote_id"
+  add_index "alle_api_deal_events", ["remote_seller_id"], :name => "index_alle_api_deal_events_on_remote_seller_id"
+  add_index "alle_api_deal_events", ["remote_transaction_id"], :name => "index_alle_api_deal_events_on_remote_transaction_id"
+  add_index "alle_api_deal_events", ["type"], :name => "index_alle_api_deal_events_on_type"
 
   create_table "alle_api_fields", :force => true do |t|
     t.string   "name"
