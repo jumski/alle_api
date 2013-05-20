@@ -1,6 +1,6 @@
 module AlleApi
   class DealEvent < ActiveRecord::Base
-    attr_accessible :occured_at, :quantity, :remote_auction_id, :remote_buyer_id, :remote_deal_id, :remote_id, :remote_seller_id, :remote_transaction_id, :type, :auction
+    attr_accessible :occured_at, :quantity, :remote_auction_id, :remote_buyer_id, :remote_deal_id, :remote_id, :remote_seller_id, :remote_transaction_id, :auction
 
     belongs_to :auction
 

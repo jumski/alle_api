@@ -30,9 +30,7 @@ module AlleApi
           return [] unless multiple.present?
 
           # ensure our multiple is an array (for 1 multiple :item is a hash instead)
-          multiple = [multiple].flatten
-
-          super(multiple)
+          super [multiple].flatten
         end
       end
 
