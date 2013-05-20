@@ -10,7 +10,10 @@ describe AlleApi::Wrapper::DealEvent do
         account: account, remote_id: wrapper.remote_auction_id
     end
 
-    def create_event!; wrapper.create_deal_event(account) end
+    def create_event!
+      auction # trigger create
+      wrapper.create_deal_event(account)
+    end
     subject { create_event! }
 
     it 'creates new event for first time' do
