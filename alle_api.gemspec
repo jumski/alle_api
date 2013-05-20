@@ -45,4 +45,5 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'factory_girl_rails'
   s.add_development_dependency 'virtus-rspec'
   s.add_development_dependency 'mock_redis'
+  s.add_development_dependency 'database_cleaner'
 end
