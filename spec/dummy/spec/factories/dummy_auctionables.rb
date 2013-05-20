@@ -6,7 +6,7 @@ FactoryGirl.define do
     weight 1
 
     trait :with_category do
-      category { FactoryGirl.create :category }
+      category_id { FactoryGirl.create(:category).id }
     end
   end
 end
