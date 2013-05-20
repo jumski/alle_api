@@ -15,7 +15,7 @@ describe 'Happy Paths: fetch events', vcr: 'fetch_auction_events' do
 
   it 'uses full stack to update, authenticate and fetch events' do
     # update version key
-    AlleApi.versions.update_version_of(:version_key)
+    AlleApi.versions.update(:version_key)
 
     # obtain session handle and save it into account
     AlleApi::Job::Authenticate.new.perform(account.id)

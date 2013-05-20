@@ -17,7 +17,7 @@ describe AlleApi::Helper::ComponentsUpdater do
 
   describe '#update!' do
     it 'always updates AlleApi.version_key' do
-      subject.versions.expects(:update_version_of).with(:version_key)
+      subject.versions.expects(:update).with(:version_key)
       subject.versions.stubs(changed?: false)
 
       subject.update!
@@ -25,7 +25,7 @@ describe AlleApi::Helper::ComponentsUpdater do
 
     context 'if categories tree changes' do
       before do
-        subject.versions.stubs(:update_version_of)
+        subject.versions.stubs(:update)
         subject.versions.expects(:changed?).with(:categories_tree).returns(true)
         subject.versions.expects(:changed?).with(:fields).returns(false)
       end
@@ -43,7 +43,7 @@ describe AlleApi::Helper::ComponentsUpdater do
 
     context 'if fields changed' do
       before do
-        subject.versions.stubs(:update_version_of)
+        subject.versions.stubs(:update)
         subject.versions.expects(:changed?).with(:fields).returns(true)
         subject.versions.expects(:changed?).with(:categories_tree).returns(false)
       end

@@ -34,7 +34,7 @@ describe AlleApi::Action::GetDealsJournal do
       before do
         account.utility = true
         account.save!
-        AlleApi::Helper::Versions.new.update_version_of(:version_key)
+        AlleApi::Helper::Versions.new.update(:version_key)
         AlleApi::Job::Authenticate.new.perform(account.id)
         @wrapped = api.get_deals_journal
       end

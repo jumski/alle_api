@@ -26,7 +26,7 @@ describe AlleApi::Action::GetTransactions do
       before do
         account.utility = true
         account.save!
-        AlleApi::Helper::Versions.new.update_version_of(:version_key)
+        AlleApi::Helper::Versions.new.update(:version_key)
         AlleApi::Job::Authenticate.new.perform(account.id)
         deal_events = api.get_deals_journal
         ids = deal_events.map(&:remote_transaction_id)

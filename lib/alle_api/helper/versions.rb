@@ -2,7 +2,7 @@
 module AlleApi
   module Helper
     class Versions
-      def update_version_of(component)
+      def update(component)
         self[component] = allegro_versions[component]
       end
 

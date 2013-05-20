@@ -4,14 +4,14 @@ describe AlleApi::Helper::Versions do
   include_context 'with account'
   let(:account) { create :account, utility: true }
 
-  describe '#update_version_of' do
+  describe '#update' do
     it 'saves new version for given component' do
       versions = {fields: '1.1'}
       AlleApi.utility_api.expects(:get_versions).returns(versions)
 
       subject.expects(:[]=).with(:fields, '1.1')
 
-      subject.update_version_of(:fields)
+      subject.update(:fields)
     end
   end
 
@@ -50,7 +50,7 @@ describe AlleApi::Helper::Versions do
   it 'memoizes return value of api.get_versions' do
     AlleApi.utility_api.expects(:get_versions).returns({}).once
 
-    subject.update_version_of(:fields)
-    subject.update_version_of(:categories_tree)
+    subject.update(:fields)
+    subject.update(:categories_tree)
   end
 end

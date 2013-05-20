@@ -3,7 +3,7 @@ module AlleApi
   module Helper
     class ComponentsUpdater
       def update!
-        versions.update_version_of(:version_key)
+        versions.update(:version_key)
 
         if versions.changed?(:fields)
           AlleApi::Job::UpdateFields.perform_async

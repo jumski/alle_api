@@ -28,7 +28,7 @@ describe 'Happy Paths: create and finish auction', :http do
 
   it 'uses full stack to update, authenticate, create and finish' do
     # update version key
-    AlleApi.versions.update_version_of(:version_key)
+    AlleApi.versions.update(:version_key)
 
     # obtain session handle and save it into account
     AlleApi::Job::Authenticate.new.perform(account.id)

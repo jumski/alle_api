@@ -17,14 +17,14 @@ shared_examples 'synchronizer' do
 
     it "updates local version on success" do
       subject.stubs(:synchronize)
-      AlleApi.versions.expects(:update_version_of).with(component)
+      AlleApi.versions.expects(:update).with(component)
 
       subject.synchronize!
     end
 
     it "does not update version number on failure" do
       subject.stubs(:synchronize).raises
-      AlleApi.versions.expects(:update_version_of).never
+      AlleApi.versions.expects(:update).never
 
       expect { subject.synchronize! }.to raise_error
     end

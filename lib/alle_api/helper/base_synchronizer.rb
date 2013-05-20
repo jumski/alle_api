@@ -17,7 +17,7 @@ module AlleApi
 
       def synchronize!
         synchronize
-        AlleApi.versions.update_version_of(component)
+        AlleApi.versions.update(component)
       end
 
       def synchronize
