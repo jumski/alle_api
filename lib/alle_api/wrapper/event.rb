@@ -65,28 +65,6 @@ module AlleApi
 
         event
       end
-
-      # def trigger
-      #   return unless auction
-
-      #   unless auction.valid?
-      #     raise AlleApi::CannotTriggerEventOnInvalidAuctionError.new(auction, self)
-      #   end
-
-      #   begin
-      #     case kind
-      #     when :auction_end
-      #       auction.end!
-      #       return
-      #     when :auction_buy_now
-      #       auction.buy_now!
-      #       return
-      #     end
-      #   rescue Workflow::NoTransitionAllowed
-      #     # we accept that
-      #   end
-      # end
-
     end
   end
 end
