@@ -10,6 +10,7 @@ FactoryGirl.define do
     remote_deal_id 1
     remote_transaction_id 1
     quantity 1
+    auction
 
     factory :new_deal, class: 'AlleApi::DealEvent::NewDeal'
     factory :new_transaction, class: 'AlleApi::DealEvent::NewTransaction'
