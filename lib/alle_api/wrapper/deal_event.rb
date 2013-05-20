@@ -51,15 +51,15 @@ module AlleApi
 
       def create_deal_event(account)
         auction = AlleApi::Auction.find_by_remote_id(remote_auction_id)
-        unless deal_event = model_klass.find_by_remote_id(remote_id)
-          attribs = attributes
-          attribs.delete :kind
-          attribs[:auction] = auction
 
-          deal_event = model_klass.create(attribs)
-        end
+        deal_event = model_klass.find_by_remote_id(remote_id)
+        return deal_event if deal_event
 
-        deal_event
+        attribs = attributes
+        attribs.delete :kind
+        attribs[:auction] = auction
+
+        model_klass.create(attribs)
       end
     end
   end
