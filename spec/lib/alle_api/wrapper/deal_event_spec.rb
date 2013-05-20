@@ -31,8 +31,7 @@ describe AlleApi::Wrapper::DealEvent do
 
     its(:auction) { should eq auction }
 
-    attrs = described_class::ATTRIBUTE_NAME_TRANSLATION.values
-    attrs = attrs - [:kind]
+    attrs = described_class::ATTRIBUTE_NAME_TRANSLATION.values - [:kind]
     attrs.each do |attr|
       its(attr) { should eq wrapper.send(attr) }
     end
