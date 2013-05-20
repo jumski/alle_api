@@ -190,13 +190,15 @@ if respond_to? :shared_context
   end
 
   shared_examples 'simple #request_body' do
-    it '#request_body is properly build' do
-      body = if defined? actual_body
-              actual_body
-            else
-              subject.request_body
-            end
+    let(:body) do
+      if defined? actual_body
+        actual_body
+      else
+        subject.request_body
+      end
+    end
 
+    it '#request_body is properly build' do
       expect(body).to eq(expected_body)
     end
   end

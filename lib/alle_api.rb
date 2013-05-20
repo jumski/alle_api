@@ -29,6 +29,7 @@ require 'alle_api/type/auction'
 require 'alle_api/wrapper/base'
 require 'alle_api/wrapper/event'
 require 'alle_api/wrapper/deal_event'
+require 'alle_api/wrapper/post_buy_form'
 require 'alle_api/wrapper/field'
 
 require_relative '../app/models/alle_api/concerns/auction_shared_behaviour'
