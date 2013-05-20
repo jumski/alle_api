@@ -2,15 +2,15 @@ module AlleApi
   module Wrapper
     class DealEvent < Base
       ATTRIBUTE_NAME_TRANSLATION = {
-        deal_event_id: :remote_id,
-        deal_item_id: :remote_auction_id,
-        deal_event_time: :occured_at,
-        deal_seller_id: :remote_seller_id,
-        deal_buyer_id: :remote_buyer_id,
-        deal_id: :remote_deal_id,
-        deal_quantity: :quantity,
-        deal_transaction_id: :remote_transaction_id,
-        deal_event_type: :kind,
+        deal_event_id:        :remote_id,
+        deal_item_id:         :remote_auction_id,
+        deal_event_time:      :occured_at,
+        deal_seller_id:       :remote_seller_id,
+        deal_buyer_id:        :remote_buyer_id,
+        deal_id:              :remote_deal_id,
+        deal_quantity:        :quantity,
+        deal_transaction_id:  :remote_transaction_id,
+        deal_event_type:      :kind,
       }
 
       attribute :remote_id, Integer
