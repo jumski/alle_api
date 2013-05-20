@@ -10,6 +10,7 @@ describe AlleApi::Auction do
     it { should belong_to(:account) }
     it { should have_many(:all_auctions).class_name('AlleApi::Auction').
                                               through(:template) }
+    it { should have_many :deal_events }
   end
 
   it { should delegate(:end_publishing!).to(:template) }

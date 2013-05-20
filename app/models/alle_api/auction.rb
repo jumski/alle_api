@@ -9,6 +9,7 @@ class AlleApi::Auction < ActiveRecord::Base
     class_name: name,
     through: :template,
     source: :auctions
+  has_many :deal_events
 
   attr_accessible *AlleApi::AuctionTemplate::SHARED_ATTRIBUTES,
     :remote_id, :published_at, :bought_now_at, :ended_at, :state

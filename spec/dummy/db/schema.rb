@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130520095818) do
+ActiveRecord::Schema.define(:version => 20130520105125) do
 
   create_table "alle_api_accounts", :force => true do |t|
     t.datetime "created_at",                                           :null => false
@@ -134,8 +134,10 @@ ActiveRecord::Schema.define(:version => 20130520095818) do
     t.integer  "quantity",                           :null => false
     t.datetime "created_at",                         :null => false
     t.datetime "updated_at",                         :null => false
+    t.integer  "auction_id"
   end
 
+  add_index "alle_api_deal_events", ["auction_id"], :name => "index_alle_api_deal_events_on_auction_id"
   add_index "alle_api_deal_events", ["remote_auction_id"], :name => "index_alle_api_deal_events_on_remote_auction_id"
   add_index "alle_api_deal_events", ["remote_buyer_id"], :name => "index_alle_api_deal_events_on_remote_buyer_id"
   add_index "alle_api_deal_events", ["remote_deal_id"], :name => "index_alle_api_deal_events_on_remote_deal_id"

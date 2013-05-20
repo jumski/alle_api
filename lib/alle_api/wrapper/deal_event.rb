@@ -49,28 +49,18 @@ module AlleApi
         end
       end
 
-      # def create_auction_event(account)
-      #   auction = AlleApi::Auction.find_by_remote_id(remote_auction_id)
+      def create_deal_event(account)
+        auction = AlleApi::Auction.find_by_remote_id(remote_auction_id)
+        unless deal_event = model_klass.find_by_remote_id(remote_id)
+          attribs = attributes
+          attribs.delete :kind
+          attribs[:auction] = auction
 
-      #   unless event = model_klass.find_by_remote_id(remote_id)
-      #     attribs = {
-      #       remote_id: remote_id,
-      #       remote_auction_id: remote_auction_id,
-      #       remote_seller_id: remote_seller_id,
-      #       current_price: current_price,
-      #       occured_at: occured_at,
-      #       account_id: account.id
-      #     }
+          deal_event = model_klass.create(attribs)
+        end
 
-      #     if auction.present?
-      #       attribs[:auction_id] = auction.id
-      #     end
-
-      #     event = model_klass.create(attribs)
-      #   end
-
-      #   event
-      # end
+        deal_event
+      end
     end
   end
 end
