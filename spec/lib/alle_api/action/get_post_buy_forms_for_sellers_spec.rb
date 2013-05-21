@@ -21,30 +21,21 @@ describe AlleApi::Action::GetPostBuyFormsForSellers do
     # end
 
     describe "uses wrapper", vcr: 'do_get_post_buy_forms_data_for_sellers', :hax => true do
-      include_context 'real api client'
+      include_context 'authenticated and updated api client'
 
       before do
-        account.utility = true
-        account.save!
-        AlleApi::Helper::Versions.new.update(:version_key)
-        AlleApi::Job::Authenticate.new.perform(account.id)
         deal_events = api.get_deals_journal
         ids = deal_events.map(&:remote_transaction_id)
         @wrapped = api.get_post_buy_forms_for_sellers ids.select{|id| id > 0}
       end
 
-      it "'hax'" do
-        binding.pry
+      context "wraps transaction" do
+        subject { @wrapped[0] }
+
+        it { should be_a AlleApi::Wrapper::PostBuyForm }
+        its(:remote_id) { should eq 243241703 }
+        its(:source) { should eq subject }
       end
-
-      # context "wraps transaction" do
-      #   subject { @wrapped[0] }
-
-      #   it { should be_a AlleApi::Wrapper::PostBuyForm }
-      #   its(:remote_id) { should eq 243241703 }
-      #   # its(:model_klass) { should eq AlleApi::PostBuyForm }
-      #   its(:source) { should eq subject }
-      # end
 
       # context "wraps new transaction event" do
       #   subject { @wrapped[1] }
