@@ -56,6 +56,7 @@ require 'alle_api/action/get_deals_journal'
 require 'alle_api/action/get_fields'
 require 'alle_api/action/get_fields_for_category'
 require 'alle_api/action/get_versions'
+require 'alle_api/action/get_incoming_payments'
 require 'alle_api/action/get_transactions'
 
 require 'alle_api/job/base'

@@ -16,7 +16,7 @@ module AlleApi
       end
 
       def extract_results(*a)
-        true
+        a
       end
     end
   end

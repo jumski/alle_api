@@ -1,0 +1,455 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://webapi.allegro.pl/uploader.php
+    body:
+      encoding: US-ASCII
+      string: <?xml version="1.0" encoding="UTF-8"?><env:Envelope xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:typens="urn:AllegroWebApi"
+        xmlns:env="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ins0="urn:AllegroWebApi"><env:Body><typens:doQueryAllSysStatus><country-id>1</country-id><webapi-key>***REMOVED***</webapi-key></typens:doQueryAllSysStatus></env:Body></env:Envelope>
+    headers:
+      Soapaction:
+      - ! '"#doqueryallsysstatus"'
+      Content-Type:
+      - text/xml;charset=UTF-8
+      Content-Length:
+      - '423'
+      Accept:
+      - ! '*/*'
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 21 May 2013 11:19:46 GMT
+      Server:
+      - Apache
+      Vary:
+      - Accept-Encoding
+      Set-Cookie:
+      - ws2=50edb42f68401948579afee9ac1d48af; expires=Tue, 21-May-2013 11:49:46 GMT;
+        path=/; domain=.allegro.pl
+      - ws3=N90f07c348c13411856ff6c1cc06aad69; expires=Mon, 14-Dec-2111 11:19:46 GMT;
+        path=/; domain=.allegro.pl
+      - ws4=x; path=/; domain=.allegro.pl
+      Status:
+      - 200 OK
+      X-Cnection:
+      - Close
+      Content-Length:
+      - '5750'
+      Content-Type:
+      - text/xml; charset=UTF-8
+      X-Frame-Options:
+      - SAMEORIGIN
+    body:
+      encoding: US-ASCII
+      string: ! '<?xml version="1.0" encoding="UTF-8"?>
+
+        <SOAP-ENV:Envelope  xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/"
+        xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:typens="urn:AllegroWebApi"
+        xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+
+        <SOAP-ENV:Body SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+
+        <typens:doQueryAllSysStatusResponse><sys-country-status xsi:type="SOAP-ENC:Array"
+        SOAP-ENC:arrayType="typens:SysStatusType[10]"><item xsi:type="typens:SysStatusType">
+
+        <country-id xsi:type="xsd:int">1</country-id>
+
+        <program-version xsi:type="xsd:string">1.0.0</program-version>
+
+        <cats-version xsi:type="xsd:string">1.1.24</cats-version>
+
+        <api-version xsi:type="xsd:string">1.0.0</api-version>
+
+        <attrib-version xsi:type="xsd:string">1.0.0</attrib-version>
+
+        <form-sell-version xsi:type="xsd:string">1.1.74</form-sell-version>
+
+        <site-version xsi:type="xsd:string">1.0.0</site-version>
+
+        <ver-key xsi:type="xsd:long">31776337</ver-key>
+
+        </item>
+
+        <item xsi:type="typens:SysStatusType">
+
+        <country-id xsi:type="xsd:int">22</country-id>
+
+        <program-version xsi:type="xsd:string">1.0.0</program-version>
+
+        <cats-version xsi:type="xsd:string">1.0.1</cats-version>
+
+        <api-version xsi:type="xsd:string">1.0.0</api-version>
+
+        <attrib-version xsi:type="xsd:string">1.0.0</attrib-version>
+
+        <form-sell-version xsi:type="xsd:string">1.0.5</form-sell-version>
+
+        <site-version xsi:type="xsd:string">1.0.0</site-version>
+
+        <ver-key xsi:type="xsd:long">10370921</ver-key>
+
+        </item>
+
+        <item xsi:type="typens:SysStatusType">
+
+        <country-id xsi:type="xsd:int">34</country-id>
+
+        <program-version xsi:type="xsd:string">1.0.0</program-version>
+
+        <cats-version xsi:type="xsd:string">1.0.1</cats-version>
+
+        <api-version xsi:type="xsd:string">1.0.0</api-version>
+
+        <attrib-version xsi:type="xsd:string">1.0.0</attrib-version>
+
+        <form-sell-version xsi:type="xsd:string">1.0.4</form-sell-version>
+
+        <site-version xsi:type="xsd:string">1.0.0</site-version>
+
+        <ver-key xsi:type="xsd:long">25990757</ver-key>
+
+        </item>
+
+        <item xsi:type="typens:SysStatusType">
+
+        <country-id xsi:type="xsd:int">56</country-id>
+
+        <program-version xsi:type="xsd:string">1.0.1</program-version>
+
+        <cats-version xsi:type="xsd:string">1.0.38</cats-version>
+
+        <api-version xsi:type="xsd:string">1.0.2</api-version>
+
+        <attrib-version xsi:type="xsd:string">1.0.22</attrib-version>
+
+        <form-sell-version xsi:type="xsd:string">1.0.63</form-sell-version>
+
+        <site-version xsi:type="xsd:string">1.0.1</site-version>
+
+        <ver-key xsi:type="xsd:long">75963571</ver-key>
+
+        </item>
+
+        <item xsi:type="typens:SysStatusType">
+
+        <country-id xsi:type="xsd:int">107</country-id>
+
+        <program-version xsi:type="xsd:string">1.0.0</program-version>
+
+        <cats-version xsi:type="xsd:string">1.0.2</cats-version>
+
+        <api-version xsi:type="xsd:string">1.0.0</api-version>
+
+        <attrib-version xsi:type="xsd:string">1.0.0</attrib-version>
+
+        <form-sell-version xsi:type="xsd:string">1.0.6</form-sell-version>
+
+        <site-version xsi:type="xsd:string">1.0.0</site-version>
+
+        <ver-key xsi:type="xsd:long">78320424</ver-key>
+
+        </item>
+
+        <item xsi:type="typens:SysStatusType">
+
+        <country-id xsi:type="xsd:int">168</country-id>
+
+        <program-version xsi:type="xsd:string">1.0.0</program-version>
+
+        <cats-version xsi:type="xsd:string">1.1.1</cats-version>
+
+        <api-version xsi:type="xsd:string">1.0.0</api-version>
+
+        <attrib-version xsi:type="xsd:string">1.0.1</attrib-version>
+
+        <form-sell-version xsi:type="xsd:string">1.0.96</form-sell-version>
+
+        <site-version xsi:type="xsd:string">1.0.0</site-version>
+
+        <ver-key xsi:type="xsd:long">16332162</ver-key>
+
+        </item>
+
+        <item xsi:type="typens:SysStatusType">
+
+        <country-id xsi:type="xsd:int">181</country-id>
+
+        <program-version xsi:type="xsd:string">1.0.0</program-version>
+
+        <cats-version xsi:type="xsd:string">1.0.1</cats-version>
+
+        <api-version xsi:type="xsd:string">1.0.0</api-version>
+
+        <attrib-version xsi:type="xsd:string">1.0.0</attrib-version>
+
+        <form-sell-version xsi:type="xsd:string">1.0.4</form-sell-version>
+
+        <site-version xsi:type="xsd:string">1.0.0</site-version>
+
+        <ver-key xsi:type="xsd:long">84908153</ver-key>
+
+        </item>
+
+        <item xsi:type="typens:SysStatusType">
+
+        <country-id xsi:type="xsd:int">209</country-id>
+
+        <program-version xsi:type="xsd:string">1.0.0</program-version>
+
+        <cats-version xsi:type="xsd:string">1.0.59</cats-version>
+
+        <api-version xsi:type="xsd:string">1.0.1</api-version>
+
+        <attrib-version xsi:type="xsd:string">1.0.0</attrib-version>
+
+        <form-sell-version xsi:type="xsd:string">1.0.80</form-sell-version>
+
+        <site-version xsi:type="xsd:string">1.0.0</site-version>
+
+        <ver-key xsi:type="xsd:long">54045132</ver-key>
+
+        </item>
+
+        <item xsi:type="typens:SysStatusType">
+
+        <country-id xsi:type="xsd:int">228</country-id>
+
+        <program-version xsi:type="xsd:string">1.0.0</program-version>
+
+        <cats-version xsi:type="xsd:string">1.0.1</cats-version>
+
+        <api-version xsi:type="xsd:string">1.0.0</api-version>
+
+        <attrib-version xsi:type="xsd:string">1.0.0</attrib-version>
+
+        <form-sell-version xsi:type="xsd:string">1.0.5</form-sell-version>
+
+        <site-version xsi:type="xsd:string">1.0.0</site-version>
+
+        <ver-key xsi:type="xsd:long">73445643</ver-key>
+
+        </item>
+
+        <item xsi:type="typens:SysStatusType">
+
+        <country-id xsi:type="xsd:int">232</country-id>
+
+        <program-version xsi:type="xsd:string">1.0.0</program-version>
+
+        <cats-version xsi:type="xsd:string">1.0.56</cats-version>
+
+        <api-version xsi:type="xsd:string">1.0.1</api-version>
+
+        <attrib-version xsi:type="xsd:string">1.0.0</attrib-version>
+
+        <form-sell-version xsi:type="xsd:string">1.0.79</form-sell-version>
+
+        <site-version xsi:type="xsd:string">1.0.0</site-version>
+
+        <ver-key xsi:type="xsd:long">86576005</ver-key>
+
+        </item>
+
+        </sys-country-status>
+
+        </typens:doQueryAllSysStatusResponse></SOAP-ENV:Body>
+
+        </SOAP-ENV:Envelope>
+
+'
+    http_version: 
+  recorded_at: Tue, 21 May 2013 11:19:46 GMT
+- request:
+    method: post
+    uri: https://webapi.allegro.pl/uploader.php
+    body:
+      encoding: US-ASCII
+      string: <?xml version="1.0" encoding="UTF-8"?><env:Envelope xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:typens="urn:AllegroWebApi"
+        xmlns:env="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ins0="urn:AllegroWebApi"><env:Body><typens:doLogin><user-login>gudson</user-login><user-password>gudi23</user-password><country-code>1</country-code><webapi-key>***REMOVED***</webapi-key><local-version>31776337</local-version></typens:doLogin></env:Body></env:Envelope>
+    headers:
+      Soapaction:
+      - ! '"#dologin"'
+      Content-Type:
+      - text/xml;charset=UTF-8
+      Content-Length:
+      - '510'
+      Accept:
+      - ! '*/*'
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 21 May 2013 11:19:46 GMT
+      Server:
+      - Apache
+      Vary:
+      - Accept-Encoding
+      Set-Cookie:
+      - QXLDATA=eQmR%2BgiuliQ4DZROVsGca5BhzUavS5%2FB9RhA5Y8hhH4%3D%23%23%23JyqR0%2FRKh13NJEYG1OtuliSlGMpQnhDVGUzLT2OdcF3vMEpMFM1nYOY10VifFgm%2FHGQ1x3y9ktVnq1z7jV7NBGduUN4h3k7aoBavHWv3pnFT1OUFh8AmAD%2FFkruWBe8q3fIkuZKON9IcNBhXHw%3D%3D;
+        expires=Tue, 21-May-2013 11:49:46 GMT; path=/; domain=.allegro.pl
+      - QXLSESSID=9f7c88ae0289e515a58de1aebdff9818bcaa3e7c0bcc68bb00; path=/; domain=.allegro.pl;
+        HttpOnly
+      - captcha=0; expires=Tue, 21-May-2013 10:19:46 GMT; path=/; domain=.allegro.pl
+      - captcha=0; expires=Tue, 21-May-2013 10:19:46 GMT; path=/; domain=.allegro.pl
+      - qeppo_login2=%7B%22welcome%22%3A%22Witaj%2C%22%2C%22id%22%3A%222783112%22%2C%22username%22%3A%22gudson%22%2C%22qeppo_hash%22%3A%22M8FyECuVNKMZrmPREuOSo5N4h7aF35J6GqjXBKHrjfc%3D%22%7D;
+        path=/; domain=.allegro.pl
+      - ws2=a4da024405f808bdbe8d956c5de3513f; expires=Tue, 21-May-2013 11:49:46 GMT;
+        path=/; domain=.allegro.pl
+      - ws3=Na900e8e7379c659e4f10ab6e96f7c0b1; expires=Mon, 14-Dec-2111 11:19:46 GMT;
+        path=/; domain=.allegro.pl
+      - ws4=x; path=/; domain=.allegro.pl
+      Expires:
+      - Thu, 19 Nov 1981 08:52:00 GMT
+      Cache-Control:
+      - no-store, no-cache, must-revalidate, post-check=0, pre-check=0
+      Pragma:
+      - no-cache
+      Status:
+      - 200 OK
+      X-Cnection:
+      - Close
+      Content-Length:
+      - '800'
+      Content-Type:
+      - text/xml; charset=UTF-8
+      X-Frame-Options:
+      - SAMEORIGIN
+    body:
+      encoding: US-ASCII
+      string: ! '<?xml version="1.0" encoding="UTF-8"?>
+
+        <SOAP-ENV:Envelope  xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/"
+        xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:typens="urn:AllegroWebApi"
+        xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+
+        <SOAP-ENV:Body SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+
+        <typens:doLoginResponse><session-handle-part xsi:type="xsd:string">9f7c88ae0289e515a58de1aebdff9818bcaa3e7c0bcc68bb00_1</session-handle-part>
+
+        <user-id xsi:type="xsd:long">2783112</user-id>
+
+        <server-time xsi:type="xsd:long">1369135186</server-time>
+
+        </typens:doLoginResponse></SOAP-ENV:Body>
+
+        </SOAP-ENV:Envelope>
+
+'
+    http_version: 
+  recorded_at: Tue, 21 May 2013 11:19:47 GMT
+- request:
+    method: post
+    uri: https://webapi.allegro.pl/uploader.php
+    body:
+      encoding: US-ASCII
+      string: <?xml version="1.0" encoding="UTF-8"?><env:Envelope xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:typens="urn:AllegroWebApi"
+        xmlns:env="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ins0="urn:AllegroWebApi"><env:Body><typens:doGetMyIncomingPayments><session-handle>9f7c88ae0289e515a58de1aebdff9818bcaa3e7c0bcc68bb00_1</session-handle><buyer-id
+        xsi:nil="true"/><item-id xsi:nil="true"/><trans-recv-date-from xsi:nil="true"/><trans-recv-date-to
+        xsi:nil="true"/><trans-page-limit xsi:nil="true"/><trans-offset xsi:nil="true"/></typens:doGetMyIncomingPayments></env:Body></env:Envelope>
+    headers:
+      Soapaction:
+      - ! '"#dogetmyincomingpayments"'
+      Content-Type:
+      - text/xml;charset=UTF-8
+      Content-Length:
+      - '644'
+      Accept:
+      - ! '*/*'
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 21 May 2013 11:19:47 GMT
+      Server:
+      - Apache
+      Vary:
+      - Accept-Encoding
+      Set-Cookie:
+      - QXLSESSID=9f7c88ae0289e515a58de1aebdff9818bcaa3e7c0bcc68bb00; path=/; domain=.allegro.pl;
+        HttpOnly
+      - ws2=b8bcb682bcae796e1cffe596b9dfb7db; expires=Tue, 21-May-2013 11:49:47 GMT;
+        path=/; domain=.allegro.pl
+      - ws3=N3ce03d1b2070f116a616d9bfd3add298; expires=Mon, 14-Dec-2111 11:19:47 GMT;
+        path=/; domain=.allegro.pl
+      - ws4=x; path=/; domain=.allegro.pl
+      Expires:
+      - Thu, 19 Nov 1981 08:52:00 GMT
+      Cache-Control:
+      - no-store, no-cache, must-revalidate, post-check=0, pre-check=0
+      Pragma:
+      - no-cache
+      Status:
+      - 200 OK
+      X-Cnection:
+      - Close
+      Content-Length:
+      - '1758'
+      Content-Type:
+      - text/xml; charset=UTF-8
+      X-Frame-Options:
+      - SAMEORIGIN
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPFNPQVAt
+        RU5WOkVudmVsb3BlICB4bWxuczpTT0FQLUVOVj0iaHR0cDovL3NjaGVtYXMu
+        eG1sc29hcC5vcmcvc29hcC9lbnZlbG9wZS8iIHhtbG5zOlNPQVAtRU5DPSJo
+        dHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy9zb2FwL2VuY29kaW5nLyIgeG1s
+        bnM6eHNpPSJodHRwOi8vd3d3LnczLm9yZy8yMDAxL1hNTFNjaGVtYS1pbnN0
+        YW5jZSIgeG1sbnM6eHNkPSJodHRwOi8vd3d3LnczLm9yZy8yMDAxL1hNTFNj
+        aGVtYSIgeG1sbnM6dHlwZW5zPSJ1cm46QWxsZWdyb1dlYkFwaSIgeG1sbnM6
+        c29hcD0iaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3NkbC9zb2FwLyIg
+        eG1sbnM6d3NkbD0iaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3NkbC8i
+        Pgo8U09BUC1FTlY6Qm9keSBTT0FQLUVOVjplbmNvZGluZ1N0eWxlPSJodHRw
+        Oi8vc2NoZW1hcy54bWxzb2FwLm9yZy9zb2FwL2VuY29kaW5nLyI+Cjx0eXBl
+        bnM6ZG9HZXRNeUluY29taW5nUGF5bWVudHNSZXNwb25zZT48cGF5LXRyYW5z
+        LWluY29tZSB4c2k6dHlwZT0iU09BUC1FTkM6QXJyYXkiIFNPQVAtRU5DOmFy
+        cmF5VHlwZT0idHlwZW5zOlVzZXJJbmNvbWluZ1BheW1lbnRTdHJ1Y3RbMV0i
+        PjxpdGVtIHhzaTp0eXBlPSJ0eXBlbnM6VXNlckluY29taW5nUGF5bWVudFN0
+        cnVjdCI+CjxwYXktdHJhbnMtaWQgeHNpOnR5cGU9InhzZDpsb25nIj4yNDM2
+        MjY0ODA8L3BheS10cmFucy1pZD4KPHBheS10cmFucy1pdC1pZCB4c2k6dHlw
+        ZT0ieHNkOmxvbmciPjMyNjYxNjY1NzU8L3BheS10cmFucy1pdC1pZD4KPHBh
+        eS10cmFucy1idXllci1pZCB4c2k6dHlwZT0ieHNkOmludCI+NTY5NzkwOTwv
+        cGF5LXRyYW5zLWJ1eWVyLWlkPgo8cGF5LXRyYW5zLXR5cGUgeHNpOnR5cGU9
+        InhzZDpzdHJpbmciPmNvPC9wYXktdHJhbnMtdHlwZT4KPHBheS10cmFucy1z
+        dGF0dXMgeHNpOnR5cGU9InhzZDpzdHJpbmciPlpha2/FhGN6b25hPC9wYXkt
+        dHJhbnMtc3RhdHVzPgo8cGF5LXRyYW5zLWFtb3VudCB4c2k6dHlwZT0ieHNk
+        OmZsb2F0Ij4yPC9wYXktdHJhbnMtYW1vdW50Pgo8cGF5LXRyYW5zLWNyZWF0
+        ZS1kYXRlIHhzaTp0eXBlPSJ4c2Q6bG9uZyI+MTM2OTEzNDU1OTwvcGF5LXRy
+        YW5zLWNyZWF0ZS1kYXRlPgo8cGF5LXRyYW5zLXJlY3YtZGF0ZSB4c2k6dHlw
+        ZT0ieHNkOmxvbmciPjEzNjkxMzQ3NjA8L3BheS10cmFucy1yZWN2LWRhdGU+
+        CjxwYXktdHJhbnMtcHJpY2UgeHNpOnR5cGU9InhzZDpmbG9hdCI+MTwvcGF5
+        LXRyYW5zLXByaWNlPgo8cGF5LXRyYW5zLWNvdW50IHhzaTp0eXBlPSJ4c2Q6
+        aW50Ij4xPC9wYXktdHJhbnMtY291bnQ+CjxwYXktdHJhbnMtcG9zdGFnZS1h
+        bW91bnQgeHNpOnR5cGU9InhzZDpmbG9hdCI+MTwvcGF5LXRyYW5zLXBvc3Rh
+        Z2UtYW1vdW50Pgo8cGF5LXRyYW5zLWRldGFpbHMgeHNpOnR5cGU9IlNPQVAt
+        RU5DOkFycmF5IiBTT0FQLUVOQzphcnJheVR5cGU9InR5cGVuczpQYXltZW50
+        RGV0YWlsc1N0cnVjdFswXSI+PC9wYXktdHJhbnMtZGV0YWlscz4KPHBheS10
+        cmFucy1pbmNvbXBsZXRlIHhzaTp0eXBlPSJ4c2Q6aW50Ij4wPC9wYXktdHJh
+        bnMtaW5jb21wbGV0ZT4KPHBheS10cmFucy1tYWluLWlkIHhzaTp0eXBlPSJ4
+        c2Q6bG9uZyI+MDwvcGF5LXRyYW5zLW1haW4taWQ+CjwvaXRlbT4KPC9wYXkt
+        dHJhbnMtaW5jb21lPgo8L3R5cGVuczpkb0dldE15SW5jb21pbmdQYXltZW50
+        c1Jlc3BvbnNlPjwvU09BUC1FTlY6Qm9keT4KPC9TT0FQLUVOVjpFbnZlbG9w
+        ZT4K
+    http_version: 
+  recorded_at: Tue, 21 May 2013 11:19:47 GMT
+recorded_with: VCR 2.4.0
