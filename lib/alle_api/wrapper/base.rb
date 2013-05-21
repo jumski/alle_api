@@ -17,7 +17,7 @@ module AlleApi
           field.each do |original, value|
             original = original.to_s.gsub(key_prefix, '').to_sym if key_prefix
 
-            translated = self::ATTRIBUTE_NAME_TRANSLATION[original]
+            translated = self::ATTRIBUTE_NAME_TRANSLATION[original] || original
             attributes[translated] = value
           end
 

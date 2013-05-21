@@ -25,15 +25,15 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Tue, 21 May 2013 11:26:30 GMT
+      - Tue, 21 May 2013 12:39:46 GMT
       Server:
       - Apache
       Vary:
       - Accept-Encoding
       Set-Cookie:
-      - ws2=cbaa89156789e95d549dcccc8758d2c4; expires=Tue, 21-May-2013 11:56:30 GMT;
+      - ws2=0fa57a0f0923928f50cba1e27057b40c; expires=Tue, 21-May-2013 13:09:47 GMT;
         path=/; domain=.allegro.pl
-      - ws3=Ne40bafc51595131502d71752514e3419; expires=Mon, 14-Dec-2111 11:26:30 GMT;
+      - ws3=N0ea649e63e86b785522dda28d6b233a9; expires=Mon, 14-Dec-2111 12:39:47 GMT;
         path=/; domain=.allegro.pl
       - ws4=x; path=/; domain=.allegro.pl
       Status:
@@ -266,7 +266,7 @@ http_interactions:
 
 '
     http_version: 
-  recorded_at: Tue, 21 May 2013 11:26:30 GMT
+  recorded_at: Tue, 21 May 2013 12:39:47 GMT
 - request:
     method: post
     uri: https://webapi.allegro.pl/uploader.php
@@ -292,23 +292,23 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Tue, 21 May 2013 11:26:31 GMT
+      - Tue, 21 May 2013 12:39:47 GMT
       Server:
       - Apache
       Vary:
       - Accept-Encoding
       Set-Cookie:
-      - QXLDATA=K5GrMfOkwK4WRU6NRcujJHAFr5d4u3Cn%2B%2FliSfs10fk%3D%23%23%23X4jc0EbMJruVWdqge9bfz9iGdCpNyDK83e7J3196qtRIpi9hjB1eUMyL2HPXCw5%2FwN0Kdbu1Gp6VKATPNFcpuzB%2BGGhWrll0yEKRXoP0yuxFt5My%2BqbI1rRdlZqL4mqtjjPK8Nj7ZNbp7j8vYw%3D%3D;
-        expires=Tue, 21-May-2013 11:56:31 GMT; path=/; domain=.allegro.pl
-      - QXLSESSID=debe5a8a02c4454eefc6d526d6748f3abbdd340a0bcc68bb00; path=/; domain=.allegro.pl;
+      - QXLDATA=p2%2FL5ztEskoHDMozZmU%2BiXvrXytjpNe51HFdheMD4L4%3D%23%23%23oIU1hyp0T6WZIUE03LtM%2BMBRQStC8V8fws6mXRjuf8uAj4GhZ0nMjPXovE84p3iTMcc%2BnCL7G7xiJLs4yLebQE6Qo5%2B%2FtaGyKhRunJM9KG9zYN7ZKpzSCVrL%2FliIwnwIxYoTIPei4PfXYDZ6Mg%3D%3D;
+        expires=Tue, 21-May-2013 13:09:47 GMT; path=/; domain=.allegro.pl
+      - QXLSESSID=0ca57be178d1fc5024984039241f1042977765e2155a173301; path=/; domain=.allegro.pl;
         HttpOnly
-      - captcha=0; expires=Tue, 21-May-2013 10:26:31 GMT; path=/; domain=.allegro.pl
-      - captcha=0; expires=Tue, 21-May-2013 10:26:31 GMT; path=/; domain=.allegro.pl
+      - captcha=0; expires=Tue, 21-May-2013 11:39:47 GMT; path=/; domain=.allegro.pl
+      - captcha=0; expires=Tue, 21-May-2013 11:39:47 GMT; path=/; domain=.allegro.pl
       - qeppo_login2=%7B%22welcome%22%3A%22Witaj%2C%22%2C%22id%22%3A%222783112%22%2C%22username%22%3A%22gudson%22%2C%22qeppo_hash%22%3A%22M8FyECuVNKMZrmPREuOSo5N4h7aF35J6GqjXBKHrjfc%3D%22%7D;
         path=/; domain=.allegro.pl
-      - ws2=0d9d2cdee0b3b67ad45227d92e2ca1c6; expires=Tue, 21-May-2013 11:56:31 GMT;
+      - ws2=3c2c848f22b14ce3dbdcfe2cdf9998f0; expires=Tue, 21-May-2013 13:09:47 GMT;
         path=/; domain=.allegro.pl
-      - ws3=Nca0f3b5863f57070ffd503418397938f; expires=Mon, 14-Dec-2111 11:26:31 GMT;
+      - ws3=N3854b491dcc126aee5eae47c77fb7771; expires=Mon, 14-Dec-2111 12:39:47 GMT;
         path=/; domain=.allegro.pl
       - ws4=x; path=/; domain=.allegro.pl
       Expires:
@@ -338,11 +338,11 @@ http_interactions:
 
         <SOAP-ENV:Body SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
 
-        <typens:doLoginResponse><session-handle-part xsi:type="xsd:string">debe5a8a02c4454eefc6d526d6748f3abbdd340a0bcc68bb00_1</session-handle-part>
+        <typens:doLoginResponse><session-handle-part xsi:type="xsd:string">0ca57be178d1fc5024984039241f1042977765e2155a173301_1</session-handle-part>
 
         <user-id xsi:type="xsd:long">2783112</user-id>
 
-        <server-time xsi:type="xsd:long">1369135591</server-time>
+        <server-time xsi:type="xsd:long">1369139987</server-time>
 
         </typens:doLoginResponse></SOAP-ENV:Body>
 
@@ -350,7 +350,7 @@ http_interactions:
 
 '
     http_version: 
-  recorded_at: Tue, 21 May 2013 11:26:31 GMT
+  recorded_at: Tue, 21 May 2013 12:39:47 GMT
 - request:
     method: post
     uri: https://webapi.allegro.pl/uploader.php
@@ -358,7 +358,7 @@ http_interactions:
       encoding: US-ASCII
       string: <?xml version="1.0" encoding="UTF-8"?><env:Envelope xmlns:xsd="http://www.w3.org/2001/XMLSchema"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:typens="urn:AllegroWebApi"
-        xmlns:env="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ins0="urn:AllegroWebApi"><env:Body><typens:doGetSiteJournalDeals><session-id>debe5a8a02c4454eefc6d526d6748f3abbdd340a0bcc68bb00_1</session-id><journal-start
+        xmlns:env="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ins0="urn:AllegroWebApi"><env:Body><typens:doGetSiteJournalDeals><session-id>0ca57be178d1fc5024984039241f1042977765e2155a173301_1</session-id><journal-start
         xsi:nil="true"/></typens:doGetSiteJournalDeals></env:Body></env:Envelope>
     headers:
       Soapaction:
@@ -377,17 +377,17 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Tue, 21 May 2013 11:26:31 GMT
+      - Tue, 21 May 2013 12:39:48 GMT
       Server:
       - Apache
       Vary:
       - Accept-Encoding
       Set-Cookie:
-      - QXLSESSID=debe5a8a02c4454eefc6d526d6748f3abbdd340a0bcc68bb00; path=/; domain=.allegro.pl;
+      - QXLSESSID=0ca57be178d1fc5024984039241f1042977765e2155a173301; path=/; domain=.allegro.pl;
         HttpOnly
-      - ws2=5506a8ed501b91bb45774ed053206e5d; expires=Tue, 21-May-2013 11:56:31 GMT;
+      - ws2=c61da857b8550c609a336fc3c88c025a; expires=Tue, 21-May-2013 13:09:48 GMT;
         path=/; domain=.allegro.pl
-      - ws3=N49221807e04659b2c86ad0e343fca159; expires=Mon, 14-Dec-2111 11:26:31 GMT;
+      - ws3=Nc41072cf792a0631ca011916b06c2361; expires=Mon, 14-Dec-2111 12:39:48 GMT;
         path=/; domain=.allegro.pl
       - ws4=x; path=/; domain=.allegro.pl
       Expires:
@@ -668,7 +668,7 @@ http_interactions:
 
 '
     http_version: 
-  recorded_at: Tue, 21 May 2013 11:26:32 GMT
+  recorded_at: Tue, 21 May 2013 12:39:48 GMT
 - request:
     method: post
     uri: https://webapi.allegro.pl/uploader.php
@@ -676,10 +676,10 @@ http_interactions:
       encoding: US-ASCII
       string: <?xml version="1.0" encoding="UTF-8"?><env:Envelope xmlns:xsd="http://www.w3.org/2001/XMLSchema"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:typens="urn:AllegroWebApi"
-        xmlns:env="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ins0="urn:AllegroWebApi"><env:Body><typens:doGetPostBuyFormsDataForSellers><session-id>debe5a8a02c4454eefc6d526d6748f3abbdd340a0bcc68bb00_1</session-id><transactions-ids-array><transactions-ids-array>243241703</transactions-ids-array><transactions-ids-array>243626480</transactions-ids-array><transactions-ids-array>243627119</transactions-ids-array><transactions-ids-array>243627406</transactions-ids-array><transactions-ids-array>243626480</transactions-ids-array><transactions-ids-array>243627556</transactions-ids-array></transactions-ids-array></typens:doGetPostBuyFormsDataForSellers></env:Body></env:Envelope>
+        xmlns:env="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ins0="urn:AllegroWebApi"><env:Body><typens:doGetPostBuyFormsDataForSellers><session-id>0ca57be178d1fc5024984039241f1042977765e2155a173301_1</session-id><transactions-ids-array><transactions-ids-array>243241703</transactions-ids-array><transactions-ids-array>243626480</transactions-ids-array><transactions-ids-array>243627119</transactions-ids-array><transactions-ids-array>243627406</transactions-ids-array><transactions-ids-array>243626480</transactions-ids-array><transactions-ids-array>243627556</transactions-ids-array></transactions-ids-array></typens:doGetPostBuyFormsDataForSellers></env:Body></env:Envelope>
     headers:
       Cookie:
-      - ws2=5506a8ed501b91bb45774ed053206e5d
+      - ws2=c61da857b8550c609a336fc3c88c025a
       Soapaction:
       - ! '"#dogetpostbuyformsdataforsellers"'
       Content-Type:
@@ -696,17 +696,17 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Tue, 21 May 2013 11:26:32 GMT
+      - Tue, 21 May 2013 12:39:48 GMT
       Server:
       - Apache
       Vary:
       - Accept-Encoding
       Set-Cookie:
-      - QXLSESSID=debe5a8a02c4454eefc6d526d6748f3abbdd340a0bcc68bb00; path=/; domain=.allegro.pl;
+      - QXLSESSID=0ca57be178d1fc5024984039241f1042977765e2155a173301; path=/; domain=.allegro.pl;
         HttpOnly
-      - ws2=fd2ea53ef7ad4de4abd670e7df83b6c6; expires=Tue, 21-May-2013 11:56:32 GMT;
+      - ws2=be11547af07fd9df66b4c609b8351eb0; expires=Tue, 21-May-2013 13:09:48 GMT;
         path=/; domain=.allegro.pl
-      - ws3=N5054451e1b49d414ecbb3feb4bfbf46a; expires=Mon, 14-Dec-2111 11:26:32 GMT;
+      - ws3=N12cff94735099d103fd1d1edf14f455f; expires=Mon, 14-Dec-2111 12:39:48 GMT;
         path=/; domain=.allegro.pl
       - ws4=x; path=/; domain=.allegro.pl
       Expires:
@@ -1424,5 +1424,5 @@ http_interactions:
         dGFGb3JTZWxsZXJzUmVzcG9uc2U+PC9TT0FQLUVOVjpCb2R5Pgo8L1NPQVAt
         RU5WOkVudmVsb3BlPgo=
     http_version: 
-  recorded_at: Tue, 21 May 2013 11:26:32 GMT
+  recorded_at: Tue, 21 May 2013 12:39:49 GMT
 recorded_with: VCR 2.4.0

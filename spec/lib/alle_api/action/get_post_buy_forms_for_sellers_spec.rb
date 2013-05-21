@@ -5,21 +5,21 @@ require 'rspec/allegro'
 describe AlleApi::Action::GetPostBuyFormsForSellers do
 
   include_examples 'api action', :do_get_post_buy_forms_data_for_sellers do
-    let(:actual_body) { subject.request_body(ids) }
+    # let(:actual_body) { subject.request_body(ids) }
 
-    it '#validate! raises an exception when ids are empty' do
-      expect {
-        subject.validate!([])
-      }.to raise_error(/Please provide some ids/)
-    end
+    # it '#validate! raises an exception when ids are empty' do
+    #   expect {
+    #     subject.validate!([])
+    #   }.to raise_error(/Please provide some ids/)
+    # end
 
-    it_implements 'simple #request_body' do
-      let(:ids) { [1, 2, 3] }
-      let(:expected_body) do
-        { 'session-id' => client.session_handle,
-          'transactions-ids-array' => ids }
-      end
-    end
+    # it_implements 'simple #request_body' do
+    #   let(:ids) { [1, 2, 3] }
+    #   let(:expected_body) do
+    #     { 'session-id' => client.session_handle,
+    #       'transactions-ids-array' => ids }
+    #   end
+    # end
 
     describe "uses wrapper", vcr: 'do_get_post_buy_forms_data_for_sellers', :hax => true do
       include_context 'authenticated and updated api client'
@@ -37,26 +37,26 @@ describe AlleApi::Action::GetPostBuyFormsForSellers do
         # specify { binding.pry }
         it { should be_a AlleApi::Wrapper::PostBuyForm }
 
-        its(:remote_id) { should eq 243626480 }
+        its(:id) { should eq 243626480 }
         its(:source) { should eq subject }
         its(:shipment_id) { should eq 1 }
 
         its(:buyer_id) { should eq 5697909 }
         its(:buyer_login) { should eq 'Yumm' }
         its(:buyer_email) { should eq 'jumski+allegro@gmail.com'  }
-        its(:requested_invoice) { should be_false }
-        its(:message_to_seller) { should eq 'siema gudi payu full' }
+        its(:invoice_options) { should be_false }
+        its(:msg_to_seller) { should eq 'siema gudi payu full' }
 
-        its(:items_amount) { should eq 2.0 }
+        its(:amount) { should eq 2.0 }
         its(:postage_amount) { should eq 1.0 }
-        its(:total_amount) { should eq 2 }
+        its(:payment_amount) { should eq 2 }
 
-        its(:payment_type) { should eq 'co' }
-        its(:payment_id) { should eq 318277336 }
-        its(:payment_status) { should eq 'Zakończona' }
-        its(:payment_created_at) { should eq DateTime.parse('2013-05-21 13:12:40') }
-        its(:payment_received_at) { should eq DateTime.parse('2013-05-21 13:12:40') }
-        its(:payment_cancelled_at) { should be_nil }
+        its(:pay_type) { should eq 'co' }
+        its(:pay_id) { should eq 318277336 }
+        its(:pay_status) { should eq 'Zakończona' }
+        its(:date_init) { should eq DateTime.parse('2013-05-21 13:12:40') }
+        its(:date_recv) { should eq DateTime.parse('2013-05-21 13:12:40') }
+        its(:date_cancel) { should be_nil }
 
         # its(:shipment_addres) { should be_a AlleApi::Wrapper::ShipmentAddress }
         # describe 'shipment address' do

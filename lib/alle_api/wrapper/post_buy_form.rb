@@ -1,42 +1,25 @@
 module AlleApi
   module Wrapper
     class PostBuyForm < Base
-      ATTRIBUTE_NAME_TRANSLATION = {
-        id:              :remote_id,
-        buyer_id:        :buyer_id,
-        amount:          :items_amount,
-        postage_amount:  :postage_amount,
-        payment_amount:  :total_amount,
-        invoice_option:  :requested_invoice,
-        msg_to_seller:   :message_to_seller,
-        pay_type:        :payment_type,
-        pay_id:          :payment_id,
-        pay_status:      :payment_status,
-        date_init:       :payment_created_at,
-        date_recv:       :payment_received_at,
-        date_cancel:     :payment_cancelled_at,
-        shipment_id:     :shipment_id,
-        buyer_login:     :buyer_login,
-        buyer_email:     :buyer_email,
-      }
+      ATTRIBUTE_NAME_TRANSLATION = {}
 
-      attribute :remote_id, Integer
+      attribute :id, Integer
       attribute :buyer_id, Integer
       attribute :buyer_login, String
       attribute :buyer_email, String
 
-      attribute :items_amount, Float
+      attribute :amount, Float
       attribute :postage_amount, Float
-      attribute :total_amount, Float
-      attribute :requested_invoice, Boolean
-      attribute :message_to_seller, String
+      attribute :invoice_options, Boolean
+      attribute :msg_to_seller, String
 
-      attribute :payment_type, String
-      attribute :payment_id, Integer
-      attribute :payment_status, String
-      attribute :payment_created_at, DateTime
-      attribute :payment_received_at, DateTime
-      attribute :payment_cancelled_at, DateTime
+      attribute :pay_type, String
+      attribute :pay_id, Integer
+      attribute :pay_status, String
+      attribute :date_init, DateTime
+      attribute :date_recv, DateTime
+      attribute :date_cancel, DateTime
+      attribute :payment_amount, Float
 
       attribute :shipment_id, Integer
 
@@ -57,6 +40,13 @@ module AlleApi
           wrapped = super(field)
           wrapped.source = field
           wrapped
+        end
+      end
+
+      %w(init cancel recv).each do |type|
+        define_method "date_#{type}=" do |date|
+          date = nil if date.is_a? Hash
+          super(date)
         end
       end
 
