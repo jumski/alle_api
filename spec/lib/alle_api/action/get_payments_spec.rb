@@ -2,7 +2,7 @@
 require 'spec_helper'
 require 'rspec/allegro'
 
-describe AlleApi::Action::GetIncomingPayments do
+describe AlleApi::Action::GetPayments do
 
   include_examples 'api action', :do_get_my_incoming_payments do
     let(:args) do
@@ -47,7 +47,7 @@ describe AlleApi::Action::GetIncomingPayments do
 
     describe "uses wrapper", vcr: 'do_get_my_incoming_payments' do
       include_context 'authenticated and updated api client'
-      before { @wrapped = api.get_incoming_payments }
+      before { @wrapped = api.get_payments }
 
       context "wraps" do
         subject { @wrapped[0] }

@@ -1,6 +1,6 @@
 module AlleApi
   module Action
-    class GetIncomingPayments < Base
+    class GetPayments < Base
       def soap_action
         :do_get_my_incoming_payments
       end
