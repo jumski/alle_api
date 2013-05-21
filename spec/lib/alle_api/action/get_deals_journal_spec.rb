@@ -29,15 +29,8 @@ describe AlleApi::Action::GetDealsJournal do
     end
 
     describe "uses wrapper", vcr: 'get_deals_journal' do
-      include_context 'real api client'
-
-      before do
-        account.utility = true
-        account.save!
-        AlleApi::Helper::Versions.new.update(:version_key)
-        AlleApi::Job::Authenticate.new.perform(account.id)
-        @wrapped = api.get_deals_journal
-      end
+      include_context 'authenticated and updated real api client'
+      before { @wrapped = api.get_deals_journal }
 
       context "wraps new deal event" do
         subject { @wrapped[0] }

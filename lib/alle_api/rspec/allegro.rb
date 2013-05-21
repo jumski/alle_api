@@ -54,6 +54,17 @@ if respond_to? :shared_context
     end
   end
 
+  shared_context 'authenticated and updated api client' do
+    include_context 'real api client'
+
+    before do
+      account.utility = true
+      account.save!
+      AlleApi::Helper::Versions.new.update(:version_key)
+      AlleApi::Job::Authenticate.new.perform(account.id)
+    end
+  end
+
   shared_context "mocked api client" do
     include_context 'mocked api params'
 

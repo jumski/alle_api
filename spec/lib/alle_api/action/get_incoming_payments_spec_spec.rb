@@ -44,6 +44,16 @@ describe AlleApi::Action::GetIncomingPayments do
 
     it_implements 'simple #request_body'
 
+    describe "uses wrapper", vcr: 'do_get_my_incoming_payments' do
+      include_context 'authenticated and updated api client'
+
+      before { @wrapped = api.get_incoming_payments }
+
+      it "hax" do
+        binding.pry
+      end
+    end
+
     # context 'when starting point is provided' do
     # end
 

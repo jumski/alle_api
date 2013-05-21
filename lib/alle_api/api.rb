@@ -47,6 +47,10 @@ module AlleApi
       Action::FinishAuctions.new(client).do(remote_ids)
     end
 
+    def get_incoming_payments(params = {})
+      Action::GetIncomingPayments.new(client).do(params)
+    end
+
     def finish_auction(remote_id)
       result = finish_auctions([remote_id])
 
