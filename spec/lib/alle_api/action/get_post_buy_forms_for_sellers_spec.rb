@@ -37,26 +37,26 @@ describe AlleApi::Action::GetPostBuyFormsForSellers do
         # specify { binding.pry }
         it { should be_a AlleApi::Wrapper::PostBuyForm }
 
-        its(:id) { should eq 243626480 }
+        its(:remote_id) { should eq 243626480 }
         its(:source) { should eq subject }
         its(:shipment_id) { should eq 1 }
 
         its(:buyer_id) { should eq 5697909 }
         its(:buyer_login) { should eq 'Yumm' }
         its(:buyer_email) { should eq 'jumski+allegro@gmail.com'  }
-        its(:invoice_options) { should be_false }
-        its(:msg_to_seller) { should eq 'siema gudi payu full' }
+        its(:invoice_requested) { should be_false }
+        its(:message_to_seller) { should eq 'siema gudi payu full' }
 
         its(:amount) { should eq 2.0 }
         its(:postage_amount) { should eq 1.0 }
         its(:payment_amount) { should eq 2 }
 
-        its(:pay_type) { should eq 'co' }
-        its(:pay_id) { should eq 318277336 }
-        its(:pay_status) { should eq 'Zakończona' }
-        its(:date_init) { should eq DateTime.parse('2013-05-21 13:12:40') }
-        its(:date_recv) { should eq DateTime.parse('2013-05-21 13:12:40') }
-        its(:date_cancel) { should be_nil }
+        its(:payment_type) { should eq 'co' }
+        its(:payment_id) { should eq 318277336 }
+        its(:payment_status) { should eq 'Zakończona' }
+        its(:payment_created_at) { should eq DateTime.parse('2013-05-21 13:12:40') }
+        its(:payment_received_at) { should eq DateTime.parse('2013-05-21 13:12:40') }
+        its(:payment_cancelled_at) { should be_nil }
 
         # its(:shipment_addres) { should be_a AlleApi::Wrapper::ShipmentAddress }
         # describe 'shipment address' do

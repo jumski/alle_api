@@ -1,24 +1,34 @@
 module AlleApi
   module Wrapper
     class PostBuyForm < Base
-      ATTRIBUTE_NAME_TRANSLATION = {}
+      ATTRIBUTE_NAME_TRANSLATION = {
+        id: :remote_id,
+        invoice_options: :invoice_requested,
+        msg_to_seller: :message_to_seller,
+        pay_type: :payment_type,
+        pay_status: :payment_status,
+        pay_id: :payment_id,
+        date_init: :payment_created_at,
+        date_recv: :payment_received_at,
+        date_cancel: :payment_cancelled_at,
+      }
 
-      attribute :id, Integer
+      attribute :remote_id, Integer
       attribute :buyer_id, Integer
       attribute :buyer_login, String
       attribute :buyer_email, String
 
       attribute :amount, Float
       attribute :postage_amount, Float
-      attribute :invoice_options, Boolean
-      attribute :msg_to_seller, String
+      attribute :invoice_requested, Boolean
+      attribute :message_to_seller, String
 
-      attribute :pay_type, String
-      attribute :pay_id, Integer
-      attribute :pay_status, String
-      attribute :date_init, DateTime
-      attribute :date_recv, DateTime
-      attribute :date_cancel, DateTime
+      attribute :payment_type, String
+      attribute :payment_id, Integer
+      attribute :payment_status, String
+      attribute :payment_created_at, DateTime
+      attribute :payment_received_at, DateTime
+      attribute :payment_cancelled_at, DateTime
       attribute :payment_amount, Float
 
       attribute :shipment_id, Integer
@@ -43,8 +53,8 @@ module AlleApi
         end
       end
 
-      %w(init cancel recv).each do |type|
-        define_method "date_#{type}=" do |date|
+      %w(created received cancelled).each do |type|
+        define_method "payment_#{type}_at=" do |date|
           date = nil if date.is_a? Hash
           super(date)
         end

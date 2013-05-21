@@ -32,10 +32,6 @@ describe AlleApi::Action::GetDealsJournal do
       include_context 'authenticated and updated api client'
       before { @wrapped = api.get_deals_journal }
 
-      it "adf" do
-        binding.pry
-      end
-
       # context "wraps new deal event" do
       #   subject { @wrapped[0] }
 
