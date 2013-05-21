@@ -5,6 +5,8 @@ module AlleApi
       include Virtus
 
       class << self
+        def key_prefix; false end
+
         def wrap_multiple(result)
           result.map { |field| wrap(field) }
         end
@@ -13,6 +15,8 @@ module AlleApi
           attributes = {}
 
           field.each do |original, value|
+            original = original.to_s.gsub(key_prefix, '').to_sym if key_prefix
+
             translated = self::ATTRIBUTE_NAME_TRANSLATION[original]
             attributes[translated] = value
           end
