@@ -58,20 +58,22 @@ describe AlleApi::Action::GetPostBuyFormsForSellers do
         its(:payment_received_at) { should eq DateTime.parse('2013-05-21 13:12:40') }
         its(:payment_cancelled_at) { should be_nil }
 
-        # its(:shipment_addres) { should be_a AlleApi::Wrapper::ShipmentAddress }
-        # describe 'shipment address' do
-        #   subject { @wrapped[1].shipment_address }
+        its(:shipment_address) { should be_a AlleApi::Wrapper::ShipmentAddress }
+        describe 'shipment address' do
+          subject { @wrapped[1].shipment_address }
 
-        #   its(:country) { should eq 1 }
-        #   its(:street) { should eq "os. Tysiąclecia 32/14" }
-        #   its(:zipcode) { should eq '31-610' }
-        #   its(:city) { should eq 'Kraków' }
-        #   its(:full_name) { should eq 'Wojciech Majewski' }
-        #   its(:company) { should be_nil  }
-        #   its(:phone_number) { should eq '883091610' }
-        #   its(:created_at) { should eq Date.parse('2013-05-21') }
-        #   its(:address_type) { should eq 1 }
-        # end
+          # specify { binding.pry }
+          its(:country_id) { should eq 1 }
+          its(:country) { should eq 'Polska' }
+          its(:address_1) { should eq "os. Tysiąclecia 32/14" }
+          its(:zipcode) { should eq '31-610' }
+          its(:city) { should eq 'Kraków' }
+          its(:full_name) { should eq 'Wojciech Majewski' }
+          its(:company) { should be_nil  }
+          its(:phone_number) { should eq '883091610' }
+          its(:created_at) { should eq DateTime.parse("2013-05-21 13:09:19") }
+          its(:type) { should eq 1 }
+        end
       end
 
       # context "wraps new transaction event" do

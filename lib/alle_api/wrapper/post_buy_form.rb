@@ -32,8 +32,9 @@ module AlleApi
       attribute :payment_amount, Float
 
       attribute :shipment_id, Integer
-
       attribute :source, Hash
+
+      attribute :shipment_address, Hash
 
       class << self
         def key_prefix; 'post_buy_form_' end
@@ -58,6 +59,10 @@ module AlleApi
           date = nil if date.is_a? Hash
           super(date)
         end
+      end
+
+      def shipment_address
+        @shipment_address_wrapped ||= Wrapper::ShipmentAddress.wrap(super)
       end
 
     end
