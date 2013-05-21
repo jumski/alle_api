@@ -1,7 +1,7 @@
 require 'spec_helper'
 require 'rspec/allegro'
 
-describe AlleApi::Action::GetTransactions do
+describe AlleApi::Action::GetPostBuyFormsForSellers do
 
   include_examples 'api action', :do_get_post_buy_forms_data_for_sellers do
     let(:actual_body) { subject.request_body(ids) }
@@ -30,17 +30,21 @@ describe AlleApi::Action::GetTransactions do
         AlleApi::Job::Authenticate.new.perform(account.id)
         deal_events = api.get_deals_journal
         ids = deal_events.map(&:remote_transaction_id)
-        @wrapped = api.get_transactions ids.select{|id| id > 0}
+        @wrapped = api.get_post_buy_forms_for_sellers ids.select{|id| id > 0}
       end
 
-      context "wraps transaction" do
-        subject { @wrapped[0] }
-
-        it { should be_a AlleApi::Wrapper::PostBuyForm }
-        its(:remote_id) { should eq 243241703 }
-        # its(:model_klass) { should eq AlleApi::PostBuyForm }
-        its(:source) { should eq subject }
+      it "'hax'" do
+        binding.pry
       end
+
+      # context "wraps transaction" do
+      #   subject { @wrapped[0] }
+
+      #   it { should be_a AlleApi::Wrapper::PostBuyForm }
+      #   its(:remote_id) { should eq 243241703 }
+      #   # its(:model_klass) { should eq AlleApi::PostBuyForm }
+      #   its(:source) { should eq subject }
+      # end
 
       # context "wraps new transaction event" do
       #   subject { @wrapped[1] }

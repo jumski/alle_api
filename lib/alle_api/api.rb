@@ -27,8 +27,8 @@ module AlleApi
       Action::GetDealsJournal.new(client).do(starting_point)
     end
 
-    def get_transactions(ids)
-      Action::GetTransactions.new(client).do(ids)
+    def get_post_buy_forms_for_sellers(ids)
+      Action::GetPostBuyFormsForSellers.new(client).do(ids)
     end
 
     def get_fields

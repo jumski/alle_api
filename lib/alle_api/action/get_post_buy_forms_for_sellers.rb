@@ -1,6 +1,6 @@
 module AlleApi
   module Action
-    class GetTransactions < Base
+    class GetPostBuyFormsForSellers < Base
       def soap_action
         :do_get_post_buy_forms_data_for_sellers
       end
