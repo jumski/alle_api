@@ -25,12 +25,25 @@ describe AlleApi::Action::GetPostBuyFormsForSellers do
     end
 
     describe "uses wrapper", vcr: 'do_get_post_buy_forms_data_for_sellers', :hax => true do
-      include_context 'authenticated and updated api client'
+      include_context 'real api client'
 
-      before do
+      before(:all) do
+        Savon.configure { |c| c.log = false }
+        VCR.insert_cassette :do_get_post_buy_forms_data_for_sellers
+
+        account.utility = true
+        account.save!
+        AlleApi::Helper::Versions.new.update(:version_key)
+        AlleApi::Job::Authenticate.new.perform(account.id)
+
         deal_events = api.get_deals_journal
         ids = deal_events.map(&:remote_transaction_id)
         @wrapped = api.get_post_buy_forms_for_sellers ids.select{|id| id > 0}
+      end
+      after(:all) do
+        DatabaseCleaner.clean
+        VCR.eject_cassette
+        Savon.configure { |c| c.log = true }
       end
 
       context "wraps transaction" do
