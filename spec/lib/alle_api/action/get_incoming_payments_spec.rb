@@ -1,3 +1,4 @@
+# encoding: utf-8
 require 'spec_helper'
 require 'rspec/allegro'
 
@@ -47,6 +48,28 @@ describe AlleApi::Action::GetIncomingPayments do
     describe "uses wrapper", vcr: 'do_get_my_incoming_payments' do
       include_context 'authenticated and updated api client'
       before { @wrapped = api.get_incoming_payments }
+
+      context "wraps" do
+        subject { @wrapped[0] }
+
+        # specify { binding.pry }
+        it { should be_a AlleApi::Wrapper::Payment }
+        its(:source) { should eq subject }
+        its(:remote_id) { should eq 243626480 }
+        its(:remote_auction_id) { should eq 3266166575 }
+        its(:buyer_id) { should eq 5697909 }
+        its(:type) { should eq 'co' }
+        its(:status) { should eq 'Zakończona' }
+        its(:amount) { should eq 2.0 }
+        its(:postage_amount) { should eq 1.0 }
+        its(:created_at) { should eq Time.at(1369134559).to_datetime }
+        its(:received_at) { should eq Time.at(1369134760).to_datetime }
+        its(:price) { should eq 1.0 }
+        its(:count) { should eq 1 }
+        its(:details) { should be_nil }
+        its(:completed) { should be_true }
+        its(:parent_remote_id) { should be_nil }
+      end
     end
   end
 

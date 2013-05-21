@@ -15,8 +15,8 @@ module AlleApi
           'trans-offset'         => params[:offset] }
       end
 
-      def extract_results(*a)
-        a
+      def extract_results(result)
+        Wrapper::Payment.wrap_multiple result[:pay_trans_income][:item]
       end
     end
   end
