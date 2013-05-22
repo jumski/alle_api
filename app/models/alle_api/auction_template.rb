@@ -69,6 +69,10 @@ class AlleApi::AuctionTemplate < ActiveRecord::Base
     auctions.last
   end
 
+  def inspect
+    "<##{id} enabled:#{publishing_enabled?}, published:#{current_auction.present?}>"
+  end
+
   private
     def steal_title_from_auctionable
       self.title = auctionable.title_for_auction

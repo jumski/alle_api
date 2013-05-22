@@ -252,4 +252,6 @@ describe AlleApi::AuctionTemplate do
       subject.update_attributes(finish_current_immediately: false)
     end
   end
+
+  its(:inspect) { should eq "<##{subject.id} enabled:#{subject.publishing_enabled?}, published:#{subject.current_auction.present?}>" }
 end
