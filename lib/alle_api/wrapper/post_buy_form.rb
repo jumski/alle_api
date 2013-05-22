@@ -49,7 +49,7 @@ module AlleApi
 
         def wrap(field)
           wrapped = super(field)
-          wrapped.source = field.to_hash
+          wrapped.source = field
           wrapped
         end
       end

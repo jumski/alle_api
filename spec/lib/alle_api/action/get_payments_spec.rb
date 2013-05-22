@@ -78,7 +78,7 @@ describe AlleApi::Action::GetPayments do
 
         it { should be_a AlleApi::Payment }
         it { should be_persisted }
-        its(:source) { should eq wrapped.source.with_indifferent_access }
+        its(:source) { should eq wrapped.source }
         its(:remote_id) { should eq wrapped.remote_id }
         its(:remote_auction_id) { should eq wrapped.remote_auction_id }
         its(:buyer_id) { should eq wrapped.buyer_id }

@@ -39,7 +39,7 @@ module AlleApi
 
         def wrap(field)
           wrapped = super(field)
-          wrapped.source = field.to_hash
+          wrapped.source = field
           wrapped
         end
       end
@@ -66,7 +66,7 @@ module AlleApi
       end
 
       def create_payment(account)
-        attrs = attributes.with_indifferent_access
+        attrs = attributes
         attrs[:kind] = attrs.delete :type
         attrs[:completed] = completed
         attrs.delete :incompleted
