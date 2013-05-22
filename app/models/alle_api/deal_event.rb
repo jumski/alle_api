@@ -7,10 +7,11 @@ module AlleApi
     ).map(&:to_sym)
 
     ACCESSIBLE = [:occured_at, :quantity, :auction] + NUMERICAL
+    REQUIRED = ACCESSIBLE - [:auction]
 
     attr_accessible *ACCESSIBLE
 
-    validates *ACCESSIBLE, presence: true
+    validates *REQUIRED, presence: true
     validates *NUMERICAL, numericality: true
 
     belongs_to :auction
@@ -19,5 +20,6 @@ module AlleApi
     class NewTransaction    < self; end
     class CancelTransaction < self; end
     class FinishTransaction < self; end
+
   end
 end

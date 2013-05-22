@@ -3,7 +3,7 @@ require 'spec_helper'
 describe AlleApi::DealEvent do
   it { should belong_to :auction }
 
-  AlleApi::DealEvent::ACCESSIBLE.each do |attr|
+  AlleApi::DealEvent::REQUIRED.each do |attr|
     it { should validate_presence_of attr }
   end
 
