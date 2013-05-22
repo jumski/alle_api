@@ -65,6 +65,12 @@ module AlleApi
         @shipment_address_wrapped ||= Wrapper::ShipmentAddress.wrap(super)
       end
 
+      def create_post_buy_form(account)
+        attrs = attributes
+        attrs.delete :shipment_address
+        AlleApi::PostBuyForm.create attrs
+      end
+
     end
   end
 end

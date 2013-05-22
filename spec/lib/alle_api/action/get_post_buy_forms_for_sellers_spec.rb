@@ -91,6 +91,35 @@ describe AlleApi::Action::GetPostBuyFormsForSellers do
           its(:type) { should eq 1 }
         end
       end
+
+      context "creates records" do
+        let(:wrapped) { @wrapped[1] }
+        subject { wrapped.create_post_buy_form(account).reload }
+
+        it { should be_a AlleApi::PostBuyForm }
+        it { should be_valid }
+        it { should be_persisted }
+        its(:remote_id) { should eq wrapped.remote_id }
+        its(:source) { should eq wrapped.source }
+        its(:shipment_id) { should eq wrapped.shipment_id }
+
+        its(:buyer_id) { should eq wrapped.buyer_id }
+        its(:buyer_login) { should eq wrapped.buyer_login }
+        its(:buyer_email) { should eq wrapped.buyer_email  }
+        its(:invoice_requested) { should eq wrapped.invoice_requested }
+        its(:message_to_seller) { should eq wrapped.message_to_seller }
+
+        its(:amount) { should eq wrapped.amount }
+        its(:postage_amount) { should eq wrapped.postage_amount }
+        its(:payment_amount) { should eq wrapped.payment_amount }
+
+        its(:payment_type) { should eq wrapped.payment_type }
+        its(:payment_id) { should eq wrapped.payment_id }
+        its(:payment_status) { should eq wrapped.payment_status }
+        its(:payment_created_at) { should eq wrapped.payment_created_at }
+        its(:payment_received_at) { should eq wrapped.payment_received_at }
+        its(:payment_cancelled_at) { should eq wrapped.payment_cancelled_at }
+      end
     end
 
   end

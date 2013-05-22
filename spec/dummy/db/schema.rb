@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130522133734) do
+ActiveRecord::Schema.define(:version => 20130522140647) do
 
   create_table "alle_api_accounts", :force => true do |t|
     t.datetime "created_at",                                           :null => false
@@ -192,6 +192,28 @@ ActiveRecord::Schema.define(:version => 20130522133734) do
     t.integer  "parent_remote_id"
     t.string   "source"
     t.datetime "updated_at",        :null => false
+  end
+
+  create_table "alle_api_post_buy_forms", :force => true do |t|
+    t.integer  "remote_id"
+    t.integer  "buyer_id"
+    t.string   "buyer_login"
+    t.string   "buyer_email"
+    t.float    "amount"
+    t.float    "postage_amount"
+    t.boolean  "invoice_requested"
+    t.string   "message_to_seller"
+    t.string   "payment_type"
+    t.integer  "payment_id"
+    t.string   "payment_status"
+    t.datetime "payment_created_at"
+    t.datetime "payment_received_at"
+    t.datetime "payment_cancelled_at"
+    t.float    "payment_amount"
+    t.integer  "shipment_id"
+    t.string   "source"
+    t.datetime "created_at",           :null => false
+    t.datetime "updated_at",           :null => false
   end
 
   create_table "dummy_auctionables", :force => true do |t|
