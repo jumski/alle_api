@@ -48,6 +48,7 @@ describe AlleApi::Action::GetPayments do
     describe "uses wrapper", vcr: 'do_get_my_incoming_payments' do
       include_context 'authenticated and updated api client'
       before { @wrapped = api.get_payments }
+      subject { @wrapped[0] }
 
       context "wraps" do
         subject { @wrapped[0] }
@@ -69,6 +70,29 @@ describe AlleApi::Action::GetPayments do
         its(:details) { should be_nil }
         its(:completed) { should be_true }
         its(:parent_remote_id) { should be_nil }
+      end
+
+      context "creating records" do
+        subject { @wrapped[0].create_payment(account).reload }
+        let(:wrapped) { @wrapped[0] }
+
+        it { should be_a AlleApi::Payment }
+        it { should be_persisted }
+        its(:source) { should eq wrapped.source.with_indifferent_access }
+        its(:remote_id) { should eq wrapped.remote_id }
+        its(:remote_auction_id) { should eq wrapped.remote_auction_id }
+        its(:buyer_id) { should eq wrapped.buyer_id }
+        its(:kind) { should eq wrapped.type }
+        its(:status) { should eq wrapped.status }
+        its(:amount) { should eq wrapped.amount }
+        its(:postage_amount) { should eq wrapped.postage_amount }
+        its(:created_at) { should eq wrapped.created_at }
+        its(:received_at) { should eq wrapped.received_at }
+        its(:price) { should eq wrapped.price }
+        its(:count) { should eq wrapped.count }
+        its(:details) { should eq wrapped.details }
+        its(:completed) { should eq wrapped.completed }
+        its(:parent_remote_id) { should eq wrapped.parent_remote_id }
       end
     end
   end

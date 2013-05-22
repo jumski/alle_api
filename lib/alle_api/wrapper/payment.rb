@@ -64,6 +64,15 @@ module AlleApi
           super Time.at(date.to_i).to_datetime
         end
       end
+
+      def create_payment(account)
+        attrs = attributes.with_indifferent_access
+        attrs[:kind] = attrs.delete :type
+        attrs[:completed] = completed
+        attrs.delete :incompleted
+
+        AlleApi::Payment.create attrs
+      end
     end
   end
 end
