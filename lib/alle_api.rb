@@ -32,6 +32,7 @@ require 'alle_api/wrapper/deal_event'
 require 'alle_api/wrapper/post_buy_form'
 require 'alle_api/wrapper/payment'
 require 'alle_api/wrapper/field'
+require 'alle_api/wrapper/shipment_address'
 
 require_relative '../app/models/alle_api/concerns/auction_shared_behaviour'
 require_relative '../app/models/alle_api/concerns/auction_state_machine'
