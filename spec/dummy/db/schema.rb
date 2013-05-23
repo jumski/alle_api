@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130523101839) do
+ActiveRecord::Schema.define(:version => 20130523114135) do
 
   create_table "alle_api_accounts", :force => true do |t|
     t.datetime "created_at",                                           :null => false
@@ -190,7 +190,7 @@ ActiveRecord::Schema.define(:version => 20130523101839) do
     t.string   "details"
     t.boolean  "completed"
     t.integer  "parent_remote_id"
-    t.string   "source",            :limit => 2000
+    t.text     "source",            :limit => 2000
     t.datetime "updated_at",                        :null => false
   end
 
@@ -211,11 +211,14 @@ ActiveRecord::Schema.define(:version => 20130523101839) do
     t.datetime "payment_cancelled_at"
     t.float    "payment_amount"
     t.integer  "shipment_id"
-    t.string   "source",               :limit => 2000
+    t.text     "source",               :limit => 2000
     t.datetime "created_at",                           :null => false
     t.datetime "updated_at",                           :null => false
     t.string   "shipment_address",     :limit => 1000
+    t.integer  "account_id"
   end
+
+  add_index "alle_api_post_buy_forms", ["account_id"], :name => "index_alle_api_post_buy_forms_on_account_id"
 
   create_table "dummy_auctionables", :force => true do |t|
     t.string   "title"
