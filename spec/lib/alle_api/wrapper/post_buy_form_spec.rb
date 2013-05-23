@@ -151,6 +151,8 @@ describe AlleApi::Wrapper::PostBuyForm do
       it { should be_a AlleApi::PostBuyForm }
       it { should be_valid }
       it { should be_persisted }
+      its(:account) { should eq account }
+
       its(:remote_id) { should eq wrapped.remote_id }
       its(:source) { should eq wrapped.source }
       its(:shipment_id) { should eq wrapped.shipment_id }
@@ -171,6 +173,8 @@ describe AlleApi::Wrapper::PostBuyForm do
       its(:payment_created_at) { should eq wrapped.payment_created_at }
       its(:payment_received_at) { should eq wrapped.payment_received_at }
       its(:payment_cancelled_at) { should eq wrapped.payment_cancelled_at }
+
+      its(:shipment_address) { should eq wrapped.shipment_address.to_hash }
     end
   end
 

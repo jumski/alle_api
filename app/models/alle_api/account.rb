@@ -10,6 +10,7 @@ class AlleApi::Account < ActiveRecord::Base
     class_name: 'AlleApi::AuctionEvent',
     conditions: "triggered_at IS NULL"
   has_many :templates, class_name: 'AlleApi::AuctionTemplate'
+  has_many :post_buy_forms
   belongs_to :owner, polymorphic: true
 
   validates :login, :password, presence: true

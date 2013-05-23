@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130522150556) do
+ActiveRecord::Schema.define(:version => 20130523101839) do
 
   create_table "alle_api_accounts", :force => true do |t|
     t.datetime "created_at",                                           :null => false
@@ -214,6 +214,7 @@ ActiveRecord::Schema.define(:version => 20130522150556) do
     t.string   "source",               :limit => 2000
     t.datetime "created_at",                           :null => false
     t.datetime "updated_at",                           :null => false
+    t.string   "shipment_address",     :limit => 1000
   end
 
   create_table "dummy_auctionables", :force => true do |t|

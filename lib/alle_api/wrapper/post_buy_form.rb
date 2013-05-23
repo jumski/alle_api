@@ -69,7 +69,12 @@ module AlleApi
       def create_post_buy_form(account)
         attrs = attributes
         attrs.delete :shipment_address
-        AlleApi::PostBuyForm.create attrs
+        attrs[:shipment_address] = shipment_address.to_hash
+
+        post_buy_form = AlleApi::PostBuyForm.new(attrs)
+        post_buy_form.account = account
+        post_buy_form.save!
+        post_buy_form
       end
 
       def payment_type
