@@ -10,6 +10,10 @@ module AlleApi
 
     validates :remote_id, uniqueness: true
 
+    def auction
+      deal_events.last.auction
+    end
+
     def inspect
       "<PostBuyForm:#{id}:#{payment_type}:#{payment_status}>"
     end
