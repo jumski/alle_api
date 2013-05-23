@@ -6,5 +6,7 @@ module AlleApi
 
     serialize :source
     serialize :shipment_address
+
+    validates :remote_id, uniqueness: true
   end
 end

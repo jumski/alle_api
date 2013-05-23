@@ -146,7 +146,10 @@ describe AlleApi::Wrapper::PostBuyForm do
 
     context "creates records" do
       let(:wrapped) { @wrapped[1] }
-      subject { wrapped.create_post_buy_form(account).reload }
+      def do_create!
+        wrapped.create_post_buy_form(account).reload
+      end
+      subject { do_create! }
 
       it { should be_a AlleApi::PostBuyForm }
       it { should be_valid }
@@ -175,6 +178,12 @@ describe AlleApi::Wrapper::PostBuyForm do
       its(:payment_cancelled_at) { should eq wrapped.payment_cancelled_at }
 
       its(:shipment_address) { should eq wrapped.shipment_address.to_hash }
+
+      it 'is idempotent' do
+        do_create!
+
+        expect { do_create! }.to_not change(AlleApi::PostBuyForm, :count)
+      end
     end
   end
 

@@ -67,13 +67,16 @@ module AlleApi
       end
 
       def create_post_buy_form(account)
-        attrs = attributes
-        attrs.delete :shipment_address
-        attrs[:shipment_address] = shipment_address.to_hash
+        unless post_buy_form = account.post_buy_forms.find_by_remote_id(remote_id)
+          attrs = attributes
+          attrs.delete :shipment_address
+          attrs[:shipment_address] = shipment_address.to_hash
 
-        post_buy_form = AlleApi::PostBuyForm.new(attrs)
-        post_buy_form.account = account
-        post_buy_form.save!
+          post_buy_form = AlleApi::PostBuyForm.new(attrs)
+          post_buy_form.account = account
+          post_buy_form.save!
+        end
+
         post_buy_form
       end
 
