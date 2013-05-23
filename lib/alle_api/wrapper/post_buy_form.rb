@@ -1,3 +1,4 @@
+# encoding: utf-8
 module AlleApi
   module Wrapper
     class PostBuyForm < Base
@@ -69,6 +70,24 @@ module AlleApi
         attrs = attributes
         attrs.delete :shipment_address
         AlleApi::PostBuyForm.create attrs
+      end
+
+      def payment_type
+        case super
+        when 'co' then :payu_checkout
+        when 'ai' then :payu_installments
+        when 'collect_on_delivery' then :collect_on_delivery
+        end
+      end
+
+      def payment_status
+        case super
+        when 'Rozpoczęta' then :started
+        when 'Anulowana'  then :cancelled
+        when 'Odrzucona'  then :rejected
+        when 'Zakończona' then :finished
+        when 'Wycofana'   then :withdrawn
+        end
       end
 
     end

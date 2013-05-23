@@ -81,12 +81,50 @@ describe AlleApi::Wrapper::PostBuyForm do
       its(:postage_amount) { should eq 1.0 }
       its(:payment_amount) { should eq 2 }
 
-      its(:payment_type) { should eq 'co' }
       its(:payment_id) { should eq 318277336 }
-      its(:payment_status) { should eq 'Zakończona' }
       its(:payment_created_at) { should eq DateTime.parse('2013-05-21 13:12:40') }
       its(:payment_received_at) { should eq DateTime.parse('2013-05-21 13:12:40') }
       its(:payment_cancelled_at) { should be_nil }
+
+      context "when payment_type is set to co" do
+        before { subject.payment_type = 'co' }
+        its(:payment_type) { should eq :payu_checkout }
+      end
+
+      context "when payment_type is set to co" do
+        before { subject.payment_type = 'ai' }
+        its(:payment_type) { should eq :payu_installments }
+      end
+
+      context "when payment_type is set to co" do
+        before { subject.payment_type = 'collect_on_delivery' }
+        its(:payment_type) { should eq :collect_on_delivery }
+      end
+
+      context "when payment_status is Rozpoczęta" do
+        before { subject.payment_status = 'Rozpoczęta' }
+        its(:payment_status) { should eq :started }
+      end
+
+      context "when payment_status is Anulowana" do
+        before { subject.payment_status = 'Anulowana' }
+        its(:payment_status) { should eq :cancelled }
+      end
+
+      context "when payment_status is Odrzucona" do
+        before { subject.payment_status = 'Odrzucona' }
+        its(:payment_status) { should eq :rejected }
+      end
+
+      context "when payment_status is Zakończona" do
+        before { subject.payment_status = 'Zakończona' }
+        its(:payment_status) { should eq :finished }
+      end
+
+      context "when payment_status is Wycofana", :xxx do
+        before { subject.payment_status = 'Wycofana' }
+        its(:payment_status) { should eq :withdrawn }
+      end
 
       its(:shipment_address) { should be_a AlleApi::Wrapper::ShipmentAddress }
       describe 'shipment address' do
@@ -127,9 +165,9 @@ describe AlleApi::Wrapper::PostBuyForm do
       its(:postage_amount) { should eq wrapped.postage_amount }
       its(:payment_amount) { should eq wrapped.payment_amount }
 
-      its(:payment_type) { should eq wrapped.payment_type }
+      its(:payment_type) { should eq wrapped.payment_type.to_s }
       its(:payment_id) { should eq wrapped.payment_id }
-      its(:payment_status) { should eq wrapped.payment_status }
+      its(:payment_status) { should eq wrapped.payment_status.to_s }
       its(:payment_created_at) { should eq wrapped.payment_created_at }
       its(:payment_received_at) { should eq wrapped.payment_received_at }
       its(:payment_cancelled_at) { should eq wrapped.payment_cancelled_at }
