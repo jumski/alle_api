@@ -38,7 +38,7 @@ describe AlleApi::Wrapper::PostBuyForm do
     # end
   end
 
-  describe "uses wrapper", vcr: 'do_get_post_buy_forms_data_for_sellers', :hax => true do
+  describe "uses wrapper", vcr: 'do_get_post_buy_forms_data_for_sellers' do
     include_context 'real api client'
 
     before(:all) do
