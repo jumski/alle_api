@@ -20,7 +20,6 @@ module AlleApi
       attribute :remote_buyer_id, Integer
       attribute :remote_deal_id, Integer
       attribute :remote_transaction_id, Integer
-      attribute :kind, String
       attribute :quantity, Integer
       attribute :kind, Integer
 
