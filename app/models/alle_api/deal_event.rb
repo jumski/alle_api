@@ -23,6 +23,10 @@ module AlleApi
         joins("LEFT OUTER JOIN alle_api_post_buy_forms pbf ON remote_transaction_id = pbf.remote_id").
           where("pbf.remote_id IS NULL")
       end
+
+      def self.missing_transaction_ids
+        lacking_post_buy_form.pluck(:remote_transaction_id)
+      end
     end
     class CancelTransaction < self; end
     class FinishTransaction < self; end
