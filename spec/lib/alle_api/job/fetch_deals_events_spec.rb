@@ -25,8 +25,8 @@ describe AlleApi::Job::FetchDealsEvents do
     event_a, event_b = mock('event a'), mock('event b')
     api.stubs(get_deals_journal: [event_a, event_b])
 
-    event_a.expects(:create_deal_event).with(account)
-    event_b.expects(:create_deal_event).with(account)
+    event_a.expects(:create_deal_event)
+    event_b.expects(:create_deal_event)
 
     subject.perform(account.id)
   end

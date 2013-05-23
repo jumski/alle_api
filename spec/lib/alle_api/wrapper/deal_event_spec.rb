@@ -12,7 +12,7 @@ describe AlleApi::Wrapper::DealEvent do
 
     def create_event!
       auction # trigger create
-      wrapper.create_deal_event(account)
+      wrapper.create_deal_event
     end
     subject { create_event! }
 
