@@ -11,9 +11,11 @@ module AlleApi
       end
 
       def extract_results(result)
-        multiple = result[:site_journal_deals][:item]
+        AlleApi::Wrapper::DealEvent.wrap_multiple extract_items(result)
+      end
 
-        AlleApi::Wrapper::DealEvent.wrap_multiple(multiple)
+      def extract_items(result)
+        result[:site_journal_deals][:item]
       end
     end
   end

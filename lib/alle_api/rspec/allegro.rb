@@ -49,6 +49,13 @@ if respond_to? :shared_context
     let(:client) { api.client }
     let(:api) { account.api }
 
+    def authenticate_and_update!
+      account.utility = true
+      account.save!
+      AlleApi::Helper::Versions.new.update(:version_key)
+      AlleApi::Job::Authenticate.new.perform(account.id)
+    end
+
     before do
       AlleApi.config.stubs(webapi_key: api_config.webapi_key)
     end
@@ -57,12 +64,7 @@ if respond_to? :shared_context
   shared_context 'authenticated and updated api client' do
     include_context 'real api client'
 
-    before do
-      account.utility = true
-      account.save!
-      AlleApi::Helper::Versions.new.update(:version_key)
-      AlleApi::Job::Authenticate.new.perform(account.id)
-    end
+    before { authenticate_and_update!  }
   end
 
   shared_context "mocked api client" do

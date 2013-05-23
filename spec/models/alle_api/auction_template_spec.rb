@@ -253,5 +253,7 @@ describe AlleApi::AuctionTemplate do
     end
   end
 
-  its(:inspect) { should eq "<##{subject.id} enabled:#{subject.publishing_enabled?}, published:#{subject.current_auction.present?}>" }
+  it '#inspect' do
+    expect(subject.inspect).to eq "<##{subject.id} enabled:#{subject.publishing_enabled?}, published:#{subject.current_auction.present?}>"
+  end
 end
