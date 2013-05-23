@@ -7,6 +7,7 @@ describe AlleApi::Account do
   it { should have_many :templates }
   it { should have_many :auction_events }
   it { should have_many :post_buy_forms }
+  it { should have_many :deal_events }
   it { should belong_to :owner }
 
   it { should validate_presence_of :login }

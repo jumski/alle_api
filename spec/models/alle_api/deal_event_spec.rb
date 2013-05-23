@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe AlleApi::DealEvent do
   it { should belong_to :auction }
-    it { should belong_to :post_buy_form }
+  it { should belong_to :post_buy_form }
 
   AlleApi::DealEvent::REQUIRED.each do |attr|
     it { should validate_presence_of attr }
