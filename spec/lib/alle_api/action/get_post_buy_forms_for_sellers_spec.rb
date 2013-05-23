@@ -24,6 +24,10 @@ describe AlleApi::Action::GetPostBuyFormsForSellers do
       end
     end
 
+    it_implements '#extract_results using wrapper' do
+      let(:wrapper_klass) { AlleApi::Wrapper::PostBuyForm }
+    end
+
     describe "uses wrapper", vcr: 'do_get_post_buy_forms_data_for_sellers', :hax => true do
       include_context 'real api client'
 

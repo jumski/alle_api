@@ -31,7 +31,6 @@ describe AlleApi::Action::GetDealsJournal do
     it_implements '#extract_results using wrapper' do
       let(:wrapper_klass) { AlleApi::Wrapper::DealEvent }
     end
-
   end
 
 end

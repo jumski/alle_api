@@ -18,9 +18,11 @@ module AlleApi
       end
 
       def extract_results(input)
-        extracted = input[:post_buy_form_data][:item]
+        AlleApi::Wrapper::PostBuyForm.wrap_multiple extract_items(input)
+      end
 
-        AlleApi::Wrapper::PostBuyForm.wrap_multiple(extracted)
+      def extract_items(result)
+        result[:post_buy_form_data][:item]
       end
     end
   end
