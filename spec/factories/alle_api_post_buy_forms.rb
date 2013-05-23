@@ -2,7 +2,7 @@
 
 FactoryGirl.define do
   factory :alle_api_post_buy_form, aliases: [:post_buy_form], class: 'AlleApi::PostBuyForm' do
-    remote_id 1
+    sequence(:remote_id) {|n| n}
     buyer_id 1
     buyer_login "MyString"
     buyer_email "MyString"

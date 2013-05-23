@@ -2,6 +2,7 @@ require 'spec_helper'
 
 describe AlleApi::DealEvent do
   it { should belong_to :auction }
+    it { should belong_to :post_buy_form }
 
   AlleApi::DealEvent::REQUIRED.each do |attr|
     it { should validate_presence_of attr }
@@ -9,5 +10,21 @@ describe AlleApi::DealEvent do
 
   AlleApi::DealEvent::NUMERICAL.each do |attr|
     it { should validate_numericality_of attr }
+  end
+
+  context "with some deal events" do
+    before do
+      @new_deal = create :new_deal
+      @new_transaction = create :new_transaction
+      @lacking_post_buy_form = create :fresh_new_transaction
+    end
+
+    describe ".lacking_post_buy_form", :sql do
+      subject { described_class::NewTransaction.lacking_post_buy_form }
+
+      it { should include @lacking_post_buy_form }
+      it { should_not include @new_transaction }
+      it { should_not include @new_deal }
+    end
   end
 end
