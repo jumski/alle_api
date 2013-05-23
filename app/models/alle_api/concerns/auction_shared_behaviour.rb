@@ -20,6 +20,7 @@ module AlleApi
       numeric_fields.each { |field| validates field, numericality: true }
 
       validates :account, presence: true
+      validates :additional_info, length: { maximum: 2000 }
       validate :maximum_of_30_chars_per_word_in_title, if: :title
       validate :ensure_title_length_with_special_chars
 

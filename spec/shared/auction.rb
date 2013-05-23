@@ -5,6 +5,8 @@ shared_examples 'auction' do
     it { should belong_to(:account) }
   end
 
+  it { should ensure_length_of(:additional_info).is_at_most(2000) }
+
   context 'validations', :validations do
     before { subject.stubs(weighted_title_length: 50) }
 
