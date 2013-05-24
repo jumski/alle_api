@@ -66,7 +66,7 @@ module AlleApi
         @shipment_address_wrapped ||= Wrapper::ShipmentAddress.wrap(super)
       end
 
-      def create_post_buy_form(account)
+      def create_if_missing(account)
         unless post_buy_form = account.post_buy_forms.find_by_remote_id(remote_id)
           attrs = attributes
           attrs.delete :shipment_address

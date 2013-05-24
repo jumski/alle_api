@@ -46,7 +46,7 @@ module AlleApi
         end
       end
 
-      def create_deal_event
+      def create_if_missing
         auction = AlleApi::Auction.find_by_remote_id(remote_auction_id)
 
         deal_event = model_klass.find_by_remote_id(remote_id)

@@ -8,9 +8,7 @@ module AlleApi
         api = account.api
 
         entries = api.get_deals_journal
-        entries.each(&:create_deal_event)
-
-        # TriggerAuctionEvents.perform_in(5.seconds, account.id)
+        entries.each(&:create_if_missing)
       end
     end
   end

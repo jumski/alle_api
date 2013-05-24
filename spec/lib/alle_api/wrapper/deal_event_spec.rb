@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe AlleApi::Wrapper::DealEvent do
 
-  describe "#create_deal_event" do
+  describe "#create_if_missing" do
     let(:wrapper) { build :new_deal_wrapper }
     let(:account) { create :account }
     let(:auction) do
@@ -12,7 +12,7 @@ describe AlleApi::Wrapper::DealEvent do
 
     def create_event!
       auction # trigger create
-      wrapper.create_deal_event
+      wrapper.create_if_missing
     end
     subject { create_event! }
 

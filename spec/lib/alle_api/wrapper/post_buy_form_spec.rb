@@ -2,7 +2,7 @@
 require 'spec_helper'
 
 describe AlleApi::Wrapper::PostBuyForm do
-  describe "#create_post_buy_form" do
+  describe "#create_if_missing" do
     # let(:wrapper) { build :new_deal_wrapper }
     # let(:account) { create :account }
     # let(:auction) do
@@ -12,7 +12,7 @@ describe AlleApi::Wrapper::PostBuyForm do
 
     # def create_event!
     #   auction # trigger create
-    #   wrapper.create_deal_event(account)
+    #   wrapper.create_if_missing(account)
     # end
     # subject { create_event! }
 
@@ -167,7 +167,7 @@ describe AlleApi::Wrapper::PostBuyForm do
     context "creates records" do
       let(:wrapped) { @wrapped[1] }
       def do_create!
-        wrapped.create_post_buy_form(account).reload
+        wrapped.create_if_missing(account).reload
       end
       subject { do_create! }
 
