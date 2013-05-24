@@ -98,6 +98,12 @@ module AlleApi
         end
       end
 
+      def remote_auction_ids
+        items = [ source[:post_buy_form_items][:item] ].flatten
+
+        items.map { |item| item[:post_buy_form_it_id].to_i }
+      end
+
     end
   end
 end

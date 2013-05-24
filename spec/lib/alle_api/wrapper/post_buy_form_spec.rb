@@ -2,7 +2,6 @@
 require 'spec_helper'
 
 describe AlleApi::Wrapper::PostBuyForm do
-
   describe "#create_post_buy_form" do
     # let(:wrapper) { build :new_deal_wrapper }
     # let(:account) { create :account }
@@ -42,6 +41,7 @@ describe AlleApi::Wrapper::PostBuyForm do
     include_context 'real api client'
 
     before(:all) do
+      DatabaseCleaner.clean
       Savon.configure { |c| c.log = false }
       VCR.insert_cassette :do_get_post_buy_forms_data_for_sellers
 
@@ -85,6 +85,26 @@ describe AlleApi::Wrapper::PostBuyForm do
       its(:payment_created_at) { should eq DateTime.parse('2013-05-21 13:12:40') }
       its(:payment_received_at) { should eq DateTime.parse('2013-05-21 13:12:40') }
       its(:payment_cancelled_at) { should be_nil }
+
+      context "when only 1 item is present", :zomg do
+        before do
+          expect(subject.source[:post_buy_form_items][:item]).to be_a Hash
+        end
+
+        its(:remote_auction_ids) { should eq [3266166575] }
+      end
+
+      context 'when more than 1 item is present', :zomg do
+        before do
+          item = subject.source[:post_buy_form_items][:item]
+          item2 = item.dup
+          item2[:post_buy_form_it_id] = 999
+
+          subject.source[:post_buy_form_items][:item] = [item, item2]
+        end
+
+        its(:remote_auction_ids) { should eq [3266166575, 999] }
+      end
 
       context "when payment_type is set to co" do
         before { subject.payment_type = 'co' }

@@ -4,15 +4,12 @@ module AlleApi
 
     belongs_to :account
     has_many :deal_events, primary_key: :remote_id, foreign_key: :remote_transaction_id
+    has_and_belongs_to_many :auctions
 
     serialize :source
     serialize :shipment_address
 
     validates :remote_id, uniqueness: true
-
-    def auction
-      deal_events.last.auction
-    end
 
     def inspect
       "<PostBuyForm:#{id}:#{payment_type}:#{payment_status}>"

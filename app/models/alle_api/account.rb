@@ -9,7 +9,7 @@ class AlleApi::Account < ActiveRecord::Base
   has_many :untriggered_events,
     class_name: 'AlleApi::AuctionEvent',
     conditions: "triggered_at IS NULL"
-  has_many :deal_events
+  has_many :deal_events, through: :auctions
   has_many :templates, class_name: 'AlleApi::AuctionTemplate'
   has_many :post_buy_forms
   belongs_to :owner, polymorphic: true
