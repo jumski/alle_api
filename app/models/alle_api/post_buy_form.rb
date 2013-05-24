@@ -12,7 +12,7 @@ module AlleApi
     validates :remote_id, uniqueness: true
 
     def inspect
-      "<PostBuyForm:#{id}:#{payment_type}:#{payment_status}>"
+      "<PostBuyForm : #{id} : #{payment_type} : #{payment_status}>"
     end
   end
 end

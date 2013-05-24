@@ -33,7 +33,7 @@ module AlleApi
 
     def inspect
       klass = self.class.name.split('::').last.underscore
-      "<DealEvent:#{id}:#{klass}:#{remote_transaction_id}>"
+      "<DealEvent : #{id} : #{klass} : #{remote_transaction_id}>"
     end
 
   end
