@@ -29,7 +29,7 @@ FactoryGirl.define do
     end
 
     factory :post_buy_form_rejected do
-      payment_status 'Odrzucona'
+      payment_status :rejected
     end
 
     factory :post_buy_form_finished do
