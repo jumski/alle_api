@@ -45,4 +45,8 @@ class AlleApi::Account < ActiveRecord::Base
 
     auction_events.maximum(:remote_id)
   end
+
+  def missing_transaction_ids
+    deal_events.missing_transaction_ids
+  end
 end

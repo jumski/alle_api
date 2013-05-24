@@ -138,5 +138,12 @@ describe AlleApi::Account do
     end
   end
 
+  describe ".missing_transaction_ids" do
+    it 'forwards to deal_events' do
+      subject.stubs(deal_events: stub(missing_transaction_ids: [1,2,3]))
+
+      expect(subject.missing_transaction_ids).to eq [1,2,3]
+    end
+  end
 
 end
