@@ -74,6 +74,7 @@ module AlleApi
 
           post_buy_form = AlleApi::PostBuyForm.new(attrs)
           post_buy_form.account = account
+          post_buy_form.auctions = AlleApi::Auction.where(remote_id: remote_auction_ids)
           post_buy_form.save!
         end
 

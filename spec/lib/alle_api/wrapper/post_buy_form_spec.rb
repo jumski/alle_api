@@ -169,6 +169,9 @@ describe AlleApi::Wrapper::PostBuyForm do
       def do_create!
         wrapped.create_if_missing(account).reload
       end
+      before do
+        @auction = create :auction, remote_id: 3266166575
+      end
       subject { do_create! }
 
       it { should be_a AlleApi::PostBuyForm }
@@ -198,6 +201,7 @@ describe AlleApi::Wrapper::PostBuyForm do
       its(:payment_cancelled_at) { should eq wrapped.payment_cancelled_at }
 
       its(:shipment_address) { should eq wrapped.shipment_address.to_hash }
+      its(:auctions) { should eq [@auction] }
 
       it 'is idempotent' do
         do_create!
