@@ -18,13 +18,18 @@ module AlleApi
     belongs_to :post_buy_form, primary_key: :remote_id, foreign_key: :remote_transaction_id
 
     class << self
+      def new_transactions
+        where(type: 'AlleApi::DealEvent::NewTransaction')
+      end
+
       def lacking_post_buy_form
-        joins("LEFT OUTER JOIN alle_api_post_buy_forms pbf ON remote_transaction_id = pbf.remote_id").
+        new_transactions.
+          joins("LEFT OUTER JOIN alle_api_post_buy_forms pbf ON remote_transaction_id = pbf.remote_id").
           where("pbf.remote_id IS NULL")
       end
 
       def missing_transaction_ids
-        lacking_post_buy_form.pluck(:remote_transaction_id)
+        new_transactions.lacking_post_buy_form.pluck(:remote_transaction_id)
       end
     end
 
