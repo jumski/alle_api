@@ -22,6 +22,15 @@ FactoryGirl.define do
     payment_amount 1.5
     shipment_id 1
     source "MyString"
+    shipment_address do
+      { country: "Polska",
+        address_1: "Address part 1" ,
+        zipcode: "31-234",
+        city: "Warszawa",
+        full_name: "Jacek Placek",
+        company_name: "Dunno",
+        phone_number: "1234" }
+    end
 
     factory :post_buy_form_cancelled do
       payment_status :cancelled
@@ -36,6 +45,8 @@ FactoryGirl.define do
       payment_status :finished
       payment_received_at { DateTime.now }
       payment_created_at { payment_received_at - 1.day }
+
+      trait(:with_parcel) { parcel }
     end
 
     factory :post_buy_form_withdrawn do

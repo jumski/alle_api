@@ -15,7 +15,8 @@ module AlleApi
       "<PostBuyForm #{id} : #{payment_type} : #{payment_status}>"
     end
 
-    class << self
+    def finished?
+      payment_status.to_sym == :finished
     end
   end
 end
