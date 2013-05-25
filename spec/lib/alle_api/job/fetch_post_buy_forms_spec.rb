@@ -39,4 +39,11 @@ describe AlleApi::Job::FetchPostBuyForms do
 
     subject.perform(account.id)
   end
+
+  it 'does not call api when no transaction ids' do
+    AlleApi::Account.any_instance.stubs(missing_transaction_ids: [])
+    api.expects(:get_post_buy_forms_for_sellers).never
+
+    subject.perform(account.id)
+  end
 end
