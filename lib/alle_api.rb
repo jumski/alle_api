@@ -84,4 +84,16 @@ module AlleApi
     Helper::Versions.new
   end
 
+  def root
+    File.expand_path(File.dirname(File.dirname(__FILE__)))
+  end
+
+  def models_dir
+    "#{root}/app/models/alle_api"
+  end
+
+  def controllers_dir
+    "#{root}/app/controllers/alle_api"
+  end
+
 end

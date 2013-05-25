@@ -37,4 +37,10 @@ describe AlleApi do
     end
   end
 
+  it '#root represents a proper path' do
+    expect(File.exist?(subject.root)).to be_true
+  end
+
+  its(:models_dir) { should eq "#{AlleApi.root}/app/models/alle_api" }
+  its(:controllers_dir) { should eq "#{AlleApi.root}/app/controllers/alle_api" }
 end
