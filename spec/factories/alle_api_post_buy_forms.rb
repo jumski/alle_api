@@ -45,8 +45,6 @@ FactoryGirl.define do
       payment_status :finished
       payment_received_at { DateTime.now }
       payment_created_at { payment_received_at - 1.day }
-
-      trait(:with_parcel) { parcel }
     end
 
     factory :post_buy_form_withdrawn do
