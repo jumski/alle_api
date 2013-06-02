@@ -157,7 +157,7 @@ describe AlleApi::Wrapper::PostBuyForm do
         its(:zipcode) { should eq '31-610' }
         its(:city) { should eq 'Kraków' }
         its(:full_name) { should eq 'Wojciech Majewski' }
-        its(:company) { should be_nil  }
+        its(:company_name) { should be_nil }
         its(:phone_number) { should eq '883091610' }
         its(:created_at) { should eq DateTime.parse("2013-05-21 13:09:19") }
         its(:type) { should eq 1 }

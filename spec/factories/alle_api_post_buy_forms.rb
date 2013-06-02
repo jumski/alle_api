@@ -23,13 +23,15 @@ FactoryGirl.define do
     shipment_id 1
     source "MyString"
     shipment_address do
-      { country: "Polska",
-        address_1: "Address part 1" ,
+      { country_id: 1,
+        address_1: "Address part 1",
         zipcode: "31-234",
         city: "Warszawa",
         full_name: "Jacek Placek",
         company_name: "Dunno",
-        phone_number: "1234" }
+        phone_number: "1234",
+        created_at: 1.hour.ago,
+        type: 1 }
     end
 
     factory :post_buy_form_cancelled do

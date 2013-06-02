@@ -17,7 +17,7 @@ module AlleApi
       attribute :zipcode, String
       attribute :city, String
       attribute :full_name, String
-      attribute :company, String
+      attribute :company_name, String
       attribute :phone_number, String
       attribute :created_at, DateTime
       attribute :type, Integer
