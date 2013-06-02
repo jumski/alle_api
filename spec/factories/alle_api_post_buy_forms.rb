@@ -22,6 +22,7 @@ FactoryGirl.define do
     payment_amount 1.5
     shipment_id 1
     source "MyString"
+    account
     shipment_address do
       { country_id: 1,
         address_1: "Address part 1",
