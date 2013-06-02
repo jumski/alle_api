@@ -14,19 +14,23 @@ describe AlleApi::Job::FetchPostBuyForms do
 
   it { should be_a AlleApi::Job::Base }
 
-  # before do
-  #   @de1 = create :fresh_new_transaction, remote_transaction_id: 7, account: account
-  #   @de2 = create :fresh_new_transaction, remote_transaction_id: 8, account: account
-  #   @de3 = create :new_transaction, account: account
-  #   @de4 = create :fresh_new_transaction, remote_transaction_id: 9, auctions: (create(:auction, account: create(:account)))
-  # end
-  # let(:tids) { [@de1.remote_transaction_id, @de2.remote_transaction_id] }
   before do
     AlleApi::Account.any_instance.stubs(missing_transaction_ids: [1,2,3])
   end
 
-  it 'gets new forms from the api' do
+  it 'calls api once if less than 25 ids' do
     api.expects(:get_post_buy_forms_for_sellers).with([1,2,3]).returns([])
+
+    subject.perform(account.id)
+  end
+
+  it 'calls api twice if more than 25 ids' do
+    ids = (1..26).to_a
+    AlleApi::Account.any_instance.stubs(missing_transaction_ids: ids)
+
+    ids.each_slice(25) do |slice|
+      api.expects(:get_post_buy_forms_for_sellers).with(slice).returns([])
+    end
 
     subject.perform(account.id)
   end
