@@ -3,7 +3,7 @@ require 'rspec/allegro'
 require 'rspec/freezed_time_context'
 require 'rspec/sidekiq_examples'
 
-describe AlleApi::Job::FetchDealsEvents do
+describe AlleApi::Job::FetchDealEvents do
   include_context 'with account'
   include_context 'stubbed get_journal events'
   include_context 'silenced logger'
@@ -30,12 +30,4 @@ describe AlleApi::Job::FetchDealsEvents do
 
     subject.perform(account.id)
   end
-
-#   it 'enqueues TriggerAuctionEvents' do
-#     api.stubs(get_journal: [])
-#     subject.perform(account.id)
-#
-#     expect(AlleApi::Job::TriggerAuctionEvents).to \
-#       have_queued_job_at(time_now + 5.seconds, account.id)
-#   end
 end

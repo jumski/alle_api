@@ -1,6 +1,6 @@
 module AlleApi
   module Job
-    class FetchDealsEvents < Base
+    class FetchDealEvents < Base
       sidekiq_options unique: true, unique_job_expiration: 10.minutes
 
       def perform(account_id)
