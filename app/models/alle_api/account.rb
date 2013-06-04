@@ -47,7 +47,7 @@ class AlleApi::Account < ActiveRecord::Base
   end
 
   def last_deal_event_remote_id
-    deal_events.maximum(:remote_id)
+    deal_events.maximum(:remote_id) || 0
   end
 
   def missing_transaction_ids
