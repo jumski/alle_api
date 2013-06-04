@@ -2,6 +2,7 @@ require 'spec_helper'
 
 describe AlleApi::DealEvent do
   it { should belong_to :auction }
+  it { should belong_to :account }
   it { should belong_to :post_buy_form }
 
   AlleApi::DealEvent::REQUIRED.each do |attr|
@@ -32,5 +33,13 @@ describe AlleApi::DealEvent do
 
       it { should eq [@lacking_post_buy_form.remote_transaction_id] }
     end
+  end
+
+  it 'steals account from auction on create' do
+    account = create :account
+    auction = create :auction, account: account
+    deal_event = create :new_deal, auction: auction
+
+    expect(deal_event.account).to eq account
   end
 end

@@ -89,6 +89,16 @@ describe AlleApi::Account do
     end
   end
 
+  it '#last_deal_event_remote_id returns max Deal event remote id' do
+    account = create :account
+    create_list :new_deal, 2, account: account
+    create_list :new_deal, 2, account: create(:account)
+
+    expected = account.deal_events.maximum(:remote_id)
+
+    expect(account.last_deal_event_remote_id).to eq expected
+  end
+
   context 'with some events' do
     let(:other_account) { create :account }
 

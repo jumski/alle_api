@@ -27,6 +27,6 @@ describe 'Happy Paths: fetch events', vcr: 'fetch_auction_events' do
     types = AlleApi::AuctionEvent.pluck(:type).uniq
     expected_types = %w(AlleApi::AuctionEvent::Start
                         AlleApi::AuctionEvent::End)
-    expect(types).to eq(expected_types)
+    expect(types.sort).to eq(expected_types.sort)
   end
 end

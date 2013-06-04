@@ -7,7 +7,8 @@ module AlleApi
         account = AlleApi::Account.find(account_id)
         api = account.api
 
-        entries = api.get_deals_journal
+        starting_point = account.last_deal_event_remote_id + 1
+        entries = api.get_deals_journal(starting_point)
         entries.each(&:create_if_missing)
       end
     end

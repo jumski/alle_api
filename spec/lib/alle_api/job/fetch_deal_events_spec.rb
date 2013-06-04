@@ -15,8 +15,13 @@ describe AlleApi::Job::FetchDealEvents do
 
   it { should be_a AlleApi::Job::Base }
 
-  it 'calls api.get_deals_journal' do
-    api.expects(:get_deals_journal).returns([])
+  before do
+    AlleApi::Account.any_instance.
+      stubs(last_deal_event_remote_id: 77)
+  end
+
+  it 'calls api.get_deals_journal with last remote id + 1' do
+    api.expects(:get_deals_journal).with(78).returns([])
 
     expect(subject.perform(account.id)).to eq []
   end

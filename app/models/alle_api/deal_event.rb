@@ -15,7 +15,10 @@ module AlleApi
     validates *NUMERICAL, numericality: true
 
     belongs_to :auction
+    belongs_to :account
     belongs_to :post_buy_form, primary_key: :remote_id, foreign_key: :remote_transaction_id
+
+    before_create :steal_account_from_auction
 
     class << self
       def new_transactions
@@ -42,6 +45,11 @@ module AlleApi
     class NewTransaction    < self; end
     class CancelTransaction < self; end
     class FinishTransaction < self; end
+
+    private
+      def steal_account_from_auction
+        self.account = auction.account
+      end
 
   end
 end

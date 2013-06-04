@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130524110014) do
+ActiveRecord::Schema.define(:version => 20130604205941) do
 
   create_table "alle_api_accounts", :force => true do |t|
     t.datetime "created_at",                                           :null => false
@@ -34,11 +34,11 @@ ActiveRecord::Schema.define(:version => 20130524110014) do
     t.integer  "remote_auction_id", :limit => 8
     t.integer  "auction_id"
     t.integer  "remote_seller_id",  :limit => 8
-    t.decimal  "current_price"
+    t.decimal  "current_price",                  :precision => 10, :scale => 0
     t.datetime "occured_at"
     t.string   "type"
-    t.datetime "created_at",                     :null => false
-    t.datetime "updated_at",                     :null => false
+    t.datetime "created_at",                                                    :null => false
+    t.datetime "updated_at",                                                    :null => false
     t.integer  "account_id"
     t.string   "initial_state"
     t.string   "altered_state"
@@ -63,12 +63,12 @@ ActiveRecord::Schema.define(:version => 20130524110014) do
     t.float    "economic_package_price"
     t.float    "priority_package_price"
     t.string   "title"
-    t.string   "additional_info"
+    t.string   "additional_info",        :limit => 2000
     t.integer  "auctionable_id"
     t.string   "auctionable_type",       :limit => 30
-    t.datetime "created_at",                                             :null => false
-    t.datetime "updated_at",                                             :null => false
-    t.boolean  "publishing_enabled",                   :default => true
+    t.datetime "created_at",                                               :null => false
+    t.datetime "updated_at",                                               :null => false
+    t.boolean  "publishing_enabled",                     :default => true
     t.integer  "account_id"
   end
 
@@ -81,11 +81,11 @@ ActiveRecord::Schema.define(:version => 20130524110014) do
     t.float    "priority_letter_price"
     t.float    "economic_package_price"
     t.float    "priority_package_price"
-    t.string   "additional_info"
+    t.string   "additional_info",           :limit => 2000
     t.integer  "auctionable_id"
     t.string   "auctionable_type",          :limit => 30
-    t.datetime "created_at",                              :null => false
-    t.datetime "updated_at",                              :null => false
+    t.datetime "created_at",                                :null => false
+    t.datetime "updated_at",                                :null => false
     t.integer  "remote_id",                 :limit => 8
     t.string   "title"
     t.string   "state"
@@ -135,8 +135,10 @@ ActiveRecord::Schema.define(:version => 20130524110014) do
     t.datetime "created_at",                         :null => false
     t.datetime "updated_at",                         :null => false
     t.integer  "auction_id"
+    t.integer  "account_id",                         :null => false
   end
 
+  add_index "alle_api_deal_events", ["account_id"], :name => "index_alle_api_deal_events_on_account_id"
   add_index "alle_api_deal_events", ["auction_id"], :name => "index_alle_api_deal_events_on_auction_id"
   add_index "alle_api_deal_events", ["remote_auction_id"], :name => "index_alle_api_deal_events_on_remote_auction_id"
   add_index "alle_api_deal_events", ["remote_buyer_id"], :name => "index_alle_api_deal_events_on_remote_buyer_id"
@@ -183,15 +185,15 @@ ActiveRecord::Schema.define(:version => 20130524110014) do
     t.string   "status"
     t.float    "amount"
     t.float    "postage_amount"
-    t.datetime "created_at",                        :null => false
+    t.datetime "created_at",        :null => false
     t.datetime "received_at"
     t.float    "price"
     t.integer  "count"
     t.string   "details"
     t.boolean  "completed"
     t.integer  "parent_remote_id"
-    t.text     "source",            :limit => 2000
-    t.datetime "updated_at",                        :null => false
+    t.text     "source"
+    t.datetime "updated_at",        :null => false
   end
 
   create_table "alle_api_post_buy_forms", :force => true do |t|
@@ -211,7 +213,7 @@ ActiveRecord::Schema.define(:version => 20130524110014) do
     t.datetime "payment_cancelled_at"
     t.float    "payment_amount"
     t.integer  "shipment_id"
-    t.text     "source",               :limit => 2000
+    t.text     "source"
     t.datetime "created_at",                           :null => false
     t.datetime "updated_at",                           :null => false
     t.string   "shipment_address",     :limit => 1000

@@ -102,6 +102,7 @@ GEM
       metaclass (~> 0.0.1)
     mock_redis (0.6.3)
     multi_json (1.6.0)
+    mysql2 (0.3.11)
     nokogiri (1.5.6)
     nori (1.1.4)
     polyglot (0.3.3)
@@ -234,6 +235,7 @@ DEPENDENCIES
   jquery-rails
   mocha
   mock_redis
+  mysql2
   pry
   pry-debugger
   pry-rails
