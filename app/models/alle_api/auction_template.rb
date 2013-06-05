@@ -23,7 +23,7 @@ class AlleApi::AuctionTemplate < ActiveRecord::Base
       template = new(auction.attributes.slice(*SHARED_ATTRIBUTES))
       template.auctions << auction
       template.account = auction.account
-      template.save
+      template.save!
       template
     end
   end
@@ -42,12 +42,12 @@ class AlleApi::AuctionTemplate < ActiveRecord::Base
 
   def disable_publishing!
     self.publishing_enabled = false
-    save
+    save!
   end
 
   def enable_publishing!
     self.publishing_enabled = true
-    save
+    save!
   end
 
   def end_publishing!

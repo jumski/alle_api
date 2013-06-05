@@ -87,6 +87,12 @@ describe AlleApi::AuctionTemplate do
       expect(subject.account).to eq(auction.account)
     end
 
+    it 'raises validation error if invalid' do
+      described_class.any_instance.stubs(valid?: false)
+
+      expect { subject }.to raise_error ActiveRecord::RecordInvalid
+    end
+
   end
 
   describe '#consider_republication' do
@@ -152,6 +158,14 @@ describe AlleApi::AuctionTemplate do
        subject.reload
       }.to change(subject, :publishing_enabled?).from(true).to(false)
     end
+
+    it 'raises error if record invalid' do
+      subject.stubs(valid?: false)
+
+      expect {
+        subject.disable_publishing!
+      }.to raise_error ActiveRecord::RecordInvalid
+    end
   end
 
   describe '#enable_publishing!' do
@@ -162,6 +176,14 @@ describe AlleApi::AuctionTemplate do
        subject.enable_publishing!
        subject.reload
       }.to change(subject, :publishing_enabled?).from(false).to(true)
+    end
+
+    it 'raises error if record invalid' do
+      subject.stubs(valid?: false)
+
+      expect {
+        subject.enable_publishing!
+      }.to raise_error ActiveRecord::RecordInvalid
     end
   end
 

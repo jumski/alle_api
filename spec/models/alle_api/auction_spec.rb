@@ -6,9 +6,9 @@ describe AlleApi::Auction do
   let(:auction) { build_stubbed :auction }
 
   context "relations" do
-    it { should belong_to(:template).class_name('AuctionTemplate') }
+    it { should belong_to(:template).class_name('::AlleApi::AuctionTemplate') }
     it { should belong_to(:account) }
-    it { should have_many(:all_auctions).class_name('AlleApi::Auction').
+    it { should have_many(:all_auctions).class_name('::AlleApi::Auction').
                                               through(:template) }
     it { should have_many :deal_events }
   end

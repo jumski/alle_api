@@ -9,7 +9,7 @@ describe 'Happy Paths: create and finish auction', :http do
 
   before do
     account.utility = true
-    account.save
+    account.save!
 
     @auction = create(:auction, account: account)
     @auction.auctionable.stubs(category_id_for_auction: category.id)

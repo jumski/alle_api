@@ -32,7 +32,7 @@ class AlleApi::Category < ActiveRecord::Base
         base.find_each do |category|
           category.parent_id = category.allegro_parent_id
           category.allegro_parent_id = nil
-          category.save
+          category.save!
         end
 
         AlleApi::Category.check_ancestry_integrity!
@@ -69,7 +69,7 @@ class AlleApi::Category < ActiveRecord::Base
       transaction do
         find_each do |category|
           category.leaf_node = category.is_childless?
-          category.save
+          category.save!
         end
       end
     end
@@ -79,7 +79,7 @@ class AlleApi::Category < ActiveRecord::Base
         leaf_nodes.find_each do |category|
           path_text = category.path.pluck(:name).join(' > ')
           category.path_text = path_text
-          category.save
+          category.save!
         end
       end
     end

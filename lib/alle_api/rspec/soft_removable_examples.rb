@@ -12,6 +12,14 @@ if respond_to? :shared_examples
         expected = DateTime.now.in_time_zone.to_s
         expect(actual).to eq(expected)
       end
+
+      it 'raises validation error if record invalid' do
+        subject.stubs(valid?: false)
+
+        expect {
+          subject.soft_remove!
+        }.to raise_error ActiveRecord::RecordInvalid
+      end
     end
 
     describe '#soft_removed?' do

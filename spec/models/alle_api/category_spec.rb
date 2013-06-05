@@ -2,6 +2,8 @@ require 'spec_helper'
 require 'rspec/soft_removable_examples'
 
 describe AlleApi::Category do
+  subject { build :category }
+
   include_examples 'soft removable' do
     let(:factory) { :category }
   end

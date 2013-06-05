@@ -8,7 +8,7 @@ describe 'Happy Paths: fetch events', vcr: 'fetch_auction_events' do
 
   before do
     account.utility = true
-    account.save
+    account.save!
   end
 
   let(:redis) { Redis.current }

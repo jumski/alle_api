@@ -9,7 +9,7 @@ module AlleApi
 
     def soft_remove!
       self.soft_removed_at = DateTime.now
-      self.save
+      self.save!
     end
 
     included do
