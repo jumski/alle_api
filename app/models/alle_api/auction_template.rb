@@ -1,7 +1,7 @@
 class AlleApi::AuctionTemplate < ActiveRecord::Base
   include AlleApi::AuctionSharedBehaviour
 
-  has_many :auctions, foreign_key: :template_id
+  has_many :auctions, foreign_key: :template_id, class_name: '::AlleApi::Auction'
 
   SHARED_ATTRIBUTES = %w(
     title price additional_info account account_id

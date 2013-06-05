@@ -4,13 +4,14 @@ class AlleApi::Auction < ActiveRecord::Base
   include AlleApi::AuctionSharedBehaviour
 
   # primary associations
-  belongs_to :template, class_name: 'AuctionTemplate'
+  belongs_to :template, class_name: '::AlleApi::AuctionTemplate'
   has_many :all_auctions,
-    class_name: name,
+    class_name: '::AlleApi::Auction',
     through: :template,
     source: :auctions
-  has_many :deal_events
-  has_and_belongs_to_many :post_buy_forms
+  has_many :deal_events, class_name: '::AlleApi::DealEvent'
+  has_and_belongs_to_many :post_buy_forms,
+    class_name: '::AlleApi::PostBuyForm'
 
   attr_accessible *AlleApi::AuctionTemplate::SHARED_ATTRIBUTES,
     :remote_id, :published_at, :bought_now_at, :ended_at, :state
