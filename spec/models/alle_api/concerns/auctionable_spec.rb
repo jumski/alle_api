@@ -31,7 +31,12 @@ describe AlleApi::Auctionable, :slow do
 
   it { should have_many :auctions }
   it { should have_one :auction_template }
-  it { should have_one(:allegro_account).through(:auction_template) }
+
+  it 'delegates #allegro_account to #auction_template' do
+    subject.stubs(auction_template: stub(account: fake = stub))
+
+    expect(subject.allegro_account).to eq fake
+  end
 
   it '#title_for_auction raises error' do
     expect {

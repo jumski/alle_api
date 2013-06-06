@@ -11,11 +11,10 @@ module AlleApi
       has_one :auction_template,
         as: :auctionable,
         class_name: 'AlleApi::AuctionTemplate'
+    end
 
-      has_one :allegro_account,
-        class_name: "AlleApi::Account",
-        through: :auction_template,
-        source: :account
+    def allegro_account
+      auction_template.account
     end
 
     def title_for_auction
