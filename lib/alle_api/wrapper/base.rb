@@ -23,6 +23,22 @@ module AlleApi
 
           new(attributes)
         end
+
+        def nil_values
+          @nil_values ||= [
+            "---\n:@xsi:type: xsd:string\n",
+            {:"@xsi:type"=>"xsd:string"},
+            {:"@xsi:type"=>"xsd:string"}.with_indifferent_access
+          ]
+        end
+
+        def convert_nil_hash_to_nil_for(attrib)
+          define_method attrib do
+            return if self.class.nil_values.include? super()
+
+            super()
+          end
+        end
       end
     end
   end

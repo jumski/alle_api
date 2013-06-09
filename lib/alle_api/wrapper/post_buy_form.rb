@@ -37,6 +37,8 @@ module AlleApi
 
       attribute :shipment_address, Hash
 
+      convert_nil_hash_to_nil_for :message_to_seller
+
       class << self
         def key_prefix; 'post_buy_form_' end
 
@@ -87,14 +89,6 @@ module AlleApi
         when 'ai' then :payu_installments
         when 'collect_on_delivery' then :collect_on_delivery
         end
-      end
-
-      def message_to_seller
-        return if super == "---\n:@xsi:type: xsd:string\n"
-        return if super == {:"@xsi:type"=>"xsd:string"}
-        return if super == {:"@xsi:type"=>"xsd:string"}.with_indifferent_access
-
-        super
       end
 
       def payment_status

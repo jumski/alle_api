@@ -32,27 +32,27 @@ module WrapperMacros
   def converts_nil_hash_to_nil_for(attrib)
     describe "##{attrib}" do
       it 'is nil if xsi:type string was passed' do
-        subject.message_to_seller = "---\n:@xsi:type: xsd:string\n"
+        subject.send "#{attrib}=", "---\n:@xsi:type: xsd:string\n"
 
-        expect(subject.message_to_seller).to be_nil
+        expect(subject.send(attrib)).to be_nil
       end
 
       it 'is nil if xsi:type hash was passed' do
-        subject.message_to_seller = {:"@xsi:type"=>"xsd:string"}
+        subject.send "#{attrib}=", {:"@xsi:type"=>"xsd:string"}
 
-        expect(subject.message_to_seller).to be_nil
+        expect(subject.send(attrib)).to be_nil
       end
 
       it 'is nil if xsi:type hash with idiff. access was passed' do
-        subject.message_to_seller = {:"@xsi:type"=>"xsd:string"}.with_indifferent_access
+        subject.send "#{attrib}=", {:"@xsi:type"=>"xsd:string"}.with_indifferent_access
 
-        expect(subject.message_to_seller).to be_nil
+        expect(subject.send(attrib)).to be_nil
       end
 
       it 'equals passed string if no xsi:type string passed' do
-        subject.message_to_seller = 'string'
+        subject.send "#{attrib}=", 'string'
 
-        expect(subject.message_to_seller).to eq 'string'
+        expect(subject.send(attrib)).to eq 'string'
       end
     end
   end

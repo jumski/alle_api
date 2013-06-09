@@ -22,6 +22,12 @@ module AlleApi
       attribute :created_at, DateTime
       attribute :type, Integer
 
+      convert_nil_hash_to_nil_for :full_name
+      convert_nil_hash_to_nil_for :company_name
+      convert_nil_hash_to_nil_for :address_1
+      convert_nil_hash_to_nil_for :city
+      convert_nil_hash_to_nil_for :phone_number
+
       class << self
         def key_prefix; 'post_buy_form_' end
       end
