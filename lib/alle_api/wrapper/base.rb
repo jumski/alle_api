@@ -32,6 +32,9 @@ module AlleApi
           ]
         end
 
+        # TODO: convert to custom virtus attribute
+        #       with a writer class when gem-ctags
+        #       will be fixed and virtus 1.0 installable
         def convert_nil_hash_to_nil_for(attrib)
           define_method attrib do
             return if self.class.nil_values.include? super()

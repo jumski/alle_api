@@ -8,5 +8,6 @@ describe AlleApi::Wrapper::ShipmentAddress do
   converts_nil_hash_to_nil_for :company_name
   converts_nil_hash_to_nil_for :address_1
   converts_nil_hash_to_nil_for :city
+  converts_nil_hash_to_nil_for :zipcode
   converts_nil_hash_to_nil_for :phone_number
 end

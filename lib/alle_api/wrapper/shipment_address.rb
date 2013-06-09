@@ -26,6 +26,7 @@ module AlleApi
       convert_nil_hash_to_nil_for :company_name
       convert_nil_hash_to_nil_for :address_1
       convert_nil_hash_to_nil_for :city
+      convert_nil_hash_to_nil_for :zipcode
       convert_nil_hash_to_nil_for :phone_number
 
       class << self
