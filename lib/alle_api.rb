@@ -18,6 +18,8 @@ require 'alle_api/config'
 require 'alle_api/client'
 require 'alle_api/api'
 
+require 'alle_api/countries'
+
 require 'alle_api/invalid_auction_for_publication_error'
 require 'alle_api/invalid_auction_for_finishing_error'
 require 'alle_api/provide_own_implementation_error'

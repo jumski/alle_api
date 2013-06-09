@@ -34,9 +34,7 @@ module AlleApi
       end
 
       def country
-        return nil unless country_id == 1
-
-        'Polska'
+        Countries[country_id]
       end
     end
   end
