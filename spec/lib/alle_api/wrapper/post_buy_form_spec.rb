@@ -2,31 +2,35 @@
 require 'spec_helper'
 
 describe AlleApi::Wrapper::PostBuyForm do
-  describe "#message_to_seller" do
-    it 'is nil if xsi:type string was passed' do
-      subject.message_to_seller = "---\n:@xsi:type: xsd:string\n"
+  def self.converts_nil_hash_to_nil_for(attrib)
+    describe "##{attrib}" do
+      it 'is nil if xsi:type string was passed' do
+        subject.message_to_seller = "---\n:@xsi:type: xsd:string\n"
 
-      expect(subject.message_to_seller).to be_nil
-    end
+        expect(subject.message_to_seller).to be_nil
+      end
 
-    it 'is nil if xsi:type hash was passed' do
-      subject.message_to_seller = {:"@xsi:type"=>"xsd:string"}
+      it 'is nil if xsi:type hash was passed' do
+        subject.message_to_seller = {:"@xsi:type"=>"xsd:string"}
 
-      expect(subject.message_to_seller).to be_nil
-    end
+        expect(subject.message_to_seller).to be_nil
+      end
 
-    it 'is nil if xsi:type hash with idiff. access was passed' do
-      subject.message_to_seller = {:"@xsi:type"=>"xsd:string"}.with_indifferent_access
+      it 'is nil if xsi:type hash with idiff. access was passed' do
+        subject.message_to_seller = {:"@xsi:type"=>"xsd:string"}.with_indifferent_access
 
-      expect(subject.message_to_seller).to be_nil
-    end
+        expect(subject.message_to_seller).to be_nil
+      end
 
-    it 'equals passed string if no xsi:type string passed' do
-      subject.message_to_seller = 'string'
+      it 'equals passed string if no xsi:type string passed' do
+        subject.message_to_seller = 'string'
 
-      expect(subject.message_to_seller).to eq 'string'
+        expect(subject.message_to_seller).to eq 'string'
+      end
     end
   end
+
+  converts_nil_hash_to_nil_for :message_to_seller
 
   describe "uses wrapper", vcr: 'do_get_post_buy_forms_data_for_sellers' do
     include_context 'real api client'
