@@ -37,6 +37,20 @@ describe AlleApi::Wrapper::PostBuyForm do
     # end
   end
 
+  describe "#message_to_seller" do
+    it 'is nil if xsi:type string was passed' do
+      subject.message_to_seller = "---\n:@xsi:type: xsd:string\n"
+
+      expect(subject.message_to_seller).to be_nil
+    end
+
+    it 'equals passed string if no xsi:type string passed' do
+      subject.message_to_seller = 'string'
+
+      expect(subject.message_to_seller).to eq 'string'
+    end
+  end
+
   describe "uses wrapper", vcr: 'do_get_post_buy_forms_data_for_sellers' do
     include_context 'real api client'
 

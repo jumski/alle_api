@@ -89,6 +89,12 @@ module AlleApi
         end
       end
 
+      def message_to_seller
+        return if super == "---\n:@xsi:type: xsd:string\n"
+
+        super
+      end
+
       def payment_status
         case super
         when 'Rozpoczęta' then :started

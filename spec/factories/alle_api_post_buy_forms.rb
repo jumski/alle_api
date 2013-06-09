@@ -7,12 +7,12 @@ FactoryGirl.define do
 
     sequence(:remote_id) {|n| n}
     buyer_id 1
-    buyer_login "MyString"
-    buyer_email "MyString"
+    buyer_login "login"
+    buyer_email "email@example.com"
     amount 1.5
     postage_amount 1.5
     invoice_requested false
-    message_to_seller "MyString"
+    message_to_seller "some message"
     payment_type "MyString"
     payment_id 1
     payment_status :started
