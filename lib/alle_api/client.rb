@@ -15,6 +15,8 @@ module AlleApi
 
       super() do
         wsdl.document = File.expand_path(File.dirname(__FILE__) + '/../../assets/allegro.wsdl')
+        http.open_timeout = 5.minutes
+        http.read_timeout = 5.minutes
       end
     end
 
