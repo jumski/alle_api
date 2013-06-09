@@ -91,6 +91,8 @@ module AlleApi
 
       def message_to_seller
         return if super == "---\n:@xsi:type: xsd:string\n"
+        return if super == {:"@xsi:type"=>"xsd:string"}
+        return if super == {:"@xsi:type"=>"xsd:string"}.with_indifferent_access
 
         super
       end

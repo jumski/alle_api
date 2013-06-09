@@ -9,6 +9,18 @@ describe AlleApi::Wrapper::PostBuyForm do
       expect(subject.message_to_seller).to be_nil
     end
 
+    it 'is nil if xsi:type hash was passed' do
+      subject.message_to_seller = {:"@xsi:type"=>"xsd:string"}
+
+      expect(subject.message_to_seller).to be_nil
+    end
+
+    it 'is nil if xsi:type hash with idiff. access was passed' do
+      subject.message_to_seller = {:"@xsi:type"=>"xsd:string"}.with_indifferent_access
+
+      expect(subject.message_to_seller).to be_nil
+    end
+
     it 'equals passed string if no xsi:type string passed' do
       subject.message_to_seller = 'string'
 
