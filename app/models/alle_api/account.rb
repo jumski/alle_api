@@ -14,7 +14,7 @@ class AlleApi::Account < ActiveRecord::Base
   has_many :post_buy_forms
   belongs_to :owner, polymorphic: true
 
-  validates :login, :password, presence: true
+  validates :login, :password, :remote_id, presence: true
   validates :login, uniqueness: true
   validates :password, length: { in: 6..16 }
   validates :last_processed_event_id, numericality: true
@@ -52,5 +52,9 @@ class AlleApi::Account < ActiveRecord::Base
 
   def missing_transaction_ids
     deal_events.missing_transaction_ids
+  end
+
+  def about_me_url
+    "http://allegro.pl/my_page.php?uid=#{remote_id}"
   end
 end

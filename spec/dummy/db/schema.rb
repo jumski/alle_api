@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130604205941) do
+ActiveRecord::Schema.define(:version => 20130612142112) do
 
   create_table "alle_api_accounts", :force => true do |t|
     t.datetime "created_at",                                           :null => false
@@ -22,11 +22,13 @@ ActiveRecord::Schema.define(:version => 20130604205941) do
     t.integer  "owner_id"
     t.string   "owner_type",              :limit => 30
     t.boolean  "utility"
+    t.integer  "remote_id",               :limit => 8,  :default => 0, :null => false
   end
 
   add_index "alle_api_accounts", ["owner_id", "owner_type"], :name => "accounts_polymorphic_index"
   add_index "alle_api_accounts", ["owner_id"], :name => "index_alle_api_accounts_on_owner_id"
   add_index "alle_api_accounts", ["owner_type"], :name => "index_alle_api_accounts_on_owner_type"
+  add_index "alle_api_accounts", ["remote_id"], :name => "index_alle_api_accounts_on_remote_id"
   add_index "alle_api_accounts", ["utility"], :name => "index_alle_api_accounts_on_utility"
 
   create_table "alle_api_auction_events", :force => true do |t|

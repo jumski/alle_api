@@ -17,6 +17,7 @@ describe AlleApi::Account do
                 is_at_least(6).
                 is_at_most(16) }
   it { should validate_numericality_of :last_processed_event_id }
+  it { should validate_presence_of :remote_id }
 
   it 'allows mass assigning of login and password' do
     expect {
@@ -167,6 +168,12 @@ describe AlleApi::Account do
 
       expect(subject.missing_transaction_ids).to eq [1,2,3]
     end
+  end
+
+  it "#about_me_url" do
+    url = "http://allegro.pl/my_page.php?uid=#{subject.remote_id}"
+
+    expect(subject.about_me_url).to eq url
   end
 
 end

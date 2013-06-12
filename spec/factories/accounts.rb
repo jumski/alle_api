@@ -5,6 +5,7 @@ FactoryGirl.define do
     sequence(:login) { |n| "somelogin#{n}"}
     password 'somepassword'
     last_processed_event_id 0
+    remote_id 777
 
     trait :real_credentials do
       unless ENV['ALLE_API_CONFIG_PATH']
