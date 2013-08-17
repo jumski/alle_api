@@ -12,5 +12,12 @@ FactoryGirl.define do
 
     auctionable
     account
+
+    factory :published_auction_template do
+      after(:create) do |template, evaluator|
+        create :alle_api_auction, :published,
+          template: template, auctionable: template.auctionable
+      end
+    end
   end
 end

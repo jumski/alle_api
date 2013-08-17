@@ -365,4 +365,19 @@ describe AlleApi::Auction do
     end
   end
 
+  describe '#kill!', :destroy do
+    it 'destroys auction' do
+      auction = create :auction, :bought_now
+      auction.kill!
+      expect(auction).to be_destroyed
+    end
+
+    it 'finishes published auction' do
+      auction = create :auction, :published
+      AlleApi::Api.any_instance.expects(:finish_auction).with(auction.id)
+
+      auction.kill!
+    end
+  end
+
 end

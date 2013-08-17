@@ -278,4 +278,19 @@ describe AlleApi::AuctionTemplate do
   it '#inspect' do
     expect(subject.inspect).to eq "<##{subject.id} enabled:#{subject.publishing_enabled?}, published:#{subject.current_auction.present?}>"
   end
+
+  describe 'on destroy', :destroy do
+    subject { create :published_auction_template }
+    before { AlleApi::Api.any_instance.stubs(:finish_auction) }
+
+    it 'disables publishing' do
+      subject.destroy
+      expect(subject.publishing_enabled?).to be_false
+    end
+
+    it 'kills all auctions' do
+      AlleApi::Auction.any_instance.expects(:kill!)
+      subject.destroy
+    end
+  end
 end

@@ -134,4 +134,9 @@ class AlleApi::Auction < ActiveRecord::Base
 
     "http://allegro.pl/i#{remote_id}.html"
   end
+
+  def kill!
+    account.api.finish_auction(id) if published?
+    destroy
+  end
 end

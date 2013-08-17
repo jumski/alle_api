@@ -17,6 +17,8 @@ class AlleApi::AuctionTemplate < ActiveRecord::Base
 
   before_validation :steal_title_from_auctionable, unless: :title
   after_update :finish_current_auction!, if: :finish_current_immediately
+  before_destroy :disable_publishing!
+  after_destroy { auctions.each(&:kill!) }
 
   class << self
     def create_from_auction(auction)

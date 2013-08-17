@@ -18,6 +18,7 @@ FactoryGirl.define do
     trait(:published) do
       state 'published'
       published_at { 10.days.ago }
+      remote_id { rand(100000..999999)}
     end
     trait(:ended) do
       state 'ended'
