@@ -14,6 +14,7 @@ describe AlleApi::AuctionEvent do
   end
 
   it { should validate_presence_of :type }
+  it { should validate_presence_of :account }
 
   it { should_not be_triggered }
   its(:triggered_at) { should be_nil }

@@ -3,7 +3,7 @@ module AlleApi
     attr_accessible :auction_id, :account_id, :current_price, :occured_at,
       :remote_auction_id, :remote_id, :remote_seller_id, :account, :auction
 
-    validates :type, presence: true
+    validates :type, :account, presence: true
 
     belongs_to :account
     belongs_to :auction
