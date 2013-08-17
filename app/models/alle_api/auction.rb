@@ -3,6 +3,8 @@ class AlleApi::Auction < ActiveRecord::Base
   include AlleApi::AuctionStateMachine
   include AlleApi::AuctionSharedBehaviour
 
+  after_destroy :finish_remote!
+
   # primary associations
   belongs_to :template, class_name: '::AlleApi::AuctionTemplate'
   has_many :all_auctions,
@@ -135,8 +137,7 @@ class AlleApi::Auction < ActiveRecord::Base
     "http://allegro.pl/i#{remote_id}.html"
   end
 
-  def kill!
-    account.api.finish_auction(id) if published?
-    destroy
+  def finish_remote!
+    account.api.finish_auction(remote_id)
   end
 end

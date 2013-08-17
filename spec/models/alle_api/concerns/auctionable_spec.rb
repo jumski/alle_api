@@ -30,7 +30,7 @@ describe AlleApi::Auctionable, :slow do
   subject { instance }
 
   it { should have_many :auctions }
-  it { should have_one :auction_template }
+  it { should have_one(:auction_template).dependent(:destroy) }
 
   it 'delegates #allegro_account to #auction_template' do
     subject.stubs(auction_template: stub(account: fake = stub))

@@ -1,7 +1,10 @@
 class AlleApi::AuctionTemplate < ActiveRecord::Base
   include AlleApi::AuctionSharedBehaviour
 
-  has_many :auctions, foreign_key: :template_id, class_name: '::AlleApi::Auction'
+  has_many :auctions,
+    foreign_key: :template_id,
+    class_name: '::AlleApi::Auction',
+    dependent: :destroy
 
   SHARED_ATTRIBUTES = %w(
     title price additional_info account account_id
@@ -18,7 +21,6 @@ class AlleApi::AuctionTemplate < ActiveRecord::Base
   before_validation :steal_title_from_auctionable, unless: :title
   after_update :finish_current_auction!, if: :finish_current_immediately
   before_destroy :disable_publishing!
-  after_destroy { auctions.each(&:kill!) }
 
   class << self
     def create_from_auction(auction)

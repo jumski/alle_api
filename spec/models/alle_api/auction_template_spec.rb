@@ -9,7 +9,7 @@ describe AlleApi::AuctionTemplate do
     let(:factory) { :template }
   end
 
-  it { should have_many(:auctions) }
+  it { should have_many(:auctions).dependent(:destroy) }
 
   it 'should have shared attributes' do
     shared = AlleApi::AuctionTemplate::SHARED_ATTRIBUTES
@@ -280,17 +280,18 @@ describe AlleApi::AuctionTemplate do
   end
 
   describe 'on destroy', :destroy do
-    subject { create :published_auction_template }
+    before { @template = create :published_auction_template }
     before { AlleApi::Api.any_instance.stubs(:finish_auction) }
 
     it 'disables publishing' do
-      subject.destroy
-      expect(subject.publishing_enabled?).to be_false
+      @template.destroy
+      expect(@template.publishing_enabled?).to be_false
     end
 
-    it 'kills all auctions' do
-      AlleApi::Auction.any_instance.expects(:kill!)
-      subject.destroy
+    it 'integration' do
+      expect {
+        @template.destroy
+      }.to change(AlleApi::Auction, :count).to(0)
     end
   end
 end

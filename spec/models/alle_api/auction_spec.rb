@@ -365,18 +365,28 @@ describe AlleApi::Auction do
     end
   end
 
-  describe '#kill!', :destroy do
-    it 'destroys auction' do
-      auction = create :auction, :bought_now
-      auction.kill!
-      expect(auction).to be_destroyed
+  describe 'on destroy' do
+    before { AlleApi::Api.any_instance.stubs(:finish_auction) }
+
+    it 'finishes remote for published auction' do
+      auction = create :auction, :published
+      auction.expects(:finish_remote!)
+      auction.destroy
     end
 
-    it 'finishes published auction' do
-      auction = create :auction, :published
-      AlleApi::Api.any_instance.expects(:finish_auction).with(auction.id)
+    it 'does not finish remote for non-published auction' do
+      auciton = create :auction, :bought_now
+      auction.expects(:finish_remote!).never
+      auciton.destroy
+    end
+  end
 
-      auction.kill!
+  describe '#finish_remote!' do
+    it 'finishes auction using api' do
+      auction = create :auction, remote_id: 77
+      AlleApi::Api.any_instance.expects(:finish_auction).with(77)
+
+      auction.finish_remote!
     end
   end
 
