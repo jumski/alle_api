@@ -11,20 +11,21 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130612142112) do
+ActiveRecord::Schema.define(:version => 20130817185308) do
 
   create_table "alle_api_accounts", :force => true do |t|
-    t.datetime "created_at",                                           :null => false
-    t.datetime "updated_at",                                           :null => false
-    t.string   "login"
-    t.string   "password"
-    t.integer  "last_processed_event_id", :limit => 8,  :default => 0
+    t.datetime "created_at",                                              :null => false
+    t.datetime "updated_at",                                              :null => false
+    t.string   "login",                                                   :null => false
+    t.string   "password",                                                :null => false
+    t.integer  "last_processed_event_id", :limit => 8, :default => 0
     t.integer  "owner_id"
-    t.string   "owner_type",              :limit => 30
-    t.boolean  "utility"
-    t.integer  "remote_id",               :limit => 8,  :default => 0, :null => false
+    t.string   "owner_type"
+    t.boolean  "utility",                              :default => false, :null => false
+    t.integer  "remote_id",               :limit => 8, :default => 0,     :null => false
   end
 
+  add_index "alle_api_accounts", ["login"], :name => "index_alle_api_accounts_on_login", :unique => true
   add_index "alle_api_accounts", ["owner_id", "owner_type"], :name => "accounts_polymorphic_index"
   add_index "alle_api_accounts", ["owner_id"], :name => "index_alle_api_accounts_on_owner_id"
   add_index "alle_api_accounts", ["owner_type"], :name => "index_alle_api_accounts_on_owner_type"
@@ -38,10 +39,10 @@ ActiveRecord::Schema.define(:version => 20130612142112) do
     t.integer  "remote_seller_id",  :limit => 8
     t.decimal  "current_price",                  :precision => 10, :scale => 0
     t.datetime "occured_at"
-    t.string   "type"
+    t.string   "type",                                                          :null => false
     t.datetime "created_at",                                                    :null => false
     t.datetime "updated_at",                                                    :null => false
-    t.integer  "account_id"
+    t.string   "account_id",                                                    :null => false
     t.string   "initial_state"
     t.string   "altered_state"
     t.string   "raised_error"
@@ -59,43 +60,43 @@ ActiveRecord::Schema.define(:version => 20130612142112) do
   add_index "alle_api_auction_events", ["type"], :name => "index_alle_api_auction_events_on_type"
 
   create_table "alle_api_auction_templates", :force => true do |t|
-    t.float    "price"
-    t.float    "economic_letter_price"
-    t.float    "priority_letter_price"
-    t.float    "economic_package_price"
-    t.float    "priority_package_price"
-    t.string   "title"
+    t.float    "price",                                  :default => 0.0,  :null => false
+    t.float    "economic_letter_price",                  :default => 0.0,  :null => false
+    t.float    "priority_letter_price",                  :default => 0.0,  :null => false
+    t.float    "economic_package_price",                 :default => 0.0,  :null => false
+    t.float    "priority_package_price",                 :default => 0.0,  :null => false
+    t.string   "title",                                                    :null => false
     t.string   "additional_info",        :limit => 2000
-    t.integer  "auctionable_id"
-    t.string   "auctionable_type",       :limit => 30
+    t.integer  "auctionable_id",                                           :null => false
+    t.string   "auctionable_type",                                         :null => false
     t.datetime "created_at",                                               :null => false
     t.datetime "updated_at",                                               :null => false
-    t.boolean  "publishing_enabled",                     :default => true
-    t.integer  "account_id"
+    t.boolean  "publishing_enabled",                     :default => true, :null => false
+    t.integer  "account_id",                                               :null => false
   end
 
   add_index "alle_api_auction_templates", ["account_id"], :name => "index_alle_api_auction_templates_on_account_id"
   add_index "alle_api_auction_templates", ["auctionable_id", "auctionable_type"], :name => "auction_templates_polymorphic_index"
 
   create_table "alle_api_auctions", :force => true do |t|
-    t.float    "price"
-    t.float    "economic_letter_price"
-    t.float    "priority_letter_price"
-    t.float    "economic_package_price"
-    t.float    "priority_package_price"
+    t.float    "price",                                     :default => 0.0, :null => false
+    t.float    "economic_letter_price",                     :default => 0.0, :null => false
+    t.float    "priority_letter_price",                     :default => 0.0, :null => false
+    t.float    "economic_package_price",                    :default => 0.0, :null => false
+    t.float    "priority_package_price",                    :default => 0.0, :null => false
     t.string   "additional_info",           :limit => 2000
-    t.integer  "auctionable_id"
-    t.string   "auctionable_type",          :limit => 30
-    t.datetime "created_at",                                :null => false
-    t.datetime "updated_at",                                :null => false
+    t.integer  "auctionable_id",                                             :null => false
+    t.string   "auctionable_type",                                           :null => false
+    t.datetime "created_at",                                                 :null => false
+    t.datetime "updated_at",                                                 :null => false
     t.integer  "remote_id",                 :limit => 8
-    t.string   "title"
-    t.string   "state"
+    t.string   "title",                                                      :null => false
+    t.string   "state",                                                      :null => false
     t.datetime "published_at"
     t.datetime "ended_at"
     t.datetime "bought_now_at"
     t.integer  "template_id"
-    t.integer  "account_id"
+    t.integer  "account_id",                                                 :null => false
     t.datetime "queued_for_finishing_at"
     t.datetime "queued_for_publication_at"
   end

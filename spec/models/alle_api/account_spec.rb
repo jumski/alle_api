@@ -12,7 +12,13 @@ describe AlleApi::Account do
 
   it { should validate_presence_of :login }
   it { should validate_presence_of :password }
-  it { should validate_uniqueness_of(:login) }
+
+  # workaround for https://github.com/thoughtbot/shoulda-matchers/issues/194
+  context 'with saved account' do
+    subject { create :account }
+    it { should validate_uniqueness_of(:login) }
+  end
+
   it { should ensure_length_of(:password).
                 is_at_least(6).
                 is_at_most(16) }

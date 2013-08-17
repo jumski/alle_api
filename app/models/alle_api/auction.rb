@@ -18,8 +18,6 @@ class AlleApi::Auction < ActiveRecord::Base
   attr_accessible *AlleApi::AuctionTemplate::SHARED_ATTRIBUTES,
     :remote_id, :published_at, :bought_now_at, :ended_at, :state
 
-  validates :title, presence: true
-
   delegate :current_auction, :disable_publishing!, :enable_publishing!,
            :finish_current_auction!, :end_publishing!,
     to: :template
