@@ -26,7 +26,7 @@ describe AlleApi::AccountOwner, :slow do
   let(:instance) { klass.new }
   subject { instance }
 
-  it { should have_many :allegro_accounts }
+  it { should have_many(:allegro_accounts).dependent(:destroy) }
   it { should have_many(:auction_templates).through(:allegro_accounts) }
   it { should have_many(:auctions).through(:allegro_accounts) }
   it 'has proper auctions association setup' do
