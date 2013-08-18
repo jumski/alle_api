@@ -159,12 +159,15 @@ describe AlleApi::AuctionTemplate do
       }.to change(subject, :publishing_enabled?).from(true).to(false)
     end
 
-    it 'raises error if record invalid' do
-      subject.stubs(valid?: false)
+    context 'if record invalid' do
+      before { subject.stubs(valid?: false) }
 
-      expect {
-        subject.disable_publishing!
-      }.to raise_error ActiveRecord::RecordInvalid
+      it 'updates attribute' do
+        expect {
+          subject.disable_publishing!
+          subject.reload
+        }.to change(subject, :publishing_enabled?).from(true).to(false)
+      end
     end
   end
 
@@ -178,12 +181,15 @@ describe AlleApi::AuctionTemplate do
       }.to change(subject, :publishing_enabled?).from(false).to(true)
     end
 
-    it 'raises error if record invalid' do
-      subject.stubs(valid?: false)
+    context 'if record invalid' do
+      before { subject.stubs(valid?: false) }
 
-      expect {
-        subject.enable_publishing!
-      }.to raise_error ActiveRecord::RecordInvalid
+      it 'updates attribute' do
+        expect {
+          subject.enable_publishing!
+          subject.reload
+        }.to change(subject, :publishing_enabled?).from(false).to(true)
+      end
     end
   end
 

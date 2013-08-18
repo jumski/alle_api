@@ -46,12 +46,12 @@ class AlleApi::AuctionTemplate < ActiveRecord::Base
 
   def disable_publishing!
     self.publishing_enabled = false
-    save!
+    save(validate: false)
   end
 
   def enable_publishing!
     self.publishing_enabled = true
-    save!
+    save(validate: false)
   end
 
   def end_publishing!
