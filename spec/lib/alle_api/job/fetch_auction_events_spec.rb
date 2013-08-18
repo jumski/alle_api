@@ -11,7 +11,7 @@ describe AlleApi::Job::FetchAuctionEvents do
 
   subject { described_class.new }
 
-  it_is_an 'unique job', 60.seconds
+  it_is_an 'unique job', 24.hours
 
   it { should be_a AlleApi::Job::Base }
 
