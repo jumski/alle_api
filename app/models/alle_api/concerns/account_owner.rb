@@ -6,7 +6,8 @@ module AlleApi
     included do
       has_many :allegro_accounts,
         class_name: 'AlleApi::Account',
-        as: :owner
+        as: :owner,
+        dependent: :destroy
 
       has_many :auctions,
         class_name: 'AlleApi::Auction',

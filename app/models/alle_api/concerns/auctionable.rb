@@ -10,7 +10,8 @@ module AlleApi
 
       has_one :auction_template,
         as: :auctionable,
-        class_name: 'AlleApi::AuctionTemplate'
+        class_name: 'AlleApi::AuctionTemplate',
+        dependent: :destroy
     end
 
     def allegro_account
