@@ -14,15 +14,15 @@
 ActiveRecord::Schema.define(:version => 20130817185308) do
 
   create_table "alle_api_accounts", :force => true do |t|
-    t.datetime "created_at",                                              :null => false
-    t.datetime "updated_at",                                              :null => false
-    t.string   "login",                                                   :null => false
-    t.string   "password",                                                :null => false
-    t.integer  "last_processed_event_id", :limit => 8, :default => 0
+    t.datetime "created_at",                                               :null => false
+    t.datetime "updated_at",                                               :null => false
+    t.string   "login",                                                    :null => false
+    t.string   "password",                                                 :null => false
+    t.integer  "last_processed_event_id", :limit => 8,  :default => 0
     t.integer  "owner_id"
-    t.string   "owner_type"
-    t.boolean  "utility",                              :default => false, :null => false
-    t.integer  "remote_id",               :limit => 8, :default => 0,     :null => false
+    t.string   "owner_type",              :limit => 30
+    t.boolean  "utility",                               :default => false, :null => false
+    t.integer  "remote_id",               :limit => 8,  :default => 0,     :null => false
   end
 
   add_index "alle_api_accounts", ["login"], :name => "index_alle_api_accounts_on_login", :unique => true
