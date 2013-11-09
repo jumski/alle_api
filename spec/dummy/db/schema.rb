@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130817185308) do
+ActiveRecord::Schema.define(:version => 20131109082506) do
 
   create_table "alle_api_accounts", :force => true do |t|
     t.datetime "created_at",                                               :null => false
@@ -181,22 +181,22 @@ ActiveRecord::Schema.define(:version => 20130817185308) do
   add_index "alle_api_fields", ["parent_param_id"], :name => "index_alle_api_fields_on_parent_param_id"
 
   create_table "alle_api_payments", :force => true do |t|
-    t.integer  "remote_id"
-    t.integer  "remote_auction_id"
-    t.integer  "buyer_id"
+    t.integer  "remote_id",         :limit => 8
+    t.integer  "remote_auction_id", :limit => 8
+    t.integer  "buyer_id",          :limit => 8
     t.string   "kind"
     t.string   "status"
     t.float    "amount"
     t.float    "postage_amount"
-    t.datetime "created_at",        :null => false
+    t.datetime "created_at",                     :null => false
     t.datetime "received_at"
     t.float    "price"
     t.integer  "count"
     t.string   "details"
     t.boolean  "completed"
-    t.integer  "parent_remote_id"
+    t.integer  "parent_remote_id",  :limit => 8
     t.text     "source"
-    t.datetime "updated_at",        :null => false
+    t.datetime "updated_at",                     :null => false
   end
 
   create_table "alle_api_post_buy_forms", :force => true do |t|
