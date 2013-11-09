@@ -19,5 +19,11 @@ FactoryGirl.define do
       login config.login
       password config.password
     end
+
+    trait :with_details do
+      phone_number "+48 1111 3333 4444"
+      bank_account_number "111122223333444455556666"
+      email "address@example.com"
+    end
   end
 end
