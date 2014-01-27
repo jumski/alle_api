@@ -22,16 +22,6 @@ class AlleApi::AuctionTemplate < ActiveRecord::Base
   after_update :finish_current_auction!, if: :finish_current_immediately
   before_destroy :disable_publishing!
 
-  class << self
-    def create_from_auction(auction)
-      template = new(auction.attributes.slice(*SHARED_ATTRIBUTES))
-      template.auctions << auction
-      template.account = auction.account
-      template.save!
-      template
-    end
-  end
-
   def consider_republication
     publish_next_auction if publishing_enabled?
   end

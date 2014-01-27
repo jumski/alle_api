@@ -56,45 +56,6 @@ describe AlleApi::AuctionTemplate do
     end
   end
 
-  describe '.create_from_auction' do
-    let(:auction) { create :auction }
-    subject { described_class.create_from_auction(auction) }
-
-    it { should be_valid }
-
-    it { should be_persisted }
-
-    it 'returns template' do
-      subject.should be_a described_class
-    end
-
-    # sets new template attributes based on auction attributes
-    described_class::SHARED_ATTRIBUTES.each do |attribute|
-      its(attribute) { should == auction.send(attribute) }
-    end
-
-    it 'adds auction to auctions' do
-      subject.auctions.last.should == auction
-    end
-
-    it 'sets template in auction' do
-      subject # kick off creation
-
-      auction.template.should == subject
-    end
-
-    it 'steals account from auction' do
-      expect(subject.account).to eq(auction.account)
-    end
-
-    it 'raises validation error if invalid' do
-      described_class.any_instance.stubs(valid?: false)
-
-      expect { subject }.to raise_error ActiveRecord::RecordInvalid
-    end
-
-  end
-
   describe '#consider_republication' do
     context 'when #publishing_enabled? is true' do
       before { subject.stubs(publishing_enabled?: true)}
