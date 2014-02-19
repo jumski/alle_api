@@ -9,7 +9,7 @@ class AlleApi::Category < ActiveRecord::Base
   has_many :fields, class_name: "AlleApi::Field"
   has_one :condition_field,
     class_name: "AlleApi::Field",
-    conditions: ["#{AlleApi::Field.table_name}.name = ?", AlleApi::Field::CONDITION_FIELD_NAME]
+    conditions: ["name = ?", AlleApi::Field::CONDITION_FIELD_NAME]
 
   class << self
     def create_from_allegro(attributes)
@@ -62,11 +62,7 @@ class AlleApi::Category < ActiveRecord::Base
     end
 
     def suggestions_for_books(term)
-      leaf_nodes.present.with_condition_field.suggestions_for(term)
-    end
-
-    def with_condition_field
-      joins(:condition_field)
+      leaf_nodes.present.suggestions_for(term)
     end
 
     def update_leaf_nodes!

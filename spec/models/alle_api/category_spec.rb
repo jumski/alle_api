@@ -42,24 +42,35 @@ describe AlleApi::Category do
       end
     end
 
-    describe '.suggestions_for_books', :xxx do
-      before do
-        name = 'Lexicons'
-        @branch                  = create :category, :with_condition_field, :branch, name: name
-        @leaf                    = create :category, :with_condition_field, name: name
-        @other_leaf              = create :category, :with_condition_field, name: 'Other'
-        @removed                 = create :category, :removed, :with_condition_field, name: name
-        @without_condition_field = create :category, name: name
-      end
-      subject do
-        described_class.suggestions_for_books('lex').map{|cat| cat["id"]}
+    describe '.suggestions_for_books' do
+      # before do
+      #   name = 'Lexicons'
+      #   @branch = create :category, :branch, name: name
+      #   @leaf   = create :category, name: name
+      #   @other_leaf = create :category, name: 'Other'
+      #   @removed = create :category, :removed, name: name
+      # end
+      # subject { described_class.suggestions_for_books('lex') }
+
+      # it { should include @leaf }
+      # it { should_not include @branch }
+      # it { should_not include @other_leaf }
+      # it { should_not include @removed }
+
+      it 'calls .leaf_nodes' do
+        described_class.expects(:leaf_nodes).returns(described_class)
+        described_class.suggestions_for_books('term')
       end
 
-      it { should include @leaf.id }
-      it { should_not include @branch.id }
-      it { should_not include @other_leaf.id }
-      it { should_not include @removed.id }
-      it { should_not include @without_condition_field.id }
+      it 'calls .present' do
+        described_class.expects(:present).returns(described_class)
+        described_class.suggestions_for_books('term')
+      end
+
+      it 'calls .suggestions_for(term)' do
+        described_class.expects(:suggestions_for).with('term').returns(described_class)
+        described_class.suggestions_for_books('term')
+      end
     end
   end
 
