@@ -25,7 +25,8 @@ class AlleApi::Category < ActiveRecord::Base
 
     def assign_proper_parents!
       transaction do
-        base = where('allegro_parent_id IS NOT NULL').
+        base = present.
+          where('allegro_parent_id IS NOT NULL').
           where('allegro_parent_id > 0').
           order('allegro_parent_id ASC')
 
@@ -67,7 +68,7 @@ class AlleApi::Category < ActiveRecord::Base
 
     def update_leaf_nodes!
       transaction do
-        find_each do |category|
+        present.find_each do |category|
           category.leaf_node = category.is_childless?
           category.save!
         end
@@ -76,7 +77,7 @@ class AlleApi::Category < ActiveRecord::Base
 
     def update_path_texts!
       transaction do
-        leaf_nodes.find_each do |category|
+        present.leaf_nodes.find_each do |category|
           path_text = category.path.pluck(:name).join(' > ')
           category.path_text = path_text
           category.save!

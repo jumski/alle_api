@@ -171,14 +171,18 @@ describe AlleApi::Category do
     it 'sets parent_id to allegro_parent_id for each record' do
       described_class.assign_proper_parents!
 
-      expect(@one.reload).to be_persisted
-      expect(@one.parent).to eq(@two)
+      expect(@one.reload.parent).to eq(@two)
+      expect(@two.reload.parent).to eq(@three)
+      expect(@three.reload.parent_id).to be_nil
+    end
 
-      expect(@two.reload).to be_persisted
-      expect(@two.parent).to eq(@three)
+    it 'does not update soft removed categories' do
+      @one.soft_remove!
 
-      expect(@three.reload).to be_persisted
-      expect(@three.parent_id).to be_nil
+      expect {
+        described_class.assign_proper_parents!
+        @one.reload
+      }.to_not change(@one, :parent)
     end
 
     it 'nilifies allegro_parent_id' do
@@ -196,17 +200,24 @@ describe AlleApi::Category do
   end
 
   describe '.update_leaf_nodes!' do
-    it 'sets leaf_node to true if category has no children' do
-      node = create :category
-      leaf = create :category, parent: node
+    it 'sets leaf_node to false if category has children' do
+      non_leaf = create :category
+      create :category, parent: non_leaf
 
-      described_class.update_leaf_nodes!
+      expect {
+        described_class.update_leaf_nodes!
+        non_leaf.reload
+      }.to change(non_leaf, :leaf_node?).to(false)
+    end
 
-      expect(node).to be_persisted
-      expect(node.reload).to_not be_leaf_node
+    it 'does not update soft removed categories' do
+      non_leaf = create :category, :removed
+      create :category, parent: non_leaf
 
-      expect(leaf).to be_persisted
-      expect(leaf.reload).to be_leaf_node
+      expect {
+        described_class.update_leaf_nodes!
+        non_leaf.reload
+      }.to_not change(non_leaf, :leaf_node?)
     end
   end
 
@@ -230,6 +241,16 @@ describe AlleApi::Category do
       expect(leaf_b.reload).to be_persisted
       leaf_b_path = leaf_b.path.pluck(:name).join(' > ')
       expect(leaf_b.path_text).to eq(leaf_b_path)
+    end
+
+    it 'does not update soft removed categories' do
+      node_a = create :category, leaf_node: false
+      leaf_a = create :category, :removed, parent: node_a
+
+      expect {
+        described_class.update_path_texts!
+        leaf_a.reload
+      }.to_not change(leaf_a, :path_text)
     end
   end
 end
