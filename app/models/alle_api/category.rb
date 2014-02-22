@@ -94,8 +94,7 @@ class AlleApi::Category < ActiveRecord::Base
         where(id: ids).includes(:fields).find_each do |parent|
           condition_field = parent.fields.find(&:condition_field?)
 
-          parent.update_attribute :condition_field_id, condition_field.id
-          parent.children.update_all condition_field_id: condition_field.id
+          parent.subtree.update_all condition_field_id: condition_field.id
         end
       end
     end

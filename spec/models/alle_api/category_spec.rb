@@ -211,13 +211,23 @@ describe AlleApi::Category do
       }.to change(category, :condition_field).to(condition_field)
     end
 
-    it 'caches condition_field on children' do
+    it 'caches condition_field on immediate children' do
       child = create :category, parent: category
 
       expect {
         described_class.cache_condition_field!
         child.reload
       }.to change(child, :condition_field).to(condition_field)
+    end
+
+    it 'caches condition_field on non-immediate children' do
+      child = create :category, parent: category
+      descendant = create :category, parent: child
+
+      expect {
+        described_class.cache_condition_field!
+        descendant.reload
+      }.to change(descendant, :condition_field).to(condition_field)
     end
 
     it 'does not change other categories' do
