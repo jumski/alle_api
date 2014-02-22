@@ -124,7 +124,7 @@ module AlleApi
         end
 
         def fid_for_condition(category_id)
-          ::AlleApi::Category.find(category_id).fid_for_condition
+          AlleApi::Category.find(category_id).fid_for_condition
         end
       end
 

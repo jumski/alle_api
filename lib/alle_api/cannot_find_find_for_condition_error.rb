@@ -7,7 +7,7 @@ module AlleApi
 
     def message
       "Cannot find fid for category #{@category.name} " +
-        "(id: #{@category.id})"
+        "(id: #{@category.id}) - maybe not cached?"
     end
   end
 end

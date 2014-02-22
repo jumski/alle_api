@@ -16,8 +16,14 @@ FactoryGirl.define do
 
     trait(:with_condition_field) do
       after(:create) do |category, evaluator|
-        FactoryGirl.create_list(:field, 1, :condition_field,
-                                category: category)
+        FactoryGirl.create_list(:field, 1, :condition_field, category: category)
+      end
+    end
+
+    trait(:with_cached_condition_field) do
+      after(:create) do |category, evaluator|
+        fields = FactoryGirl.create_list(:field, 1, :condition_field, category: category)
+        category.update_attribute :condition_field_id, fields.first.id
       end
     end
 

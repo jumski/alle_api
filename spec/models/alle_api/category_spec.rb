@@ -43,99 +43,45 @@ describe AlleApi::Category do
     end
 
     describe '.suggestions_for_books' do
-      # before do
-      #   name = 'Lexicons'
-      #   @branch = create :category, :branch, name: name
-      #   @leaf   = create :category, name: name
-      #   @other_leaf = create :category, name: 'Other'
-      #   @removed = create :category, :removed, name: name
-      # end
-      # subject { described_class.suggestions_for_books('lex') }
+      before do
+        name = 'Lexicons'
+        @branch                  = create :category, :with_cached_condition_field, :branch, name: name
+        @leaf                    = create :category, :with_cached_condition_field, name: name
+        @other_leaf              = create :category, :with_cached_condition_field, name: 'Other'
+        @removed                 = create :category, :removed, :with_cached_condition_field, name: name
+        @without_condition_field = create :category, name: name
 
-      # it { should include @leaf }
-      # it { should_not include @branch }
-      # it { should_not include @other_leaf }
-      # it { should_not include @removed }
-
-      it 'calls .leaf_nodes' do
-        described_class.expects(:leaf_nodes).returns(described_class)
-        described_class.suggestions_for_books('term')
+        @child = create :category, name: name, parent: @branch
+        AlleApi::Category.cache_condition_field!
+      end
+      subject do
+        described_class.suggestions_for_books('lex').map{|cat| cat["id"]}
       end
 
-      it 'calls .present' do
-        described_class.expects(:present).returns(described_class)
-        described_class.suggestions_for_books('term')
-      end
-
-      it 'calls .suggestions_for(term)' do
-        described_class.expects(:suggestions_for).with('term').returns(described_class)
-        described_class.suggestions_for_books('term')
-      end
+      it { should include @leaf.id }
+      it { should include @child.id }
+      it { should_not include @branch.id }
+      it { should_not include @other_leaf.id }
+      it { should_not include @removed.id }
+      it { should_not include @without_condition_field.id }
     end
   end
 
-  context 'instance methods' do
-    describe '#fid_for_condition' do
-      let(:condition_field) { create :field, :condition_field }
+  describe "#fid_for_condition" do
+    it 'returns fid of a condition_field if present' do
+      field = create :field, :condition_field
+      category = create :category, condition_field: field
 
-      context 'when #condition_field is present' do
-        subject { create :category }
-        before { subject.stubs(condition_field: condition_field) }
-
-        it 'returns id of condition field' do
-          expect(subject.fid_for_condition).to eq(condition_field.id)
-        end
-      end
-
-      context 'when #condition_field is missing' do
-        let(:other_field) { create :field }
-        let(:parent) { create :category, fields: parent_fields }
-        subject { create :category, parent: parent }
-        before { subject.stubs(condition_field: nil) }
-
-        context 'when some of parents have condition field' do
-          let(:parent_fields) { [other_field, condition_field] }
-
-          it 'gets fid_for_condition from parent' do
-            expect(subject.fid_for_condition).to eq(condition_field.id)
-          end
-        end
-
-        context 'when none of parents have condition field' do
-          let(:parent_fields) { [other_field] }
-
-          it 'raises CannotFindFidForConditionError' do
-            expect {
-              subject.fid_for_condition
-            }.to raise_error(AlleApi::CannotFindFidForConditionError)
-          end
-        end
-
-      end
+      expect(category.fid_for_condition).to eq field.id
     end
 
-    describe '#condition_field' do
-      let(:other_field) { create :field, name: 'other name' }
+    it 'raises error if condition_field is missing' do
+      AlleApi::Category.any_instance.stubs(condition_field: false)
+      category = build_stubbed :category
 
-      context 'when no field with name equal to CONDITION_FIELD_NAME present' do
-        subject { create :category, fields: [other_field] }
-
-        it 'returns nil' do
-          expect(subject.condition_field).to be_nil
-        end
-      end
-
-      context 'when field with name equal to CONDITION_FIELD_NAME is present' do
-        let(:condition_field) { create :field, name: AlleApi::Field::CONDITION_FIELD_NAME }
-        subject { create :category, fields: [other_field, condition_field] }
-
-        it 'returns condition field' do
-          field = subject.condition_field
-
-          expect(field).to be_a AlleApi::Field
-          expect(field).to be_condition_field
-        end
-      end
+      expect {
+        category.fid_for_condition
+      }.to raise_error AlleApi::CannotFindFidForConditionError
     end
   end
 
@@ -251,6 +197,36 @@ describe AlleApi::Category do
         described_class.update_path_texts!
         leaf_a.reload
       }.to_not change(leaf_a, :path_text)
+    end
+  end
+
+  describe ".cache_condition_field! settings has_condition_field" do
+    let!(:category) { create :category, :with_condition_field }
+    let(:condition_field) { category.fields.condition_fields.first }
+
+    it 'caches condition_field on source category' do
+      expect {
+        described_class.cache_condition_field!
+        category.reload
+      }.to change(category, :condition_field).to(condition_field)
+    end
+
+    it 'caches condition_field on children' do
+      child = create :category, parent: category
+
+      expect {
+        described_class.cache_condition_field!
+        child.reload
+      }.to change(child, :condition_field).to(condition_field)
+    end
+
+    it 'does not change other categories' do
+      non_child = create :category
+
+      expect {
+        described_class.cache_condition_field!
+        non_child.reload
+      }.to_not change(non_child, :condition_field)
     end
   end
 end

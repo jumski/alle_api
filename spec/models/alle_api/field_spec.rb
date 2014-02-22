@@ -52,4 +52,13 @@ describe AlleApi::Field do
       expect(subject).to_not be_condition_field
     end
   end
+
+  describe ".condition_fields" do
+    it 'returns only fields that represents a condition' do
+      condition_field = create :field, :condition_field
+      other_field = create :field
+
+      expect(described_class.condition_fields).to eq [condition_field]
+    end
+  end
 end

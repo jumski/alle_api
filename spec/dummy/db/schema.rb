@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131109100529) do
+ActiveRecord::Schema.define(:version => 20140222125121) do
 
   create_table "alle_api_accounts", :force => true do |t|
     t.datetime "created_at",                                               :null => false
@@ -118,15 +118,17 @@ ActiveRecord::Schema.define(:version => 20131109100529) do
     t.string   "ancestry"
     t.integer  "allegro_parent_id"
     t.integer  "position"
-    t.datetime "created_at",                          :null => false
-    t.datetime "updated_at",                          :null => false
-    t.integer  "ancestry_depth",    :default => 0
-    t.boolean  "leaf_node",         :default => true
+    t.datetime "created_at",                           :null => false
+    t.datetime "updated_at",                           :null => false
+    t.integer  "ancestry_depth",     :default => 0
+    t.boolean  "leaf_node",          :default => true
     t.string   "path_text"
     t.datetime "soft_removed_at"
+    t.integer  "condition_field_id"
   end
 
   add_index "alle_api_categories", ["ancestry"], :name => "index_alle_api_categories_on_ancestry"
+  add_index "alle_api_categories", ["condition_field_id"], :name => "index_alle_api_categories_on_condition_field_id"
 
   create_table "alle_api_deal_events", :force => true do |t|
     t.integer  "remote_id",             :limit => 8, :null => false

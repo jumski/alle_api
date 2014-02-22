@@ -7,9 +7,7 @@ class AlleApi::Category < ActiveRecord::Base
   attr_accessible :name, :position, :parent_id
 
   has_many :fields, class_name: "AlleApi::Field"
-  has_one :condition_field,
-    class_name: "AlleApi::Field",
-    conditions: ["name = ?", AlleApi::Field::CONDITION_FIELD_NAME]
+  belongs_to :condition_field, class_name: 'AlleApi::Field'
 
   class << self
     def create_from_allegro(attributes)
@@ -63,7 +61,11 @@ class AlleApi::Category < ActiveRecord::Base
     end
 
     def suggestions_for_books(term)
-      leaf_nodes.present.suggestions_for(term)
+      leaf_nodes.present.with_condition_field.suggestions_for(term)
+    end
+
+    def with_condition_field
+      joins(:condition_field)
     end
 
     def update_leaf_nodes!
@@ -84,15 +86,26 @@ class AlleApi::Category < ActiveRecord::Base
         end
       end
     end
+
+    def cache_condition_field!
+      transaction do
+        ids = joins(:fields).merge(AlleApi::Field.condition_fields).pluck("#{table_name}.id")
+
+        where(id: ids).includes(:fields).find_each do |parent|
+          condition_field = parent.fields.find(&:condition_field?)
+
+          parent.update_attribute :condition_field_id, condition_field.id
+          parent.children.update_all condition_field_id: condition_field.id
+        end
+      end
+    end
   end
 
   def fid_for_condition
-    return condition_field.id if condition_field
-
-    unless parent
+    if condition_field_id.blank?
       raise ::AlleApi::CannotFindFidForConditionError, self
     end
 
-    parent.fid_for_condition
+    condition_field_id
   end
 end

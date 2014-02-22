@@ -20,6 +20,10 @@ module AlleApi
         field.save!
         field
       end
+
+      def condition_fields
+        where("#{table_name}.name = ?", CONDITION_FIELD_NAME)
+      end
     end
 
     def condition_field?

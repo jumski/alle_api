@@ -69,7 +69,7 @@ describe AlleApi::Type::Auction do
 
   describe '#to_fields_array' do
     subject { auction.to_fields_array }
-    let(:category) { create :category, :with_condition_field }
+    let(:category) { create :category, :with_cached_condition_field }
     let(:condition_fid) { category.fid_for_condition }
     let(:auction)    {
       described_class.new({
