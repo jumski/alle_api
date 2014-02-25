@@ -26,7 +26,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'ancestry', '~> 1.2'
   s.add_dependency 'ruby-progressbar', '0.0.10'
   s.add_dependency 'workflow', '~> 0.8.7'
-  s.add_dependency 'sidekiq', '~> 2.6'
+  s.add_dependency 'sidekiq', '2.12.1'
   s.add_dependency 'sidekiq-failures'
   s.add_dependency 'sidekiq-unique-jobs'
   s.add_development_dependency "sqlite3"

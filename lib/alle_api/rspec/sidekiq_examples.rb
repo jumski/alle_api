@@ -5,7 +5,7 @@ if respond_to? :shared_examples
   end
 
   shared_examples 'unique job' do |expires_in|
-    let(:sidekiq_opts) { described_class.sidekiq_options }
+    let(:sidekiq_opts) { described_class.sidekiq_options_hash }
 
     it 'is an unique sidekiq job' do
       expect(sidekiq_opts['unique']).to be_true

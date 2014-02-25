@@ -10,7 +10,7 @@ describe AlleApi::Job::Base do
   it { should be_a Sidekiq::Worker }
 
   describe '.sidekiq_options' do
-    subject { described_class.sidekiq_options }
+    subject { described_class.sidekiq_options_hash }
 
     it 'includes backtrace' do
       expect(subject['backtrace']).to be_true
