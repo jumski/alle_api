@@ -44,31 +44,35 @@ describe AlleApi::Wrapper::DealEvent do
     context "wraps new deal event" do
       subject { @wrapped[0] }
 
-      it { should be_a AlleApi::Wrapper::DealEvent }
-      its(:remote_id) { should eq 775599262 }
-      its(:model_klass) { should eq AlleApi::DealEvent::NewDeal }
-      its(:occured_at) { should eq Time.at 1369042031 }
-      its(:remote_deal_id) { should eq 896009896 }
-      its(:remote_transaction_id) { should eq 0 }
-      its(:remote_seller_id) { should eq 2783112 }
-      its(:remote_auction_id) { should eq 3263045863 }
-      its(:remote_buyer_id) { should eq 5697909 }
-      its(:quantity) { should eq 1 }
+      it 'exposes proper attributes' do
+        expect(subject).to be_a AlleApi::Wrapper::DealEvent
+        expect(subject.remote_id).to eq 775599262
+        expect(subject.model_klass).to eq AlleApi::DealEvent::NewDeal
+        expect(subject.occured_at).to eq Time.at 1369042031
+        expect(subject.remote_deal_id).to eq 896009896
+        expect(subject.remote_transaction_id).to eq 0
+        expect(subject.remote_seller_id).to eq 2783112
+        expect(subject.remote_auction_id).to eq 3263045863
+        expect(subject.remote_buyer_id).to eq 5697909
+        expect(subject.quantity).to eq 1
+      end
     end
 
     context "wraps new transaction event" do
       subject { @wrapped[1] }
 
-      it { should be_a AlleApi::Wrapper::DealEvent }
-      its(:remote_id) { should eq 775601305 }
-      its(:model_klass) { should eq AlleApi::DealEvent::NewTransaction }
-      its(:occured_at) { should eq Time.at 1369042118 }
-      its(:remote_deal_id) { should eq 896009896 }
-      its(:remote_transaction_id) { should eq 243241703 }
-      its(:remote_seller_id) { should eq 2783112 }
-      its(:remote_auction_id) { should eq 3263045863 }
-      its(:remote_buyer_id) { should eq 5697909 }
-      its(:quantity) { should eq 1 }
+      it 'exposes proper attributes' do
+        expect(subject).to be_a AlleApi::Wrapper::DealEvent
+        expect(subject.remote_id).to eq 775601305
+        expect(subject.model_klass).to eq AlleApi::DealEvent::NewTransaction
+        expect(subject.occured_at).to eq Time.at 1369042118
+        expect(subject.remote_deal_id).to eq 896009896
+        expect(subject.remote_transaction_id).to eq 243241703
+        expect(subject.remote_seller_id).to eq 2783112
+        expect(subject.remote_auction_id).to eq 3263045863
+        expect(subject.remote_buyer_id).to eq 5697909
+        expect(subject.quantity).to eq 1
+      end
     end
   end
 

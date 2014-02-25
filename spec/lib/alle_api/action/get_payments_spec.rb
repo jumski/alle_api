@@ -53,46 +53,49 @@ describe AlleApi::Action::GetPayments do
       context "wraps" do
         subject { @wrapped[0] }
 
-        # specify { binding.pry }
-        it { should be_a AlleApi::Wrapper::Payment }
-        its(:source) { should eq subject }
-        its(:remote_id) { should eq 243626480 }
-        its(:remote_auction_id) { should eq 3266166575 }
-        its(:buyer_id) { should eq 5697909 }
-        its(:type) { should eq 'co' }
-        its(:status) { should eq 'Zakończona' }
-        its(:amount) { should eq 2.0 }
-        its(:postage_amount) { should eq 1.0 }
-        its(:created_at) { should eq Time.at(1369134559).to_datetime }
-        its(:received_at) { should eq Time.at(1369134760).to_datetime }
-        its(:price) { should eq 1.0 }
-        its(:count) { should eq 1 }
-        its(:details) { should be_nil }
-        its(:completed) { should be_true }
-        its(:parent_remote_id) { should be_nil }
+        it 'exposes proper attributes' do
+          expect(subject).to be_a AlleApi::Wrapper::Payment
+          # expect(subject.source).to eq @wrapped[0]
+          expect(subject.remote_id).to eq 243626480
+          expect(subject.remote_auction_id).to eq 3266166575
+          expect(subject.buyer_id).to eq 5697909
+          expect(subject.type).to eq 'co'
+          expect(subject.status).to eq 'Zakończona'
+          expect(subject.amount).to eq 2.0
+          expect(subject.postage_amount).to eq 1.0
+          expect(subject.created_at).to eq Time.at(1369134559).to_datetime
+          expect(subject.received_at).to eq Time.at(1369134760).to_datetime
+          expect(subject.price).to eq 1.0
+          expect(subject.count).to eq 1
+          expect(subject.details).to be_nil
+          expect(subject.completed).to be_true
+          expect(subject.parent_remote_id).to be_nil
+        end
       end
 
       context "creating records" do
         subject { @wrapped[0].create_payment(account).reload }
         let(:wrapped) { @wrapped[0] }
 
-        it { should be_a AlleApi::Payment }
-        it { should be_persisted }
-        its(:source) { should eq wrapped.source }
-        its(:remote_id) { should eq wrapped.remote_id }
-        its(:remote_auction_id) { should eq wrapped.remote_auction_id }
-        its(:buyer_id) { should eq wrapped.buyer_id }
-        its(:kind) { should eq wrapped.type }
-        its(:status) { should eq wrapped.status }
-        its(:amount) { should eq wrapped.amount }
-        its(:postage_amount) { should eq wrapped.postage_amount }
-        its(:created_at) { should eq wrapped.created_at }
-        its(:received_at) { should eq wrapped.received_at }
-        its(:price) { should eq wrapped.price }
-        its(:count) { should eq wrapped.count }
-        its(:details) { should eq wrapped.details }
-        its(:completed) { should eq wrapped.completed }
-        its(:parent_remote_id) { should eq wrapped.parent_remote_id }
+        it 'exposes proper attributes' do
+          expect(subject).to be_a AlleApi::Payment
+          expect(subject).to be_persisted
+          expect(subject.source).to eq wrapped.source
+          expect(subject.remote_id).to eq wrapped.remote_id
+          expect(subject.remote_auction_id).to eq wrapped.remote_auction_id
+          expect(subject.buyer_id).to eq wrapped.buyer_id
+          expect(subject.kind).to eq wrapped.type
+          expect(subject.status).to eq wrapped.status
+          expect(subject.amount).to eq wrapped.amount
+          expect(subject.postage_amount).to eq wrapped.postage_amount
+          expect(subject.created_at).to eq wrapped.created_at
+          expect(subject.received_at).to eq wrapped.received_at
+          expect(subject.price).to eq wrapped.price
+          expect(subject.count).to eq wrapped.count
+          expect(subject.details).to eq wrapped.details
+          expect(subject.completed).to eq wrapped.completed
+          expect(subject.parent_remote_id).to eq wrapped.parent_remote_id
+        end
       end
     end
   end
