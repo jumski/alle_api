@@ -7,12 +7,6 @@ module AlleApi
 
       include Sidekiq::Worker
       sidekiq_options backtrace: true, queue: :alle_api
-
-      class << self
-        def perform(*args)
-          new.perform(*args)
-        end
-      end
     end
   end
 end

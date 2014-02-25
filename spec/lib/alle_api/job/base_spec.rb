@@ -9,16 +9,6 @@ describe AlleApi::Job::Base do
 
   it { should be_a Sidekiq::Worker }
 
-  describe '.perform' do
-    it 'instantiates a job and calls #perform passing args' do
-      fake_job = mock
-      described_class.expects(:new).returns(fake_job)
-      fake_job.expects(:perform).with(1, 2, 3)
-
-      described_class.perform(1, 2, 3)
-    end
-  end
-
   describe '.sidekiq_options' do
     subject { described_class.sidekiq_options }
 
