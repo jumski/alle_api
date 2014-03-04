@@ -26,6 +26,23 @@ describe 'Happy Paths: create and finish auction', :http do
 
   let(:redis)  { Redis.current }
 
+  def finish_auction(remote_id)
+    finished_id = nil
+    10.times.find do |iteration|
+      time = 10
+      duration = 0.2
+
+      print "[#{iteration}/10] Wait #{time} seconds for WebAPI to propagate new auction "
+      (time/0.2).to_i.times { sleep duration; print '.' }
+      puts
+
+      results = api.finish_auctions([remote_id])
+      finished_id = results[:finished].first
+      break if finished_id > 0
+    end
+    finished_id
+  end
+
   it 'uses full stack to update, authenticate, create and finish' do
     # update version key
     AlleApi.versions.update(:version_key)
@@ -35,14 +52,8 @@ describe 'Happy Paths: create and finish auction', :http do
 
     created_auction = api.create_auction(@auction.to_allegro_auction)
     remote_id = created_auction[:item_id].to_i
+    expect(remote_id).to be > 0
 
-    # wait for allegro, without this latter finishing will be failed
-    print "Give some time for WebAPI to propagate new auction "
-    20.times { sleep(0.25); print '.' }
-    puts
-
-    finish_results = AlleApi::Action::FinishAuctions.new(api.client).do([remote_id])
-
-    expect(finish_results[:finished]).to eq([remote_id])
+    raise "Cannot finish auction :(" unless remote_id == finish_auction(remote_id)
   end
 end

@@ -254,7 +254,8 @@ if respond_to? :shared_context
         position:        4,
         leaf_node:       true,
         fields:          [condition_field],
-        soft_removed_at: nil }
+        soft_removed_at: nil,
+        condition_field: condition_field }
     end
     let(:condition_field) { create :field, id: 21455, name: "Stan" }
     let(:category) { create(:category, category_attributes) }
