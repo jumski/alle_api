@@ -29,7 +29,7 @@ describe 'Happy Paths: create and finish auction', :http do
   def finish_auction(remote_id)
     finished_id = nil
     10.times.find do |iteration|
-      time = 10
+      time = 3
       duration = 0.2
 
       print "[#{iteration}/10] Wait #{time} seconds for WebAPI to propagate new auction "
