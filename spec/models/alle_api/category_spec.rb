@@ -153,7 +153,7 @@ describe AlleApi::Category do
       expect {
         described_class.update_leaf_nodes!
         non_leaf.reload
-      }.to change(non_leaf, :leaf_node?).to(false)
+      }.to change(non_leaf, :leaf_node?).from(true).to(false)
     end
 
     it 'does not update soft removed categories' do
@@ -163,7 +163,28 @@ describe AlleApi::Category do
       expect {
         described_class.update_leaf_nodes!
         non_leaf.reload
-      }.to_not change(non_leaf, :leaf_node?)
+      }.to_not change(non_leaf, :leaf_node?).from(true).to(false)
+    end
+
+    it 'does not update leaf node if all children are soft_removed' do
+      non_leaf = create :category
+      create :category, :removed, parent: non_leaf
+
+      expect {
+        described_class.update_leaf_nodes!
+        non_leaf.reload
+      }.to_not change(non_leaf, :leaf_node?).from(true).to(false)
+    end
+
+    it 'sets leaf_node to false if some children are present' do
+      non_leaf = create :category
+      create :category, parent: non_leaf
+      create :category, :removed, parent: non_leaf
+
+      expect {
+        described_class.update_leaf_nodes!
+        non_leaf.reload
+      }.to change(non_leaf, :leaf_node?).from(true).to(false)
     end
   end
 

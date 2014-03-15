@@ -71,7 +71,7 @@ class AlleApi::Category < ActiveRecord::Base
     def update_leaf_nodes!
       transaction do
         present.find_each do |category|
-          category.leaf_node = category.is_childless?
+          category.leaf_node = category.children.all?(&:soft_removed?)
           category.save!
         end
       end
