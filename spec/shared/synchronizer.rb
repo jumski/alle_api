@@ -38,11 +38,6 @@ shared_examples 'synchronizer' do
         subject.expects(:import_added)
         subject.expects(:clean)
 
-        # subject.expects(:import_added_categories).in_sequence(valid_import)
-        # AlleApi::Category.expects(:assign_proper_parents!).in_sequence(valid_import)
-        # AlleApi::Category.expects(:update_leaf_nodes!).in_sequence(valid_import)
-        # AlleApi::Category.expects(:update_path_texts!).in_sequence(valid_import)
-
         subject.synchronize
       end
     end
