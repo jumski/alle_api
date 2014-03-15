@@ -43,15 +43,30 @@ shared_examples 'synchronizer' do
     end
 
     describe '#import_added' do
+      let(:items) { [ stub(to_hash: 1), stub(to_hash: 2), stub(to_hash: 3)] }
+      before { subject.stubs(added: items) }
+
       it 'creates every missing record' do
-        items = [
-          stub(to_hash: 1), stub(to_hash: 2), stub(to_hash: 3)]
-        subject.stubs(added: items)
         model_klass.expects(:create_from_allegro).with(1).once
         model_klass.expects(:create_from_allegro).with(2).once
         model_klass.expects(:create_from_allegro).with(3).once
 
         subject.import_added
+      end
+
+      it 'returns all created records' do
+        model_klass.stubs(:create_from_allegro).returns(:a).then.returns(:b).then.returns(:c)
+
+        expect(subject.import_added).to eq [:a, :b, :c]
+      end
+
+      it 'raises if called twice' do
+        model_klass.stubs(:create_from_allegro)
+        subject.import_added
+
+        expect {
+          subject.import_added
+        }.to raise_error /Cannot call #import_added twice!/
       end
     end
 
@@ -89,6 +104,18 @@ shared_examples 'synchronizer' do
         subject.soft_remove_removed
 
         expect(@present_record.reload).to_not be_soft_removed
+      end
+
+      it 'returns all soft removed' do
+        expect(subject.soft_remove_removed).to eq [@removed_record]
+      end
+
+      it 'raises if called twice' do
+        subject.soft_remove_removed
+
+        expect {
+          subject.soft_remove_removed
+        }.to raise_error /Cannot call #soft_remove_removed twice!/
       end
     end
 

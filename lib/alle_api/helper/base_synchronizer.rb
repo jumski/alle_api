@@ -29,16 +29,24 @@ module AlleApi
       end
 
       def import_added
-        added.each do |item|
+        raise "Cannot call #import_added twice!" if @import_added_called
+
+        added = self.added.map do |item|
           model_klass.create_from_allegro(item.to_hash)
         end
+        @import_added_called = true
+
+        added
       end
 
       def soft_remove_removed
-        ids = removed.map(&:id)
-        model_klass.where(id: ids).update_all(
-          soft_removed_at: DateTime.now.in_time_zone
-        )
+        raise 'Cannot call #soft_remove_removed twice!' if @soft_remove_removed_called
+
+        to_soft_remove = model_klass.where(id: removed.map(&:id))
+        to_soft_remove.update_all(soft_removed_at: DateTime.now.in_time_zone)
+        @soft_remove_removed_called = true
+
+        to_soft_remove
       end
 
       def added
