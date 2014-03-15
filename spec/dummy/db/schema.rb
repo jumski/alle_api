@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140222125121) do
+ActiveRecord::Schema.define(:version => 20140315150824) do
 
   create_table "alle_api_accounts", :force => true do |t|
     t.datetime "created_at",                                               :null => false
@@ -63,43 +63,43 @@ ActiveRecord::Schema.define(:version => 20140222125121) do
   add_index "alle_api_auction_events", ["type"], :name => "index_alle_api_auction_events_on_type"
 
   create_table "alle_api_auction_templates", :force => true do |t|
-    t.float    "price",                                  :default => 0.0,  :null => false
-    t.float    "economic_letter_price",                  :default => 0.0,  :null => false
-    t.float    "priority_letter_price",                  :default => 0.0,  :null => false
-    t.float    "economic_package_price",                 :default => 0.0,  :null => false
-    t.float    "priority_package_price",                 :default => 0.0,  :null => false
-    t.string   "title",                                                    :null => false
+    t.decimal  "price",                                  :precision => 19, :scale => 4, :default => 0.0,  :null => false
+    t.decimal  "economic_letter_price",                  :precision => 19, :scale => 4, :default => 0.0,  :null => false
+    t.decimal  "priority_letter_price",                  :precision => 19, :scale => 4, :default => 0.0,  :null => false
+    t.decimal  "economic_package_price",                 :precision => 19, :scale => 4, :default => 0.0,  :null => false
+    t.decimal  "priority_package_price",                 :precision => 19, :scale => 4, :default => 0.0,  :null => false
+    t.string   "title",                                                                                   :null => false
     t.string   "additional_info",        :limit => 2000
-    t.integer  "auctionable_id",                                           :null => false
-    t.string   "auctionable_type",                                         :null => false
-    t.datetime "created_at",                                               :null => false
-    t.datetime "updated_at",                                               :null => false
-    t.boolean  "publishing_enabled",                     :default => true, :null => false
-    t.integer  "account_id",                                               :null => false
+    t.integer  "auctionable_id",                                                                          :null => false
+    t.string   "auctionable_type",                                                                        :null => false
+    t.datetime "created_at",                                                                              :null => false
+    t.datetime "updated_at",                                                                              :null => false
+    t.boolean  "publishing_enabled",                                                    :default => true, :null => false
+    t.integer  "account_id",                                                                              :null => false
   end
 
   add_index "alle_api_auction_templates", ["account_id"], :name => "index_alle_api_auction_templates_on_account_id"
   add_index "alle_api_auction_templates", ["auctionable_id", "auctionable_type"], :name => "auction_templates_polymorphic_index"
 
   create_table "alle_api_auctions", :force => true do |t|
-    t.float    "price",                                     :default => 0.0, :null => false
-    t.float    "economic_letter_price",                     :default => 0.0, :null => false
-    t.float    "priority_letter_price",                     :default => 0.0, :null => false
-    t.float    "economic_package_price",                    :default => 0.0, :null => false
-    t.float    "priority_package_price",                    :default => 0.0, :null => false
+    t.decimal  "price",                                     :precision => 19, :scale => 4, :default => 0.0, :null => false
+    t.decimal  "economic_letter_price",                     :precision => 19, :scale => 4, :default => 0.0, :null => false
+    t.decimal  "priority_letter_price",                     :precision => 19, :scale => 4, :default => 0.0, :null => false
+    t.decimal  "economic_package_price",                    :precision => 19, :scale => 4, :default => 0.0, :null => false
+    t.decimal  "priority_package_price",                    :precision => 19, :scale => 4, :default => 0.0, :null => false
     t.string   "additional_info",           :limit => 2000
-    t.integer  "auctionable_id",                                             :null => false
-    t.string   "auctionable_type",                                           :null => false
-    t.datetime "created_at",                                                 :null => false
-    t.datetime "updated_at",                                                 :null => false
+    t.integer  "auctionable_id",                                                                            :null => false
+    t.string   "auctionable_type",                                                                          :null => false
+    t.datetime "created_at",                                                                                :null => false
+    t.datetime "updated_at",                                                                                :null => false
     t.integer  "remote_id",                 :limit => 8
-    t.string   "title",                                                      :null => false
-    t.string   "state",                                                      :null => false
+    t.string   "title",                                                                                     :null => false
+    t.string   "state",                                                                                     :null => false
     t.datetime "published_at"
     t.datetime "ended_at"
     t.datetime "bought_now_at"
     t.integer  "template_id"
-    t.integer  "account_id",                                                 :null => false
+    t.integer  "account_id",                                                                                :null => false
     t.datetime "queued_for_finishing_at"
     t.datetime "queued_for_publication_at"
   end
@@ -191,17 +191,17 @@ ActiveRecord::Schema.define(:version => 20140222125121) do
     t.integer  "buyer_id",          :limit => 8
     t.string   "kind"
     t.string   "status"
-    t.float    "amount"
-    t.float    "postage_amount"
-    t.datetime "created_at",                     :null => false
+    t.decimal  "amount",                         :precision => 19, :scale => 4
+    t.decimal  "postage_amount",                 :precision => 19, :scale => 4
+    t.datetime "created_at",                                                    :null => false
     t.datetime "received_at"
-    t.float    "price"
+    t.decimal  "price",                          :precision => 19, :scale => 4
     t.integer  "count"
     t.string   "details"
     t.boolean  "completed"
     t.integer  "parent_remote_id",  :limit => 8
     t.text     "source"
-    t.datetime "updated_at",                     :null => false
+    t.datetime "updated_at",                                                    :null => false
   end
 
   create_table "alle_api_post_buy_forms", :force => true do |t|
@@ -209,8 +209,8 @@ ActiveRecord::Schema.define(:version => 20140222125121) do
     t.integer  "buyer_id"
     t.string   "buyer_login"
     t.string   "buyer_email"
-    t.float    "amount"
-    t.float    "postage_amount"
+    t.decimal  "amount",                               :precision => 19, :scale => 4
+    t.decimal  "postage_amount",                       :precision => 19, :scale => 4
     t.boolean  "invoice_requested"
     t.string   "message_to_seller"
     t.string   "payment_type"
@@ -219,11 +219,11 @@ ActiveRecord::Schema.define(:version => 20140222125121) do
     t.datetime "payment_created_at"
     t.datetime "payment_received_at"
     t.datetime "payment_cancelled_at"
-    t.float    "payment_amount"
+    t.decimal  "payment_amount",                       :precision => 19, :scale => 4
     t.integer  "shipment_id"
     t.text     "source"
-    t.datetime "created_at",                           :null => false
-    t.datetime "updated_at",                           :null => false
+    t.datetime "created_at",                                                          :null => false
+    t.datetime "updated_at",                                                          :null => false
     t.string   "shipment_address",     :limit => 1000
     t.integer  "account_id"
   end
