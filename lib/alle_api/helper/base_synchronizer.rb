@@ -22,9 +22,12 @@ module AlleApi
 
       def synchronize
         model_klass.transaction do
-          import_added
-          soft_remove_removed
+          imported = import_added
+          removed = soft_remove_removed
           clean
+
+          imported_handler.call(imported) if imported_handler
+          removed_handler.call(removed) if removed_handler
         end
       end
 
@@ -62,6 +65,18 @@ module AlleApi
       end
 
       private
+        def imported_handler
+          config.imported_handler
+        end
+
+        def removed_handler
+          config.removed_handler
+        end
+
+        def config
+          AlleApi.config.send("#{component}!")
+        end
+
         def allegro_items
           @allegro_items ||= api.send(api_action)
         end

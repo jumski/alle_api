@@ -30,15 +30,47 @@ shared_examples 'synchronizer' do
     end
 
     describe '#synchronize' do
-      it 'calls what needs to be called' do
-        AlleApi.stubs(versions: stub_everything)
+      before { AlleApi.stubs(versions: stub_everything) }
 
+      it 'calls what needs to be called' do
         valid_import = sequence('valid import')
         subject.expects(:soft_remove_removed).in_sequence(valid_import)
         subject.expects(:import_added)
         subject.expects(:clean)
 
         subject.synchronize
+      end
+
+      context "when imported handler present" do
+        let(:handler) { stub "imported_handler" }
+        before do
+          AlleApi.config[component] = { imported_handler: handler }
+        end
+
+        it 'calls imported handler with import_added results' do
+          subject.stubs(soft_remove_removed: [])
+          subject.stubs(import_added: [:a, :b])
+
+          handler.expects(:call).with([:a, :b])
+
+          subject.synchronize
+        end
+      end
+
+      context "when removed handler present" do
+        let(:handler) { stub "removed_hanlder" }
+        before do
+          AlleApi.config[component] = { removed_handler: handler }
+        end
+
+        it 'calls removed handler with soft_remove_removed results' do
+          subject.stubs(import_added: [])
+          subject.stubs(soft_remove_removed: [:a, :b])
+
+          handler.expects(:call).with([:a, :b])
+
+          subject.synchronize
+        end
       end
     end
 
