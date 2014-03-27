@@ -26,6 +26,12 @@ describe AlleApi::Job::FetchAuctionEvents do
     subject.perform(account.id)
   end
 
+  it 'calls api.get_journal with custom remote_id if passed' do
+    api.expects(:get_journal).with(99).returns([])
+
+    subject.perform(account.id, 99)
+  end
+
   it 'creates new AuctionEvent for each returned event' do
     event_a, event_b = mock('event a'), mock('event b')
     api.stubs(get_journal: [event_a, event_b])

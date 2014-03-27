@@ -4,11 +4,14 @@ module AlleApi
     class FetchAuctionEvents < Base
       sidekiq_options unique: true, unique_job_expiration: 24.hours
 
-      def perform(account_id)
+      def perform(account_id, starting_point = nil)
         account = AlleApi::Account.find(account_id)
         api = account.api
 
-        starting_point = account.last_auction_event_remote_id + 1
+        unless starting_point
+          starting_point = account.last_auction_event_remote_id + 1
+        end
+
         entries = api.get_journal(starting_point)
         entries.each do |entry|
           entry.create_auction_event(account)
