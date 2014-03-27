@@ -12,6 +12,7 @@ class AlleApi::Auction < ActiveRecord::Base
     through: :template,
     source: :auctions
   has_many :deal_events, class_name: '::AlleApi::DealEvent'
+  has_many :events, class_name: '::AlleApi::AuctionEvent'
   has_and_belongs_to_many :post_buy_forms,
     class_name: '::AlleApi::PostBuyForm'
 

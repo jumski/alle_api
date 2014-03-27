@@ -11,6 +11,7 @@ describe AlleApi::Auction do
     it { should have_many(:all_auctions).class_name('::AlleApi::Auction').
                                               through(:template) }
     it { should have_many :deal_events }
+    it { should have_many(:events).class_name('::AlleApi::AuctionEvent') }
   end
 
   it { should delegate(:end_publishing!).to(:template) }
