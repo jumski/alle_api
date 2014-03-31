@@ -107,4 +107,8 @@ class AlleApi::Category < ActiveRecord::Base
 
     condition_field_id
   end
+
+  def selectable?
+    leaf_node? && condition_field && !soft_removed?
+  end
 end

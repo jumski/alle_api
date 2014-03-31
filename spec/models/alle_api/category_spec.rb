@@ -260,4 +260,31 @@ describe AlleApi::Category do
       }.to_not change(non_child, :condition_field)
     end
   end
+
+  describe "#selectable?" do
+    it 'is false if soft removed' do
+      subject.stubs(soft_removed?: true)
+
+      expect(subject).to_not be_selectable
+    end
+
+    it 'is false if condition_field is nil' do
+      subject.condition_field = nil
+
+      expect(subject).to_not be_selectable
+    end
+
+    it 'is false if not leaf node' do
+      subject.leaf_node = false
+
+      expect(subject).to_not be_selectable
+    end
+
+    it 'is true for not removed leaf nodes with condition field' do
+      subject.condition_field = build_stubbed :field, :condition_field
+      subject.stubs(soft_removed?: false, leaf_node: true)
+
+      expect(subject).to be_selectable
+    end
+  end
 end

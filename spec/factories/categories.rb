@@ -27,5 +27,6 @@ FactoryGirl.define do
       end
     end
 
+    factory :selectable_category, traits: [:with_cached_condition_field, :leaf]
   end
 end
