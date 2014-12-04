@@ -12,18 +12,17 @@ describe AlleApi::Action::GetPostBuyFormsForSellers do
       }.to raise_error(/Please provide some ids/)
     end
 
-    it_implements 'simple #request_body' do
+    it_should_behave_like 'simple #request_body' do
       let(:ids) { [1, 2, 3] }
       let(:expected_body) do
-        { 'session-id' => client.session_handle,
-          'transactions-ids-array' => {
-            'transactions-ids-array' => ids
-          }
+        {
+          session_id: client.session_handle,
+          transactions_ids_array: { item: ids }
         }
       end
     end
 
-    it_implements '#extract_results using wrapper' do
+    it_should_behave_like '#extract_results using wrapper' do
       let(:wrapper_klass) { AlleApi::Wrapper::PostBuyForm }
     end
 

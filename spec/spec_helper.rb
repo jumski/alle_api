@@ -25,13 +25,17 @@ DatabaseCleaner.strategy = :truncation
 
 RSpec.configure do |config|
   config.mock_with :mocha
-  config.use_transactional_fixtures = true
-  config.use_transactional_examples = true
+  config.use_transactional_fixtures = false
+  config.use_transactional_examples = false
   config.treat_symbols_as_metadata_keys_with_true_values = true
 
   config.include FactoryGirl::Syntax::Methods
   config.filter_run_excluding slow: true, http: true
 
+  config.before(:suite) { DatabaseCleaner.clean_with :truncation }
+  config.before(:each)  { DatabaseCleaner.strategy = :transaction }
+  config.before(:each)  { DatabaseCleaner.start }
+  config.after(:each)   { DatabaseCleaner.clean }
 end
 
 Rails.backtrace_cleaner.remove_silencers!

@@ -167,27 +167,12 @@ describe AlleApi::Auction do
       let(:expected_datetime)    { auction.created_at.to_datetime }
       let(:expected_description) { 'some rendered description' }
       let(:expected_image_1_string) do
-        Base64.urlsafe_encode64 auctionable.image_1_contents
-      end
-      let(:expected_hash) do
-        hash = auction.attributes.symbolize_keys
-        hash.delete :auctionable_id
-        hash.delete :auctionable_type
-        hash.delete :id
-        hash[:buy_now_price] = hash.delete :price
-        hash[:country_id]    = AlleApi::Client::COUNTRY_POLAND
-        hash[:title]         = auction.title
-        hash[:category_id]   = auction.category_id
-        hash[:starts_at]     = expected_datetime
-        hash[:description]   = expected_description
-        hash[:duration]      = default_duration
-        hash[:type]          = default_type
-        hash[:image_1_string] = expected_image_1_string
-
-        hash
+        Base64.strict_encode64 auctionable.image_1_contents
       end
       let(:default_duration) { 777 }
       let(:default_type) { 555 }
+
+      let(:hash) { auction.to_hash }
 
       before do
         auction.stubs(description: expected_description)
@@ -206,9 +191,15 @@ describe AlleApi::Auction do
         AlleApi.config[:default_type]     = old_type
       end
 
-      it 'returns hash of attributes' do
-        auction.to_hash.should == expected_hash
-      end
+      specify { hash[:buy_now_price].should == auction.price }
+      specify { hash[:country_id].should == AlleApi::Client::COUNTRY_POLAND }
+      specify { hash[:title].should == auction.title }
+      specify { hash[:category_id].should == auction.category_id }
+      specify { hash[:starts_at].should == expected_datetime }
+      specify { hash[:description].should == expected_description }
+      specify { hash[:duration].should == default_duration }
+      specify { hash[:type].should == default_type }
+      specify { hash[:image_1_string].should == expected_image_1_string }
     end
 
     describe '#to_allegro_auction' do
@@ -321,6 +312,8 @@ describe AlleApi::Auction do
     it 'decrements auctionable.auctions_count after destroying' do
       auction = create :auction, auctionable: @auctionable
       @auctionable.reload
+
+      auction.stubs(:finish_remote!)
 
       expect {
         auction.destroy

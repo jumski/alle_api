@@ -7,11 +7,11 @@ module AlleApi
       end
 
       def request_body
-        { 'user-login'    => client.login,
-          'user-password' => client.password,
-          'country-code'  => AlleApi::Client::COUNTRY_POLAND,
-          'webapi-key'    => client.webapi_key,
-          'local-version' => client.version_key }
+        { user_login:    client.login,
+          user_password: client.password,
+          country_code:  AlleApi::Client::COUNTRY_POLAND,
+          webapi_key:    client.webapi_key,
+          local_version: client.version_key }
       end
 
       def extract_results(results)

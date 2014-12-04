@@ -5,19 +5,19 @@ describe AlleApi::Action::FinishAuctions do
 
   include_examples 'api action', :do_finish_items do
 
-    it_implements 'simple #request_body' do
+    it_should_behave_like 'simple #request_body' do
       let(:actual_body) { subject.request_body([23, 5]) }
 
       let(:expected_body) do
-        { 'session-handle' => client.session_handle,
-          'finish-items-list' => {
-            'finish-items-list' => [
-              { 'finish-item-id'         => 23,
-                'finish-cancel-all-bids' => 0,
-                'finish-cancel-reason'   => '' },
-              { 'finish-item-id'         => 5,
-                'finish-cancel-all-bids' => 0,
-                'finish-cancel-reason'   => '' },
+        { session_handle: client.session_handle,
+          finish_items_list: {
+            item: [
+              { finish_item_id: 23,
+                finish_cancel_all_bids: 0,
+                finish_cancel_reason: '' },
+              { finish_item_id: 5,
+                finish_cancel_all_bids: 0,
+                finish_cancel_reason: '' },
             ]
           }
         }
@@ -60,7 +60,7 @@ describe AlleApi::Action::FinishAuctions do
         let(:items) { remote_ids.first.to_s }
         let(:remote_ids) { [1] }
 
-        it_implements 'simple #extract_results'
+        it_should_behave_like 'simple #extract_results'
       end
 
       context 'when finishing more than one auction' do
@@ -68,7 +68,7 @@ describe AlleApi::Action::FinishAuctions do
         let(:items) { remote_ids.map(&:to_s) }
         let(:remote_ids) { [1, 2] }
 
-        it_implements 'simple #extract_results'
+        it_should_behave_like 'simple #extract_results'
       end
     end
 

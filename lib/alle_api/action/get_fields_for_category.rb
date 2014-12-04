@@ -6,9 +6,9 @@ module AlleApi::Action
     end
 
     def request_body(category_id)
-      { 'webapi-key' => client.webapi_key,
-        'country-id' => client.country_id,
-        'category-id' => category_id.to_i }
+      { webapi_key:  client.webapi_key,
+        country_id:  client.country_id,
+        category_id: category_id.to_i }
     end
 
     def extract_results(result)

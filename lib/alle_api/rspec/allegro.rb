@@ -64,7 +64,7 @@ if respond_to? :shared_context
   shared_context 'authenticated and updated api client' do
     include_context 'real api client'
 
-    before { authenticate_and_update!  }
+    before { authenticate_and_update! }
   end
 
   shared_context "mocked api client" do
@@ -166,10 +166,6 @@ if respond_to? :shared_context
     end
   end
 
-  RSpec.configure do |c|
-    c.alias_it_should_behave_like_to :it_implements, 'it implements:'
-  end
-
   shared_examples 'api action' do |soap_action|
     include_context 'mocked api client'
     subject { described_class.new(client) }
@@ -180,6 +176,8 @@ if respond_to? :shared_context
 
     its(:soap_action) { should == soap_action }
 
+    # prevent fetching session handle when nil to avoid vcr-recording it everytime
+    before { client.stubs(session_handle: 'session-handle') }
   end
 
   shared_examples 'simple #extract_results' do

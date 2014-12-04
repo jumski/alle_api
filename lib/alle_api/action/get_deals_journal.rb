@@ -6,8 +6,7 @@ module AlleApi
       end
 
       def request_body(starting_point = nil)
-        { 'session-id' => client.session_handle,
-          'journal-start' => starting_point }
+        { session_id: client.session_handle, journal_start: starting_point }
       end
 
       def extract_results(result)
@@ -15,7 +14,7 @@ module AlleApi
       end
 
       def extract_items(result)
-        result[:site_journal_deals][:item]
+        result[:site_journal_deals] && result[:site_journal_deals][:item]
       end
     end
   end

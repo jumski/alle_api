@@ -37,43 +37,47 @@ describe AlleApi::Wrapper::DealEvent do
     end
   end
 
-  describe "integration test", vcr: 'do_get_deals_journal' do
+  describe "integration test" do
     include_context 'authenticated and updated api client'
-    before { @wrapped = api.get_deals_journal }
 
-    context "wraps new deal event" do
-      subject { @wrapped[0] }
+    context "given response with events", vcr: 'do_get_deals_journal_with_items' do
+      subject(:deal_events) { api.get_deals_journal 123 }
 
-      it 'exposes proper attributes' do
-        expect(subject).to be_a AlleApi::Wrapper::DealEvent
-        expect(subject.remote_id).to eq 775599262
-        expect(subject.model_klass).to eq AlleApi::DealEvent::NewDeal
-        expect(subject.occured_at).to eq Time.at 1369042031
-        expect(subject.remote_deal_id).to eq 896009896
-        expect(subject.remote_transaction_id).to eq 0
-        expect(subject.remote_seller_id).to eq 2783112
-        expect(subject.remote_auction_id).to eq 3263045863
-        expect(subject.remote_buyer_id).to eq 5697909
-        expect(subject.quantity).to eq 1
+      it 'exposes proper attributes for all deals' do
+        deal_events.each do |deal_event|
+          expect(deal_event).to be_a AlleApi::Wrapper::DealEvent
+          expect(deal_event.remote_id).to be > 0
+          expect(deal_event.occured_at).to be_a DateTime
+          expect(deal_event.occured_at).to be < Time.now
+          expect(deal_event.remote_deal_id).to be > 0
+          expect(deal_event.remote_seller_id).to be > 0
+          expect(deal_event.remote_auction_id).to be > 0
+          expect(deal_event.remote_buyer_id).to be > 0
+          expect(deal_event.quantity).to eq 1
+        end
+      end
+
+      it 'has proper model_klass' do
+        expect(deal_events[0].model_klass).to eq AlleApi::DealEvent::NewDeal
+        expect(deal_events[1].model_klass).to eq AlleApi::DealEvent::NewTransaction
+        expect(deal_events[2].model_klass).to eq AlleApi::DealEvent::FinishTransaction
+      end
+
+      it 'has proper transaction_id' do
+        expect(deal_events[0].remote_transaction_id).to eq 0
+        expect(deal_events[1].remote_transaction_id).to be > 0
+        expect(deal_events[2].remote_transaction_id).to be > 0
       end
     end
 
-    context "wraps new transaction event" do
-      subject { @wrapped[1] }
+    context "given response without events", vcr: 'do_get_deals_journal_without_items' do
+      subject(:deal_events) { api.get_deals_journal 1420594563 }
 
-      it 'exposes proper attributes' do
-        expect(subject).to be_a AlleApi::Wrapper::DealEvent
-        expect(subject.remote_id).to eq 775601305
-        expect(subject.model_klass).to eq AlleApi::DealEvent::NewTransaction
-        expect(subject.occured_at).to eq Time.at 1369042118
-        expect(subject.remote_deal_id).to eq 896009896
-        expect(subject.remote_transaction_id).to eq 243241703
-        expect(subject.remote_seller_id).to eq 2783112
-        expect(subject.remote_auction_id).to eq 3263045863
-        expect(subject.remote_buyer_id).to eq 5697909
-        expect(subject.quantity).to eq 1
+      it 'parses returned events' do
+        expect(deal_events).to eq []
       end
     end
   end
+
 
 end

@@ -5,7 +5,7 @@ require 'rspec/allegro'
 describe AlleApi::Action::CreateAuction do
   include_examples 'api action', :do_new_auction_ext do
 
-    it_implements 'simple #request_body' do
+    it_should_behave_like 'simple #request_body' do
       let(:actual_body) do
         auction = stub(to_fields_array: [1,2,3])
 
@@ -13,12 +13,12 @@ describe AlleApi::Action::CreateAuction do
       end
 
       let(:expected_body) do
-        { 'session-handle' => client.session_handle,
-          'fields' => {'fields' => [1,2,3]} }
+        { session_handle: client.session_handle,
+          fields: { item: [1,2,3] } }
       end
     end
 
-    it_implements 'simple #extract_results' do
+    it_should_behave_like 'simple #extract_results' do
       let(:unextracted) { [1, 2, 3] }
       let(:expected)    { unextracted }
     end

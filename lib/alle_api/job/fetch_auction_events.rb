@@ -2,7 +2,7 @@
 module AlleApi
   module Job
     class FetchAuctionEvents < Base
-      sidekiq_options unique: true, unique_job_expiration: 3.minutes
+      sidekiq_options unique: :until_and_while_executing, unique_job_expiration: 3.minutes
 
       def perform(account_id, starting_point = nil)
         account = AlleApi::Account.find(account_id)

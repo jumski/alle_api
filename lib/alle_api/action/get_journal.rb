@@ -6,9 +6,9 @@ module AlleApi::Action
     end
 
     def request_body(starting_point = nil)
-      { 'session-handle' => client.session_handle,
-        'starting-point' => starting_point,
-        'info-type'      => 0 }
+      { session_handle: client.session_handle,
+        starting_point: starting_point,
+        info_type:      0 }
     end
 
     def extract_results(result)
@@ -17,7 +17,7 @@ module AlleApi::Action
     end
 
     def extract_items(result)
-      result[:site_journal_array][:item]
+      result[:site_journal_array] && result[:site_journal_array][:item]
     end
   end
 end

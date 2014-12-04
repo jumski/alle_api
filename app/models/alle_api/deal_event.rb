@@ -41,10 +41,10 @@ module AlleApi
       "<DealEvent : #{id} : #{klass} : #{remote_transaction_id}>"
     end
 
-    class NewDeal           < self; end
-    class NewTransaction    < self; end
-    class CancelTransaction < self; end
-    class FinishTransaction < self; end
+    class NewDeal           < self; end # user bought something
+    class NewTransaction    < self; end # user initiated payment
+    class CancelTransaction < self; end # user cancelled payment
+    class FinishTransaction < self; end # user's payment is confirmed
 
     private
       def steal_account_from_auction

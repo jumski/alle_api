@@ -7,9 +7,7 @@ module AlleApi
       end
 
       def request_body
-        { 'webapi-key' => client.webapi_key,
-          'country-code' => client.country_id,
-          'local-version' => 0 }
+        { country_code: client.country_id, webapi_key: client.webapi_key }
       end
 
       def extract_results(result)

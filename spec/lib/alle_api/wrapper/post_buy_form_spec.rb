@@ -11,8 +11,8 @@ describe AlleApi::Wrapper::PostBuyForm do
     include_context 'real api client'
 
     before(:all) do
-      DatabaseCleaner.clean
-      Savon.configure { |c| c.log = false }
+      DatabaseCleaner.clean_with :truncation
+      # Savon.configure { |c| c.log = false }
       VCR.insert_cassette :do_get_post_buy_forms_data_for_sellers
 
       account.utility = true
@@ -20,14 +20,16 @@ describe AlleApi::Wrapper::PostBuyForm do
       AlleApi::Helper::Versions.new.update(:version_key)
       AlleApi::Job::Authenticate.new.perform(account.id)
 
-      deal_events = api.get_deals_journal
+      @auction = create :auction, remote_id: 4762519063
+
+      deal_events = api.get_deals_journal 123
       ids = deal_events.map(&:remote_transaction_id)
       @wrapped = api.get_post_buy_forms_for_sellers ids.select{|id| id > 0}
     end
     after(:all) do
-      DatabaseCleaner.clean
+      DatabaseCleaner.clean_with :truncation
       VCR.eject_cassette
-      Savon.configure { |c| c.log = true }
+      # Savon.configure { |c| c.log = true }
     end
 
     context "integration test" do
@@ -37,31 +39,31 @@ describe AlleApi::Wrapper::PostBuyForm do
       # specify { binding.pry }
       it { should be_a AlleApi::Wrapper::PostBuyForm }
 
-      its(:remote_id) { should eq 243626480 }
+      its(:remote_id) { should eq 392693461 }
       its(:source) { should eq subject }
-      its(:shipment_id) { should eq 1 }
+      its(:shipment_id) { should eq 8 }
 
-      its(:buyer_id) { should eq 5697909 }
-      its(:buyer_login) { should eq 'Yumm' }
-      its(:buyer_email) { should eq 'jumski+allegro@gmail.com'  }
+      its(:buyer_id) { should eq 38552453 }
+      its(:buyer_login) { should eq "Client:38552453" }
+      its(:buyer_email) { should eq 'jumski@gmail.com'  }
       its(:invoice_requested) { should be_false }
-      its(:message_to_seller) { should eq 'siema gudi payu full' }
+      its(:message_to_seller) { should eq 'hej flaki !' }
 
-      its(:amount) { should eq 2.0 }
-      its(:postage_amount) { should eq 1.0 }
-      its(:payment_amount) { should eq 2 }
+      its(:amount) { should eq 6.43 }
+      its(:postage_amount) { should eq 1.2 }
+      its(:payment_amount) { should eq 6.43 }
 
-      its(:payment_id) { should eq 318277336 }
-      its(:payment_created_at) { should eq DateTime.parse('2013-05-21 13:12:40') }
-      its(:payment_received_at) { should eq DateTime.parse('2013-05-21 13:12:40') }
+      its(:payment_id) { should eq 392693461 }
+      its(:payment_created_at) { should eq DateTime.parse('2014-12-04 17:37:36') }
+      its(:payment_received_at) { should eq DateTime.parse('2014-12-04 17:37:36') }
       its(:payment_cancelled_at) { should be_nil }
 
-      context "when only 1 item is present", :zomg do
+      context "when only 1 item is present" do
         before do
           expect(subject.source[:post_buy_form_items][:item]).to be_a Hash
         end
 
-        its(:remote_auction_ids) { should eq [3266166575] }
+        its(:remote_auction_ids) { should eq [@auction.remote_id] }
       end
 
       context 'when more than 1 item is present', :zomg do
@@ -73,7 +75,7 @@ describe AlleApi::Wrapper::PostBuyForm do
           subject.source[:post_buy_form_items][:item] = [item, item2]
         end
 
-        its(:remote_auction_ids) { should eq [3266166575, 999] }
+        its(:remote_auction_ids) { should eq [@auction.remote_id, 999] }
       end
 
       context "when payment_type is set to co" do
@@ -120,29 +122,26 @@ describe AlleApi::Wrapper::PostBuyForm do
       describe 'shipment address' do
         subject { @wrapped[1].shipment_address }
 
-        # specify { binding.pry }
         its(:country_id) { should eq 1 }
         its(:country) { should eq 'Polska' }
-        its(:address_1) { should eq "os. Tysiąclecia 32/14" }
-        its(:zipcode) { should eq '31-610' }
+        its(:address_1) { should eq "Adres 23`" }
+        its(:zipcode) { should eq '33-222' }
         its(:city) { should eq 'Kraków' }
-        its(:full_name) { should eq 'Wojciech Majewski' }
+        its(:full_name) { should eq 'Www Mwww' }
         its(:company_name) { should be_nil }
-        its(:phone_number) { should eq '883091610' }
-        its(:created_at) { should eq DateTime.parse("2013-05-21 13:09:19") }
-        its(:type) { should eq 1 }
+        its(:phone_number) { should eq '123456789' }
+        its(:created_at) { should eq DateTime.parse("2014-12-04 17:35:41") }
+        its(:type) { should eq 0 }
       end
     end
 
     context "creates records" do
       let(:wrapped) { @wrapped[1] }
+      subject { do_create! }
+
       def do_create!
         wrapped.create_if_missing(account).reload
       end
-      before do
-        @auction = create :auction, remote_id: 3266166575
-      end
-      subject { do_create! }
 
       it { should be_a AlleApi::PostBuyForm }
       it { should be_valid }

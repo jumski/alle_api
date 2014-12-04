@@ -11,8 +11,8 @@ module AlleApi::Action
 
     def request_body(auction)
       {
-        'session-handle' => client.session_handle,
-        'fields' => {'fields' => auction.to_fields_array}
+        session_handle: client.session_handle,
+        fields: { item: auction.to_fields_array }
       }
     end
 

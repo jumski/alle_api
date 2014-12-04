@@ -18,9 +18,7 @@ RSpec.configure do |config|
       cassette = example.metadata[:vcr]
       options = {match_requests_on: [:uri, :body]}
 
-      Savon.configure { |c| c.log = false }
       VCR.use_cassette(cassette, options) { example.run }
-      Savon.configure { |c| c.log = true }
     else
       example.run
     end

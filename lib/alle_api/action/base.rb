@@ -10,7 +10,7 @@ module AlleApi::Action
     def do(*args)
       validate!(*args)
 
-      result = client.request soap_action, body: request_body(*args)
+      result = client.request soap_action, request_body(*args)
       result_to_extract = result.to_hash["#{soap_action}_response".to_sym]
 
       extract_results(result_to_extract)

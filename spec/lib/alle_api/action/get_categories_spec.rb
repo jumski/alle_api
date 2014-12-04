@@ -5,11 +5,11 @@ require 'rspec/allegro'
 describe AlleApi::Action::GetCategories do
   include_examples 'api action', :do_get_cats_data do
 
-    it_implements 'simple #request_body' do
+    it_should_behave_like 'simple #request_body' do
       let(:expected_body) do
-        { "country-id"    => client.country_id,
-          "local-version" => client.version_key,
-          "webapi-key"    => client.webapi_key }
+        { country_id: client.country_id,
+          local_version: client.version_key,
+          webapi_key: client.webapi_key }
       end
     end
 

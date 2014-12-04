@@ -14,7 +14,13 @@ module AlleApi
     end
 
     def self.yaml_path
-      @yaml_path ||= Rails.root.join('config/alle_api.yml')
+      @yaml_path ||= begin
+                       if Rails.env.test? || Rails.env.development?
+                         ENV['ALLE_API_CONFIG_PATH']
+                       else
+                         Rails.root.join('config/alle_api.yml')
+                       end
+                     end
     end
   end
 end

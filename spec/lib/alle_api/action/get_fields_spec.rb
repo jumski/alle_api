@@ -5,15 +5,13 @@ describe AlleApi::Action::GetFields do
 
   include_examples 'api action', :do_get_sell_form_fields_ext do
 
-    it_implements 'simple #request_body' do
+    it_should_behave_like 'simple #request_body' do
       let(:expected_body) do
-        { 'webapi-key' => client.webapi_key,
-          'country-code' => client.country_id,
-          'local-version' => 0 }
+        { webapi_key: client.webapi_key, country_code:  client.country_id }
       end
     end
 
-    it_implements '#extract_results using wrapper' do
+    it_should_behave_like '#extract_results using wrapper' do
       let(:wrapper_klass) { AlleApi::Wrapper::Field }
 
       it "#extract_items returns proper nested hash" do

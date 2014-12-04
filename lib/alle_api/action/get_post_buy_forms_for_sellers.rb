@@ -10,10 +10,9 @@ module AlleApi
       end
 
       def request_body(ids)
-        { 'session-id' => client.session_handle,
-          'transactions-ids-array' => {
-            'transactions-ids-array' => ids
-          }
+        {
+          session_id: client.session_handle,
+          transactions_ids_array: { item: ids }
         }
       end
 

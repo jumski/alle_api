@@ -3,8 +3,11 @@ module AlleApi
   class Api
     attr_reader :client
 
-    def initialize(config)
-      @client = Client.new(config)
+    def initialize(client_or_config)
+      @client = case client_or_config
+                when AlleApi::Client then client_or_config
+                when Hash            then Client.new client_or_config
+                end
     end
 
     def authenticate

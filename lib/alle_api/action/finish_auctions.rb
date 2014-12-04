@@ -17,12 +17,12 @@ module AlleApi::Action
 
     def request_body(remote_ids)
       {
-        'session-handle' => client.session_handle,
-        'finish-items-list' => {
-          'finish-items-list' => remote_ids.map { |id|
-            { 'finish-item-id'         => id,
-              'finish-cancel-all-bids' => 0,
-              'finish-cancel-reason'   => '' }
+        session_handle: client.session_handle,
+        finish_items_list: {
+          item: remote_ids.map { |id|
+            { finish_item_id:         id,
+              finish_cancel_all_bids: 0,
+              finish_cancel_reason:   '' }
             }
         }
       }

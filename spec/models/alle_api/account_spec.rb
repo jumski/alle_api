@@ -176,10 +176,22 @@ describe AlleApi::Account do
     end
   end
 
-  it "#about_me_url" do
-    url = "http://allegro.pl/my_page.php?uid=#{subject.remote_id}"
+  describe "#about_me_url" do
+    it "it returns proper url for production mode" do
+      AlleApi.config.stubs(sandbox: false)
 
-    expect(subject.about_me_url).to eq url
+      url = "http://allegro.pl/my_page.php?uid=#{subject.remote_id}"
+
+      expect(subject.about_me_url).to eq url
+    end
+
+    it 'returns proper url for sandbox mode' do
+      AlleApi.config.stubs(sandbox: true)
+
+      url = "http://allegro.pl.webapisandbox.pl/show_user.php?uid=#{subject.remote_id}"
+
+      expect(subject.about_me_url).to eq url
+    end
   end
 
 end

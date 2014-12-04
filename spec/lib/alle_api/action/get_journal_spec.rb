@@ -10,11 +10,11 @@ describe AlleApi::Action::GetJournal do
     context 'when starting point is provided' do
       let(:starting_point) { 123 }
 
-      it_implements 'simple #request_body' do
+      it_should_behave_like 'simple #request_body' do
         let(:expected_body) do
-          { 'session-handle' => client.session_handle,
-            'starting-point' => 123,
-            'info-type'      => 0 }
+          { session_handle: client.session_handle,
+            starting_point: 123,
+            info_type:      0 }
         end
       end
     end
@@ -22,16 +22,16 @@ describe AlleApi::Action::GetJournal do
     context 'when starting point is not provided' do
       let(:starting_point) { nil }
 
-      it_implements 'simple #request_body' do
+      it_should_behave_like 'simple #request_body' do
         let(:expected_body) do
-          { 'session-handle' => client.session_handle,
-            'starting-point' => starting_point,
-            'info-type'      => 0 }
+          { session_handle: client.session_handle,
+            starting_point: starting_point,
+            info_type:      0 }
         end
       end
     end
 
-    it_implements '#extract_results using wrapper' do
+    it_should_behave_like '#extract_results using wrapper' do
       let(:wrapper_klass) { AlleApi::Wrapper::Event }
 
       it "#extract_items returns proper nested hash" do
@@ -40,7 +40,5 @@ describe AlleApi::Action::GetJournal do
         expect(subject.extract_items(nested)).to eq('value')
       end
     end
-
   end
-
 end

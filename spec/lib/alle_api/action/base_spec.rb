@@ -34,7 +34,7 @@ describe AlleApi::Action::Base do
       subject.stubs(:extract_results)
 
       subject.expects(:request_body).with(*args).returns(body)
-      client.expects(:request).with(soap_action, body: body).returns(results)
+      client.expects(:request).with(soap_action, body).returns(results)
 
       subject.do(*args)
     end

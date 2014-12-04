@@ -5,14 +5,14 @@ describe AlleApi::Action::GetVersions do
 
   include_examples 'api action', :do_query_all_sys_status do
 
-    it_implements 'simple #request_body' do
+    it_should_behave_like 'simple #request_body' do
       let(:expected_body) do
-        { 'country-id' => client.country_id,
-          'webapi-key' => client.webapi_key }
+        { country_id: client.country_id,
+          webapi_key: client.webapi_key }
       end
     end
 
-    it_implements 'simple #extract_results' do
+    it_should_behave_like 'simple #extract_results' do
       let(:unextracted) do
         versions = [
           { country_id: client.country_id.to_s,
@@ -44,9 +44,9 @@ describe AlleApi::Action::GetVersions do
 
         expect(versions).to be_a Hash
 
-        expect(versions[:version_key]).to eq("14242869")
-        expect(versions[:categories_tree]).to eq("1.0.99")
-        expect(versions[:fields]).to eq("1.1.37")
+        expect(versions[:version_key]).to eq("1414748778")
+        expect(versions[:categories_tree]).to eq("1.0.93")
+        expect(versions[:fields]).to eq("1.2.8")
       end
     end
 

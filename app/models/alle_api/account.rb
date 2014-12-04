@@ -55,6 +55,10 @@ class AlleApi::Account < ActiveRecord::Base
   end
 
   def about_me_url
-    "http://allegro.pl/my_page.php?uid=#{remote_id}"
+    if AlleApi.config.sandbox
+      "http://allegro.pl.webapisandbox.pl/show_user.php?uid=#{remote_id}"
+    else
+      "http://allegro.pl/my_page.php?uid=#{remote_id}"
+    end
   end
 end

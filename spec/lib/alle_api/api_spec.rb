@@ -11,10 +11,18 @@ describe AlleApi::Api do
   subject { api }
 
   describe '.new' do
-    it 'creates new client with provided options' do
-      AlleApi::Client.expects(:new).with('opts').returns(client)
+    it 'when called with hash, creates new client with provided options' do
+      AlleApi::Client.expects(:new).with(key: :value).returns(client)
 
-      AlleApi::Api.new('opts')
+      api = AlleApi::Api.new(key: :value)
+
+      expect(api.client).to eq client
+    end
+
+    it 'when called with client, uses given client' do
+      api = AlleApi::Api.new client
+
+      expect(api.client).to eq client
     end
   end
 

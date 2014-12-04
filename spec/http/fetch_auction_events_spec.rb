@@ -2,7 +2,7 @@
 require 'spec_helper'
 require 'rspec/allegro'
 
-describe 'Happy Paths: fetch events', vcr: 'fetch_auction_events' do
+describe 'Happy Paths: fetch events', :http, vcr: 'fetch_auction_events' do
 
   include_context 'real api client'
 
@@ -22,11 +22,12 @@ describe 'Happy Paths: fetch events', vcr: 'fetch_auction_events' do
 
     AlleApi::Job::FetchAuctionEvents.new.perform(account.id)
 
-    expect(AlleApi::AuctionEvent.count).to eq(14)
+    expect(AlleApi::AuctionEvent.count).to eq(17)
 
     types = AlleApi::AuctionEvent.pluck(:type).uniq
     expected_types = %w(AlleApi::AuctionEvent::Start
-                        AlleApi::AuctionEvent::End)
+                        AlleApi::AuctionEvent::End
+                        AlleApi::AuctionEvent::BuyNow)
     expect(types.sort).to eq(expected_types.sort)
   end
 end

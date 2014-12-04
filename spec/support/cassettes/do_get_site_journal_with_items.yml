@@ -15,9 +15,9 @@ http_interactions:
       Vary:
       - Accept-Encoding
       Set-Cookie:
-      - ws2=9d1e6e0459c08f36361192d82a30ec0e; expires=Thu, 04-Dec-2014 17:28:16 GMT;
+      - ws2=0359fa2758c118feb497b6c7d0043a59; expires=Thu, 04-Dec-2014 20:37:07 GMT;
         path=/; domain=.allegro.pl.webapisandbox.pl
-      - ws3=N98417bea66372c7eac9a767ea794f965; expires=Wed, 28-Jun-2113 16:58:16 GMT;
+      - ws3=Nfe475d23e1f0a5782fdaebf9f528b514; expires=Wed, 28-Jun-2113 20:07:07 GMT;
         path=/; domain=.allegro.pl.webapisandbox.pl
       - ws4=x; path=/; domain=.allegro.pl.webapisandbox.pl
       Content-Type:
@@ -29,7 +29,7 @@ http_interactions:
       Accept-Ranges:
       - bytes
       Date:
-      - Thu, 04 Dec 2014 16:58:16 GMT
+      - Thu, 04 Dec 2014 20:07:07 GMT
       Age:
       - '0'
       Connection:
@@ -2614,7 +2614,7 @@ http_interactions:
 
 '
     http_version: 
-  recorded_at: Thu, 04 Dec 2014 16:58:16 GMT
+  recorded_at: Thu, 04 Dec 2014 20:07:07 GMT
 - request:
     method: post
     uri: https://webapi.allegro.pl.webapisandbox.pl/service.php
@@ -2638,9 +2638,9 @@ http_interactions:
       Vary:
       - Accept-Encoding
       Set-Cookie:
-      - ws2=ed8a003e4f0fbfb02ce512cb7ca5cafe; expires=Thu, 04-Dec-2014 17:28:16 GMT;
+      - ws2=7047fadaedb7756ae8c327d72ffe4a97; expires=Thu, 04-Dec-2014 20:37:08 GMT;
         path=/; domain=.allegro.pl.webapisandbox.pl
-      - ws3=N4e757810d114f4945a71a740dd4bba36; expires=Wed, 28-Jun-2113 16:58:16 GMT;
+      - ws3=Ndef4121ee0680065093cc237af7c7132; expires=Wed, 28-Jun-2113 20:07:08 GMT;
         path=/; domain=.allegro.pl.webapisandbox.pl
       - ws4=x; path=/; domain=.allegro.pl.webapisandbox.pl
       Content-Type:
@@ -2652,7 +2652,7 @@ http_interactions:
       Accept-Ranges:
       - bytes
       Date:
-      - Thu, 04 Dec 2014 16:58:16 GMT
+      - Thu, 04 Dec 2014 20:07:08 GMT
       Age:
       - '0'
       Connection:
@@ -2674,7 +2674,7 @@ http_interactions:
 
 '
     http_version: 
-  recorded_at: Thu, 04 Dec 2014 16:58:16 GMT
+  recorded_at: Thu, 04 Dec 2014 20:07:08 GMT
 - request:
     method: get
     uri: https://webapi.allegro.pl.webapisandbox.pl/service.php?wsdl
@@ -2690,21 +2690,19 @@ http_interactions:
       Vary:
       - Accept-Encoding
       Set-Cookie:
-      - ws2=59e9ea25f4fe66895628fc4fc76aaa8d; expires=Thu, 04-Dec-2014 17:28:16 GMT;
+      - ws2=bad7894a9fa2cc35037ca1f5ffc36ab5; expires=Thu, 04-Dec-2014 20:37:08 GMT;
         path=/; domain=.allegro.pl.webapisandbox.pl
-      - ws3=Ncd830d3c83d97667584a89e7d0de8138; expires=Wed, 28-Jun-2113 16:58:16 GMT;
+      - ws3=N242389d2130a64657269f3334e11329b; expires=Wed, 28-Jun-2113 20:07:08 GMT;
         path=/; domain=.allegro.pl.webapisandbox.pl
       - ws4=x; path=/; domain=.allegro.pl.webapisandbox.pl
       Content-Type:
       - text/xml;charset=UTF-8
       X-Backend:
       - allegro_qeppo
-      Content-Length:
-      - '245140'
-      Accept-Ranges:
-      - bytes
+      Transfer-Encoding:
+      - chunked
       Date:
-      - Thu, 04 Dec 2014 16:58:16 GMT
+      - Thu, 04 Dec 2014 20:07:08 GMT
       Age:
       - '0'
       Connection:
@@ -5289,7 +5287,7 @@ http_interactions:
 
 '
     http_version: 
-  recorded_at: Thu, 04 Dec 2014 16:58:17 GMT
+  recorded_at: Thu, 04 Dec 2014 20:07:08 GMT
 - request:
     method: post
     uri: https://webapi.allegro.pl.webapisandbox.pl/service.php
@@ -5313,16 +5311,16 @@ http_interactions:
       Vary:
       - Accept-Encoding
       Set-Cookie:
-      - QXLDATA=uCLdFO97%2Fa2jXA61RDqm9GTURpvh%2Bs5lZra18dc876Q%3D%23%23%23smKtcpucbD7LgQGt7Ztk2eKb0386%2BfyS8dddOrGZfJ%2F9dL6Bfo6biRaVAw6KquXUqCZbUFcoFbz9ntWPeSkP75Nuy9LKyXtJ3JqXb8Rb6BX5rkSjEW6prxxNwRrq8SnUDF3M8LfMOHHb%2BSePsg%3D%3D;
-        expires=Thu, 04-Dec-2014 22:58:17 GMT; path=/; domain=.allegro.pl.webapisandbox.pl
-      - TEST_QXLSESSID=2e72e523345fc69692f69f9b341e377c9e8091250bcc68bb00; path=/;
+      - QXLDATA=VgwRP%2FQa1FRqWvTaIZe4aQdHzcajoIi8mLeEshJa8xY%3D%23%23%23QndMtHIa9PBC5G%2FprBH1vGKnJeRVmg97MwRHds3rl1%2FJY3gNBGXe0wsevoOPCaP%2FPox6KDIWE9OUNoYSH8T1%2Bwa2%2B90a%2FO8KF3tYaAPABTcxEgsGgIzlWJjItjNcqnZ%2BfwrlHnaM5iwRySgMBw%3D%3D;
+        expires=Fri, 05-Dec-2014 02:07:09 GMT; path=/; domain=.allegro.pl.webapisandbox.pl
+      - TEST_QXLSESSID=6f6ad6de7b59bd6d06328754ebe1a9a8e5fca6ba0bcc68bb00; path=/;
         domain=.allegro.pl.webapisandbox.pl
-      - _bS=0; expires=Sun, 14-Dec-2014 16:58:17 GMT; path=/; domain=.allegro.pl.webapisandbox.pl
+      - _bS=0; expires=Sun, 14-Dec-2014 20:07:09 GMT; path=/; domain=.allegro.pl.webapisandbox.pl
       - qeppo_login2=%7B%22welcome%22%3A%22Witaj%2C%22%2C%22id%22%3A%2239856169%22%2C%22username%22%3A%22careosas%22%2C%22fbConnected%22%3Afalse%2C%22qeppo_hash%22%3A%22BptzDD8JJ2hTZfY4UsdM6i6T7A9ocE8Za99rfgv1ni0%3D%22%2C%22isCompany%22%3Afalse%7D;
         path=/; domain=.allegro.pl.webapisandbox.pl
-      - ws2=1511269f1e20ebc6a9ff8a71e9021b72; expires=Thu, 04-Dec-2014 17:28:17 GMT;
+      - ws2=e97f59949bb5d3833fa20c0ce940c4c0; expires=Thu, 04-Dec-2014 20:37:08 GMT;
         path=/; domain=.allegro.pl.webapisandbox.pl
-      - ws3=Nbabbca036787903879459a1b40c0f3ff; expires=Wed, 28-Jun-2113 16:58:17 GMT;
+      - ws3=N7165162610181f23d3ad525145bd69fb; expires=Wed, 28-Jun-2113 20:07:08 GMT;
         path=/; domain=.allegro.pl.webapisandbox.pl
       - ws4=x; path=/; domain=.allegro.pl.webapisandbox.pl
       Cache-Control:
@@ -5338,7 +5336,7 @@ http_interactions:
       Accept-Ranges:
       - bytes
       Date:
-      - Thu, 04 Dec 2014 16:58:17 GMT
+      - Thu, 04 Dec 2014 20:07:09 GMT
       Age:
       - '0'
       Connection:
@@ -5354,11 +5352,11 @@ http_interactions:
       string: ! '<?xml version="1.0" encoding="UTF-8"?>
 
         <SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/"
-        xmlns:ns1="urn:SandboxWebApi"><SOAP-ENV:Body><ns1:doLoginResponse><ns1:sessionHandlePart>2e72e523345fc69692f69f9b341e377c9e8091250bcc68bb00_1</ns1:sessionHandlePart><ns1:userId>39856169</ns1:userId><ns1:serverTime>1417712297</ns1:serverTime></ns1:doLoginResponse></SOAP-ENV:Body></SOAP-ENV:Envelope>
+        xmlns:ns1="urn:SandboxWebApi"><SOAP-ENV:Body><ns1:doLoginResponse><ns1:sessionHandlePart>6f6ad6de7b59bd6d06328754ebe1a9a8e5fca6ba0bcc68bb00_1</ns1:sessionHandlePart><ns1:userId>39856169</ns1:userId><ns1:serverTime>1417723629</ns1:serverTime></ns1:doLoginResponse></SOAP-ENV:Body></SOAP-ENV:Envelope>
 
 '
     http_version: 
-  recorded_at: Thu, 04 Dec 2014 16:58:17 GMT
+  recorded_at: Thu, 04 Dec 2014 20:07:08 GMT
 - request:
     method: get
     uri: https://webapi.allegro.pl.webapisandbox.pl/service.php?wsdl
@@ -5374,9 +5372,9 @@ http_interactions:
       Vary:
       - Accept-Encoding
       Set-Cookie:
-      - ws2=08c60e7d130f593cc940f22d979f9b30; expires=Thu, 04-Dec-2014 17:28:17 GMT;
+      - ws2=5c0fcf15223d6b1ec27a3b9bad68ba0f; expires=Thu, 04-Dec-2014 20:37:09 GMT;
         path=/; domain=.allegro.pl.webapisandbox.pl
-      - ws3=N46509eb4c0cffbe9410cd216a1736082; expires=Wed, 28-Jun-2113 16:58:17 GMT;
+      - ws3=N6334a25d6c851d1f4449ac4fac475b5b; expires=Wed, 28-Jun-2113 20:07:09 GMT;
         path=/; domain=.allegro.pl.webapisandbox.pl
       - ws4=x; path=/; domain=.allegro.pl.webapisandbox.pl
       Content-Type:
@@ -5388,7 +5386,7 @@ http_interactions:
       Accept-Ranges:
       - bytes
       Date:
-      - Thu, 04 Dec 2014 16:58:17 GMT
+      - Thu, 04 Dec 2014 20:07:09 GMT
       Age:
       - '0'
       Connection:
@@ -7973,7 +7971,7 @@ http_interactions:
 
 '
     http_version: 
-  recorded_at: Thu, 04 Dec 2014 16:58:17 GMT
+  recorded_at: Thu, 04 Dec 2014 20:07:09 GMT
 - request:
     method: post
     uri: https://webapi.allegro.pl.webapisandbox.pl/service.php
@@ -7981,14 +7979,14 @@ http_interactions:
       encoding: US-ASCII
       string: <?xml version="1.0" encoding="UTF-8"?><env:Envelope xmlns:xsd="http://www.w3.org/2001/XMLSchema"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tns="urn:SandboxWebApi"
-        xmlns:env="http://schemas.xmlsoap.org/soap/envelope/"><env:Body><tns:DoGetSiteJournalRequest><tns:sessionHandle>2e72e523345fc69692f69f9b341e377c9e8091250bcc68bb00_1</tns:sessionHandle><tns:startingPoint>1</tns:startingPoint><tns:infoType>0</tns:infoType></tns:DoGetSiteJournalRequest></env:Body></env:Envelope>
+        xmlns:env="http://schemas.xmlsoap.org/soap/envelope/"><env:Body><tns:DoGetSiteJournalRequest><tns:sessionHandle>6f6ad6de7b59bd6d06328754ebe1a9a8e5fca6ba0bcc68bb00_1</tns:sessionHandle><tns:startingPoint>123</tns:startingPoint><tns:infoType>0</tns:infoType></tns:DoGetSiteJournalRequest></env:Body></env:Envelope>
     headers:
       Soapaction:
       - ! '"#doGetSiteJournal"'
       Content-Type:
       - text/xml;charset=UTF-8
       Content-Length:
-      - '491'
+      - '493'
   response:
     status:
       code: 200
@@ -7997,11 +7995,11 @@ http_interactions:
       Vary:
       - Accept-Encoding
       Set-Cookie:
-      - TEST_QXLSESSID=2e72e523345fc69692f69f9b341e377c9e8091250bcc68bb00; path=/;
+      - TEST_QXLSESSID=6f6ad6de7b59bd6d06328754ebe1a9a8e5fca6ba0bcc68bb00; path=/;
         domain=.allegro.pl.webapisandbox.pl
-      - ws2=eaa61b0b1684bfc44af118d74b6c8c24; expires=Thu, 04-Dec-2014 17:28:18 GMT;
+      - ws2=c4b09090e7e3a09a78686ccf8794fd31; expires=Thu, 04-Dec-2014 20:37:09 GMT;
         path=/; domain=.allegro.pl.webapisandbox.pl
-      - ws3=Ndca4a7c676d2f0271686bfd14123df82; expires=Wed, 28-Jun-2113 16:58:18 GMT;
+      - ws3=N542f0b9dfaafdcb200cd05cbba1f9cd1; expires=Wed, 28-Jun-2113 20:07:09 GMT;
         path=/; domain=.allegro.pl.webapisandbox.pl
       - ws4=x; path=/; domain=.allegro.pl.webapisandbox.pl
       Cache-Control:
@@ -8013,11 +8011,11 @@ http_interactions:
       X-Backend:
       - allegro_qeppo
       Content-Length:
-      - '4517'
+      - '7235'
       Accept-Ranges:
       - bytes
       Date:
-      - Thu, 04 Dec 2014 16:58:18 GMT
+      - Thu, 04 Dec 2014 20:07:09 GMT
       Age:
       - '0'
       Connection:
@@ -8033,9 +8031,9 @@ http_interactions:
       string: ! '<?xml version="1.0" encoding="UTF-8"?>
 
         <SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/"
-        xmlns:ns1="urn:SandboxWebApi"><SOAP-ENV:Body><ns1:doGetSiteJournalResponse><ns1:siteJournalArray><ns1:item><ns1:rowId>27517</ns1:rowId><ns1:itemId>4762518981</ns1:itemId><ns1:changeType>start</ns1:changeType><ns1:changeDate>1417708877</ns1:changeDate><ns1:currentPrice>0</ns1:currentPrice><ns1:itemSellerId>39856169</ns1:itemSellerId></ns1:item><ns1:item><ns1:rowId>27529</ns1:rowId><ns1:itemId>4762519026</ns1:itemId><ns1:changeType>start</ns1:changeType><ns1:changeDate>1417709272</ns1:changeDate><ns1:currentPrice>0</ns1:currentPrice><ns1:itemSellerId>39856169</ns1:itemSellerId></ns1:item><ns1:item><ns1:rowId>27535</ns1:rowId><ns1:itemId>4762519047</ns1:itemId><ns1:changeType>start</ns1:changeType><ns1:changeDate>1417709313</ns1:changeDate><ns1:currentPrice>0</ns1:currentPrice><ns1:itemSellerId>39856169</ns1:itemSellerId></ns1:item><ns1:item><ns1:rowId>27536</ns1:rowId><ns1:itemId>4762519048</ns1:itemId><ns1:changeType>start</ns1:changeType><ns1:changeDate>1417709355</ns1:changeDate><ns1:currentPrice>0</ns1:currentPrice><ns1:itemSellerId>39856169</ns1:itemSellerId></ns1:item><ns1:item><ns1:rowId>27537</ns1:rowId><ns1:itemId>4762519049</ns1:itemId><ns1:changeType>start</ns1:changeType><ns1:changeDate>1417709377</ns1:changeDate><ns1:currentPrice>0</ns1:currentPrice><ns1:itemSellerId>39856169</ns1:itemSellerId></ns1:item><ns1:item><ns1:rowId>27538</ns1:rowId><ns1:itemId>4762519050</ns1:itemId><ns1:changeType>start</ns1:changeType><ns1:changeDate>1417709401</ns1:changeDate><ns1:currentPrice>0</ns1:currentPrice><ns1:itemSellerId>39856169</ns1:itemSellerId></ns1:item><ns1:item><ns1:rowId>27547</ns1:rowId><ns1:itemId>4762519053</ns1:itemId><ns1:changeType>start</ns1:changeType><ns1:changeDate>1417709894</ns1:changeDate><ns1:currentPrice>0</ns1:currentPrice><ns1:itemSellerId>39856169</ns1:itemSellerId></ns1:item><ns1:item><ns1:rowId>27548</ns1:rowId><ns1:itemId>4762526482</ns1:itemId><ns1:changeType>start</ns1:changeType><ns1:changeDate>1417709939</ns1:changeDate><ns1:currentPrice>0</ns1:currentPrice><ns1:itemSellerId>39856169</ns1:itemSellerId></ns1:item><ns1:item><ns1:rowId>27559</ns1:rowId><ns1:itemId>4762526488</ns1:itemId><ns1:changeType>start</ns1:changeType><ns1:changeDate>1417709993</ns1:changeDate><ns1:currentPrice>0</ns1:currentPrice><ns1:itemSellerId>39856169</ns1:itemSellerId></ns1:item><ns1:item><ns1:rowId>27560</ns1:rowId><ns1:itemId>4762526488</ns1:itemId><ns1:changeType>end</ns1:changeType><ns1:changeDate>1417709999</ns1:changeDate><ns1:currentPrice>0</ns1:currentPrice><ns1:itemSellerId>39856169</ns1:itemSellerId></ns1:item><ns1:item><ns1:rowId>27561</ns1:rowId><ns1:itemId>4762519059</ns1:itemId><ns1:changeType>start</ns1:changeType><ns1:changeDate>1417710046</ns1:changeDate><ns1:currentPrice>0</ns1:currentPrice><ns1:itemSellerId>39856169</ns1:itemSellerId></ns1:item><ns1:item><ns1:rowId>27562</ns1:rowId><ns1:itemId>4762519059</ns1:itemId><ns1:changeType>end</ns1:changeType><ns1:changeDate>1417710051</ns1:changeDate><ns1:currentPrice>0</ns1:currentPrice><ns1:itemSellerId>39856169</ns1:itemSellerId></ns1:item><ns1:item><ns1:rowId>27565</ns1:rowId><ns1:itemId>4762519061</ns1:itemId><ns1:changeType>start</ns1:changeType><ns1:changeDate>1417710081</ns1:changeDate><ns1:currentPrice>0</ns1:currentPrice><ns1:itemSellerId>39856169</ns1:itemSellerId></ns1:item><ns1:item><ns1:rowId>27567</ns1:rowId><ns1:itemId>4762519061</ns1:itemId><ns1:changeType>end</ns1:changeType><ns1:changeDate>1417710086</ns1:changeDate><ns1:currentPrice>0</ns1:currentPrice><ns1:itemSellerId>39856169</ns1:itemSellerId></ns1:item><ns1:item><ns1:rowId>27569</ns1:rowId><ns1:itemId>4762519063</ns1:itemId><ns1:changeType>start</ns1:changeType><ns1:changeDate>1417710150</ns1:changeDate><ns1:currentPrice>0</ns1:currentPrice><ns1:itemSellerId>39856169</ns1:itemSellerId></ns1:item><ns1:item><ns1:rowId>27579</ns1:rowId><ns1:itemId>4762519063</ns1:itemId><ns1:changeType>now</ns1:changeType><ns1:changeDate>1417710910</ns1:changeDate><ns1:currentPrice>5.23</ns1:currentPrice><ns1:itemSellerId>39856169</ns1:itemSellerId></ns1:item><ns1:item><ns1:rowId>27580</ns1:rowId><ns1:itemId>4762519063</ns1:itemId><ns1:changeType>end</ns1:changeType><ns1:changeDate>1417710912</ns1:changeDate><ns1:currentPrice>5.23</ns1:currentPrice><ns1:itemSellerId>39856169</ns1:itemSellerId></ns1:item></ns1:siteJournalArray></ns1:doGetSiteJournalResponse></SOAP-ENV:Body></SOAP-ENV:Envelope>
+        xmlns:ns1="urn:SandboxWebApi"><SOAP-ENV:Body><ns1:doGetSiteJournalResponse><ns1:siteJournalArray><ns1:item><ns1:rowId>27517</ns1:rowId><ns1:itemId>4762518981</ns1:itemId><ns1:changeType>start</ns1:changeType><ns1:changeDate>1417708877</ns1:changeDate><ns1:currentPrice>0</ns1:currentPrice><ns1:itemSellerId>39856169</ns1:itemSellerId></ns1:item><ns1:item><ns1:rowId>27529</ns1:rowId><ns1:itemId>4762519026</ns1:itemId><ns1:changeType>start</ns1:changeType><ns1:changeDate>1417709272</ns1:changeDate><ns1:currentPrice>0</ns1:currentPrice><ns1:itemSellerId>39856169</ns1:itemSellerId></ns1:item><ns1:item><ns1:rowId>27535</ns1:rowId><ns1:itemId>4762519047</ns1:itemId><ns1:changeType>start</ns1:changeType><ns1:changeDate>1417709313</ns1:changeDate><ns1:currentPrice>0</ns1:currentPrice><ns1:itemSellerId>39856169</ns1:itemSellerId></ns1:item><ns1:item><ns1:rowId>27536</ns1:rowId><ns1:itemId>4762519048</ns1:itemId><ns1:changeType>start</ns1:changeType><ns1:changeDate>1417709355</ns1:changeDate><ns1:currentPrice>0</ns1:currentPrice><ns1:itemSellerId>39856169</ns1:itemSellerId></ns1:item><ns1:item><ns1:rowId>27537</ns1:rowId><ns1:itemId>4762519049</ns1:itemId><ns1:changeType>start</ns1:changeType><ns1:changeDate>1417709377</ns1:changeDate><ns1:currentPrice>0</ns1:currentPrice><ns1:itemSellerId>39856169</ns1:itemSellerId></ns1:item><ns1:item><ns1:rowId>27538</ns1:rowId><ns1:itemId>4762519050</ns1:itemId><ns1:changeType>start</ns1:changeType><ns1:changeDate>1417709401</ns1:changeDate><ns1:currentPrice>0</ns1:currentPrice><ns1:itemSellerId>39856169</ns1:itemSellerId></ns1:item><ns1:item><ns1:rowId>27547</ns1:rowId><ns1:itemId>4762519053</ns1:itemId><ns1:changeType>start</ns1:changeType><ns1:changeDate>1417709894</ns1:changeDate><ns1:currentPrice>0</ns1:currentPrice><ns1:itemSellerId>39856169</ns1:itemSellerId></ns1:item><ns1:item><ns1:rowId>27548</ns1:rowId><ns1:itemId>4762526482</ns1:itemId><ns1:changeType>start</ns1:changeType><ns1:changeDate>1417709939</ns1:changeDate><ns1:currentPrice>0</ns1:currentPrice><ns1:itemSellerId>39856169</ns1:itemSellerId></ns1:item><ns1:item><ns1:rowId>27559</ns1:rowId><ns1:itemId>4762526488</ns1:itemId><ns1:changeType>start</ns1:changeType><ns1:changeDate>1417709993</ns1:changeDate><ns1:currentPrice>0</ns1:currentPrice><ns1:itemSellerId>39856169</ns1:itemSellerId></ns1:item><ns1:item><ns1:rowId>27560</ns1:rowId><ns1:itemId>4762526488</ns1:itemId><ns1:changeType>end</ns1:changeType><ns1:changeDate>1417709999</ns1:changeDate><ns1:currentPrice>0</ns1:currentPrice><ns1:itemSellerId>39856169</ns1:itemSellerId></ns1:item><ns1:item><ns1:rowId>27561</ns1:rowId><ns1:itemId>4762519059</ns1:itemId><ns1:changeType>start</ns1:changeType><ns1:changeDate>1417710046</ns1:changeDate><ns1:currentPrice>0</ns1:currentPrice><ns1:itemSellerId>39856169</ns1:itemSellerId></ns1:item><ns1:item><ns1:rowId>27562</ns1:rowId><ns1:itemId>4762519059</ns1:itemId><ns1:changeType>end</ns1:changeType><ns1:changeDate>1417710051</ns1:changeDate><ns1:currentPrice>0</ns1:currentPrice><ns1:itemSellerId>39856169</ns1:itemSellerId></ns1:item><ns1:item><ns1:rowId>27565</ns1:rowId><ns1:itemId>4762519061</ns1:itemId><ns1:changeType>start</ns1:changeType><ns1:changeDate>1417710081</ns1:changeDate><ns1:currentPrice>0</ns1:currentPrice><ns1:itemSellerId>39856169</ns1:itemSellerId></ns1:item><ns1:item><ns1:rowId>27567</ns1:rowId><ns1:itemId>4762519061</ns1:itemId><ns1:changeType>end</ns1:changeType><ns1:changeDate>1417710086</ns1:changeDate><ns1:currentPrice>0</ns1:currentPrice><ns1:itemSellerId>39856169</ns1:itemSellerId></ns1:item><ns1:item><ns1:rowId>27569</ns1:rowId><ns1:itemId>4762519063</ns1:itemId><ns1:changeType>start</ns1:changeType><ns1:changeDate>1417710150</ns1:changeDate><ns1:currentPrice>0</ns1:currentPrice><ns1:itemSellerId>39856169</ns1:itemSellerId></ns1:item><ns1:item><ns1:rowId>27579</ns1:rowId><ns1:itemId>4762519063</ns1:itemId><ns1:changeType>now</ns1:changeType><ns1:changeDate>1417710910</ns1:changeDate><ns1:currentPrice>5.23</ns1:currentPrice><ns1:itemSellerId>39856169</ns1:itemSellerId></ns1:item><ns1:item><ns1:rowId>27580</ns1:rowId><ns1:itemId>4762519063</ns1:itemId><ns1:changeType>end</ns1:changeType><ns1:changeDate>1417710912</ns1:changeDate><ns1:currentPrice>5.23</ns1:currentPrice><ns1:itemSellerId>39856169</ns1:itemSellerId></ns1:item><ns1:item><ns1:rowId>27587</ns1:rowId><ns1:itemId>4762519128</ns1:itemId><ns1:changeType>start</ns1:changeType><ns1:changeDate>1417712390</ns1:changeDate><ns1:currentPrice>0</ns1:currentPrice><ns1:itemSellerId>39856169</ns1:itemSellerId></ns1:item><ns1:item><ns1:rowId>27588</ns1:rowId><ns1:itemId>4762519128</ns1:itemId><ns1:changeType>end</ns1:changeType><ns1:changeDate>1417712395</ns1:changeDate><ns1:currentPrice>0</ns1:currentPrice><ns1:itemSellerId>39856169</ns1:itemSellerId></ns1:item><ns1:item><ns1:rowId>27605</ns1:rowId><ns1:itemId>4762519141</ns1:itemId><ns1:changeType>start</ns1:changeType><ns1:changeDate>1417713086</ns1:changeDate><ns1:currentPrice>0</ns1:currentPrice><ns1:itemSellerId>39856169</ns1:itemSellerId></ns1:item><ns1:item><ns1:rowId>27606</ns1:rowId><ns1:itemId>4762519141</ns1:itemId><ns1:changeType>end</ns1:changeType><ns1:changeDate>1417713095</ns1:changeDate><ns1:currentPrice>0</ns1:currentPrice><ns1:itemSellerId>39856169</ns1:itemSellerId></ns1:item><ns1:item><ns1:rowId>27607</ns1:rowId><ns1:itemId>4762526531</ns1:itemId><ns1:changeType>start</ns1:changeType><ns1:changeDate>1417713531</ns1:changeDate><ns1:currentPrice>0</ns1:currentPrice><ns1:itemSellerId>39856169</ns1:itemSellerId></ns1:item><ns1:item><ns1:rowId>27608</ns1:rowId><ns1:itemId>4762526531</ns1:itemId><ns1:changeType>end</ns1:changeType><ns1:changeDate>1417713535</ns1:changeDate><ns1:currentPrice>0</ns1:currentPrice><ns1:itemSellerId>39856169</ns1:itemSellerId></ns1:item><ns1:item><ns1:rowId>27609</ns1:rowId><ns1:itemId>4762526532</ns1:itemId><ns1:changeType>start</ns1:changeType><ns1:changeDate>1417713552</ns1:changeDate><ns1:currentPrice>0</ns1:currentPrice><ns1:itemSellerId>39856169</ns1:itemSellerId></ns1:item><ns1:item><ns1:rowId>27610</ns1:rowId><ns1:itemId>4762526532</ns1:itemId><ns1:changeType>end</ns1:changeType><ns1:changeDate>1417713560</ns1:changeDate><ns1:currentPrice>0</ns1:currentPrice><ns1:itemSellerId>39856169</ns1:itemSellerId></ns1:item><ns1:item><ns1:rowId>27611</ns1:rowId><ns1:itemId>4762526533</ns1:itemId><ns1:changeType>start</ns1:changeType><ns1:changeDate>1417713602</ns1:changeDate><ns1:currentPrice>0</ns1:currentPrice><ns1:itemSellerId>39856169</ns1:itemSellerId></ns1:item><ns1:item><ns1:rowId>27612</ns1:rowId><ns1:itemId>4762526533</ns1:itemId><ns1:changeType>end</ns1:changeType><ns1:changeDate>1417713611</ns1:changeDate><ns1:currentPrice>0</ns1:currentPrice><ns1:itemSellerId>39856169</ns1:itemSellerId></ns1:item><ns1:item><ns1:rowId>27645</ns1:rowId><ns1:itemId>4762526547</ns1:itemId><ns1:changeType>start</ns1:changeType><ns1:changeDate>1417716575</ns1:changeDate><ns1:currentPrice>0</ns1:currentPrice><ns1:itemSellerId>39856169</ns1:itemSellerId></ns1:item></ns1:siteJournalArray></ns1:doGetSiteJournalResponse></SOAP-ENV:Body></SOAP-ENV:Envelope>
 
 '
     http_version: 
-  recorded_at: Thu, 04 Dec 2014 16:58:18 GMT
+  recorded_at: Thu, 04 Dec 2014 20:07:09 GMT
 recorded_with: VCR 2.4.0

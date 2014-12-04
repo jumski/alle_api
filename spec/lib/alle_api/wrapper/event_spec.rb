@@ -131,4 +131,46 @@ describe AlleApi::Wrapper::Event do
     end
   end
 
+  context "integration test" do
+    include_context 'authenticated and updated api client'
+
+    context "given response with events", vcr: 'do_get_site_journal_with_items' do
+      subject(:events) { api.get_journal 123 }
+
+      it 'parses returned events' do
+        expect(events.length).to eq 28
+
+        expected_kinds = ["start", "end", "now"]
+        events.each do |event|
+          expect(event).to be_a AlleApi::Wrapper::Event
+          expect(event.remote_id).to be > 0
+          expect(event.remote_auction_id).to be > 0
+          expect(event.remote_seller_id).to be > 0
+          expect(event.current_price).to be_a Numeric
+          expect(event.occured_at).to be_a DateTime
+          expect(event.occured_at).to be < Time.now
+          expect(expected_kinds).to include event.kind
+        end
+      end
+
+      it 'has proper model_klass' do
+        klass_names = events.map(&:model_klass).uniq.map(&:name)
+
+        expect(klass_names.sort).to eq %w[
+          AlleApi::AuctionEvent::BuyNow
+          AlleApi::AuctionEvent::End
+          AlleApi::AuctionEvent::Start
+        ].sort
+      end
+    end
+
+    context "given response without events", vcr: 'do_get_site_journal_without_items' do
+      subject(:events) { api.get_journal 13973630311 }
+
+      it 'parses returned events' do
+        expect(events).to eq []
+      end
+    end
+  end
+
 end

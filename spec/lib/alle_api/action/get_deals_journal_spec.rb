@@ -9,10 +9,9 @@ describe AlleApi::Action::GetDealsJournal do
     context 'when starting point is provided' do
       let(:starting_point) { 123 }
 
-      it_implements 'simple #request_body' do
+      it_should_behave_like 'simple #request_body' do
         let(:expected_body) do
-          { 'session-id' => client.session_handle,
-            'journal-start' => 123 }
+          { session_id: client.session_handle, journal_start: 123 }
         end
       end
     end
@@ -20,15 +19,14 @@ describe AlleApi::Action::GetDealsJournal do
     context 'when starting point is not provided' do
       let(:starting_point) { nil }
 
-      it_implements 'simple #request_body' do
+      it_should_behave_like 'simple #request_body' do
         let(:expected_body) do
-          { 'session-id' => client.session_handle,
-            'journal-start' => starting_point }
+          { session_id: client.session_handle, journal_start: starting_point }
         end
       end
     end
 
-    it_implements '#extract_results using wrapper' do
+    it_should_behave_like '#extract_results using wrapper' do
       let(:wrapper_klass) { AlleApi::Wrapper::DealEvent }
     end
   end

@@ -6,13 +6,13 @@ module AlleApi
       end
 
       def request_body(params)
-        { 'session-handle'       => client.session_handle,
-          'buyer-id'             => params[:buyer_id],
-          'item-id'              => params[:auction_id],
-          'trans-recv-date-from' => params[:date_from],
-          'trans-recv-date-to'   => params[:date_to],
-          'trans-page-limit'     => params[:limit],
-          'trans-offset'         => params[:offset] }
+        { session_handle:       client.session_handle,
+          buyer_id:             params[:buyer_id],
+          item_id:              params[:auction_id],
+          trans_recv_date_from: params[:date_from],
+          trans_recv_date_to:   params[:date_to],
+          trans_page_limit:     params[:limit],
+          trans_offset:         params[:offset] }
       end
 
       def extract_results(result)

@@ -40,7 +40,7 @@ module AlleApi
       attribute :buy_now_price,          Float, default: 0
       attribute :economic_letter_price,  Float
       attribute :economic_package_price, Float
-      attribute :price,                  Float, default: 0
+      # attribute :price,                  Float, default: 0
       attribute :priority_letter_price,  Float
       attribute :priority_package_price, Float
 
@@ -53,24 +53,21 @@ module AlleApi
       attribute :image_1_string, String
 
       EMPTY_HASH = {
-        'fid'             => nil,
-        'fvalue-string'   => '',
-        'fvalue-int'      => 0,
-        'fvalue-float'    => 0,
-        'fvalue-image'    => ' ',
-        'fvalue-datetime' => 0,
-        'fvalue-boolean'  => false,
+        fid: nil,
+        fvalueString: '',
+        fvalueInt: 0,
+        fvalueFloat: 0,
+        fvalueImage: ' ',
+        fvalueDatetime: 0,
       }
 
       CLASS_TO_FVALUE_KEY = {
-        String                    => 'fvalue-string',
-        ActiveSupport::SafeBuffer => 'fvalue-string',
-        Fixnum                    => 'fvalue-int',
-        Integer                   => 'fvalue-int',
-        Float                     => 'fvalue-float',
-        DateTime                  => 'fvalue-datetime',
-        TrueClass                 => 'fvalue-boolean',
-        FalseClass                => 'fvalue-boolean',
+        String                    => :fvalueString,
+        ActiveSupport::SafeBuffer => :fvalueString,
+        Fixnum                    => :fvalueInt,
+        Integer                   => :fvalueInt,
+        Float                     => :fvalueFloat,
+        DateTime                  => :fvalueDatetime,
       }
 
       ATTRIBUTE_TO_FID = {
@@ -79,7 +76,7 @@ module AlleApi
         starts_at: 3,
         duration: 4,
         amount: 5,
-        price: 7,
+        # price: 7,
         buy_now_price: 8,
         country_id: 9,
         region: 10,
@@ -110,7 +107,7 @@ module AlleApi
           attribute = attribute.to_sym
 
           hash = EMPTY_HASH.dup
-          hash['fid'] = fid_for_attribute(attribute, category_id)
+          hash[:fid] = fid_for_attribute(attribute, category_id)
 
           key = fvalue_key_for_attribute(attribute, value)
           hash[key] = value_for_attribute(attribute, value)
@@ -129,7 +126,7 @@ module AlleApi
         end
 
         def fvalue_key_for_attribute(attribute, value)
-          return 'fvalue-image' if attribute == :image_1_string
+          return :fvalueImage if attribute == :image_1_string
 
           CLASS_TO_FVALUE_KEY[value.class]
         end

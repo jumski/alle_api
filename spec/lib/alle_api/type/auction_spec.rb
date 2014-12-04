@@ -1,78 +1,84 @@
 # encoding: utf-8
 require 'spec_helper'
 require 'support/allegro_auction_macros'
-require 'support/active_attr_macros'
 require 'virtus-rspec'
 
 describe AlleApi::Type::Auction do
-  extend ActiveAttrHelpers
   extend AlleApiAuctionMacros
   include Virtus::Matchers
 
   it { should respond_to :valid? }
 
-  describe 'attributes' do
-    it_has_integer_attribute :amount
-    it_has_integer_attribute :category_id
-    it_has_integer_attribute :country_id
-    it_has_integer_attribute :delivery_methods
-    it_has_integer_attribute :duration
-    it_has_integer_attribute :free_delivery_methods
-    it_has_integer_attribute :payment_methods
-    it_has_integer_attribute :region
-    it_has_integer_attribute :type
-    it_has_integer_attribute :condition
-
-    it_has_float_attribute :economic_letter_price
-    it_has_float_attribute :economic_package_price
-    it_has_float_attribute :price
-    it_has_float_attribute :buy_now_price
-    it_has_float_attribute :priority_letter_price
-    it_has_float_attribute :priority_package_price
-
-    it_has_integer_attribute :covers_delivery_costs
-
-    it_has_datetime_attribute :starts_at
-
-    it_has_string_attribute :description
-    it_has_string_attribute :place
-    it_has_string_attribute :title
-    it_has_string_attribute :zip_code
+  def self.expect_attribute_casted_to(attr, expected_primitive)
+    actual = AlleApi::Type::Auction.attribute_set[attr].options[:primitive]
+    actual.should == expected_primitive
   end
 
-  describe 'default values' do
-    its(:amount)                  { should == 1 }
-    its(:price)                   { should == 0.0 }
-    its(:buy_now_price)           { should == 0.0 }
-    its(:category_id)             { should be_nil }
-    its(:duration)                { should == described_class::DURATION_30 }
-    its(:type)                    { should == described_class::TYPE_SHOP }
-    its(:condition)               { should == described_class::CONDITION_USED }
+  describe 'attribute types' do
+    %w(amount
+       category_id
+       country_id
+       delivery_methods
+       duration
+       free_delivery_methods
+       payment_methods
+       region
+       type
+       covers_delivery_costs
+       condition).each do |attr|
 
-    its(:covers_delivery_costs)   { should == described_class::BUYER }
-    its(:free_delivery_methods)   { should == 1 }
-    its(:delivery_methods)        { should == 1 + 2 + 4 + 8 }
-    its(:payment_methods)         { should == 1 }
+      expect_attribute_casted_to attr, Integer
+    end
 
-    its(:economic_letter_price)   { should be_nil }
-    its(:priority_letter_price)   { should be_nil }
-    its(:economic_package_price)  { should be_nil }
-    its(:priority_package_price)  { should be_nil }
+    %w(economic_letter_price
+       economic_package_price
+       buy_now_price
+       priority_letter_price
+       priority_package_price).each do |attr|
 
-    its(:region)                  { should == 6 }
-    its(:description)             { should be_nil }
-    its(:place)                   { should == 'Kraków' }
-    its(:title)                   { should be_nil }
-    its(:zip_code)                { should == '31-610' }
+      expect_attribute_casted_to attr, Float
+    end
+
+    %w(description place title zip_code).each do |attr|
+      expect_attribute_casted_to attr, String
+    end
+
+    expect_attribute_casted_to :starts_at, DateTime
   end
 
+  it 'default values' do
+    auction = AlleApi::Type::Auction.new
+
+    auction.amount.should == 1
+    auction.buy_now_price.should == 0.0
+    auction.category_id.should be_nil
+    auction.duration.should == AlleApi::Type::Auction::DURATION_30
+    auction.type.should == AlleApi::Type::Auction::TYPE_SHOP
+    auction.condition.should == AlleApi::Type::Auction::CONDITION_USED
+
+    auction.covers_delivery_costs.should == AlleApi::Type::Auction::BUYER
+    auction.free_delivery_methods.should == 1
+    auction.delivery_methods.should == 1 + 2 + 4 + 8
+    auction.payment_methods.should == 1
+
+    auction.economic_letter_price.should be_nil
+    auction.priority_letter_price.should be_nil
+    auction.economic_package_price.should be_nil
+    auction.priority_package_price.should be_nil
+
+    auction.region.should == 6
+    auction.description.should be_nil
+    auction.place.should == 'Kraków'
+    auction.title.should be_nil
+    auction.zip_code.should == '31-610'
+  end
 
   describe '#to_fields_array' do
     subject { auction.to_fields_array }
     let(:category) { create :category, :with_cached_condition_field }
     let(:condition_fid) { category.fid_for_condition }
     let(:auction)    {
-      described_class.new({
+      AlleApi::Type::Auction.new({
         price: 2.35,
         buy_now_price: 5.32,
         category_id: category.id,
@@ -93,133 +99,128 @@ describe AlleApi::Type::Auction do
     end
 
     it 'includes hash for :category_id' do
-      subject.should include described_class.attribute_to_hash(:category_id,
+      subject.should include AlleApi::Type::Auction.attribute_to_hash(:category_id,
                                                                 auction[:category_id])
     end
 
     it "includes hash for :country_id" do
-      subject.should include described_class.attribute_to_hash(:country_id,
+      subject.should include AlleApi::Type::Auction.attribute_to_hash(:country_id,
                                                                auction[:country_id])
     end
 
     it "includes hash for :description" do
-      subject.should include described_class.attribute_to_hash(:description,
+      subject.should include AlleApi::Type::Auction.attribute_to_hash(:description,
                                                                auction[:description])
     end
 
-    it "includes hash for :price" do
-      subject.should include described_class.attribute_to_hash(:price,
-                                                               auction[:price])
-    end
-
     it "includes hash for :buy_now_price" do
-      subject.should include described_class.attribute_to_hash(:buy_now_price,
+      subject.should include AlleApi::Type::Auction.attribute_to_hash(:buy_now_price,
                                                                auction[:buy_now_price])
     end
 
     it "includes hash for :economic_letter_price" do
-      subject.should include described_class.attribute_to_hash(:economic_letter_price,
+      subject.should include AlleApi::Type::Auction.attribute_to_hash(:economic_letter_price,
                                                                auction[:economic_letter_price])
     end
 
     it "includes hash for :economic_package_price" do
-      subject.should include described_class.attribute_to_hash(:economic_package_price,
+      subject.should include AlleApi::Type::Auction.attribute_to_hash(:economic_package_price,
                                                                auction[:economic_package_price])
     end
 
     it "includes hash for :priority_letter_price" do
-      subject.should include described_class.attribute_to_hash(:priority_letter_price,
+      subject.should include AlleApi::Type::Auction.attribute_to_hash(:priority_letter_price,
                                                                auction[:priority_letter_price])
     end
 
     it "includes hash for :priority_package_price" do
-      subject.should include described_class.attribute_to_hash(:priority_package_price,
+      subject.should include AlleApi::Type::Auction.attribute_to_hash(:priority_package_price,
                                                                auction[:priority_package_price])
     end
 
     it "includes hash for :place" do
-      subject.should include described_class.attribute_to_hash(:place,
+      subject.should include AlleApi::Type::Auction.attribute_to_hash(:place,
                                                                auction[:place])
     end
 
     it "includes hash for :title" do
-      subject.should include described_class.attribute_to_hash(:title,
+      subject.should include AlleApi::Type::Auction.attribute_to_hash(:title,
                                                                auction[:title])
     end
 
     it "includes hash for :zip_code" do
-      subject.should include described_class.attribute_to_hash(:zip_code,
+      subject.should include AlleApi::Type::Auction.attribute_to_hash(:zip_code,
                                                                auction[:zip_code])
     end
 
     it "includes hash for attribute :covers_delivery_costs" do
-      subject.should include described_class.attribute_to_hash(:covers_delivery_costs,
+      subject.should include AlleApi::Type::Auction.attribute_to_hash(:covers_delivery_costs,
                                                                 auction[:covers_delivery_costs])
     end
 
     it "includes hash for attribute :starts_at" do
-      subject.should include described_class.attribute_to_hash(:starts_at,
+      subject.should include AlleApi::Type::Auction.attribute_to_hash(:starts_at,
                                                                 auction[:starts_at])
     end
 
     it "includes hash for attribute :amount" do
-      subject.should include described_class.attribute_to_hash(:amount,
+      subject.should include AlleApi::Type::Auction.attribute_to_hash(:amount,
                                                                 auction[:amount])
     end
 
     it "includes hash for attribute :delivery_methods" do
-      subject.should include described_class.attribute_to_hash(:delivery_methods,
+      subject.should include AlleApi::Type::Auction.attribute_to_hash(:delivery_methods,
                                                                 auction[:delivery_methods])
     end
 
     it "includes hash for attribute :duration" do
-      subject.should include described_class.attribute_to_hash(:duration,
+      subject.should include AlleApi::Type::Auction.attribute_to_hash(:duration,
                                                                 auction[:duration])
     end
 
     it "includes hash for attribute :free_delivery_methods" do
-      subject.should include described_class.attribute_to_hash(:free_delivery_methods,
+      subject.should include AlleApi::Type::Auction.attribute_to_hash(:free_delivery_methods,
                                                                 auction[:free_delivery_methods])
     end
 
     it "includes hash for attribute :delivery_methods" do
-      subject.should include described_class.attribute_to_hash(:delivery_methods,
+      subject.should include AlleApi::Type::Auction.attribute_to_hash(:delivery_methods,
                                                                 auction[:delivery_methods])
     end
 
     it "includes hash for attribute :payment_methods" do
-      subject.should include described_class.attribute_to_hash(:payment_methods,
+      subject.should include AlleApi::Type::Auction.attribute_to_hash(:payment_methods,
                                                                 auction[:payment_methods])
     end
 
     it "includes hash for attribute :region" do
-      subject.should include described_class.attribute_to_hash(:region,
+      subject.should include AlleApi::Type::Auction.attribute_to_hash(:region,
                                                                 auction[:region])
     end
 
     it "includes hash for attribute :type" do
-      subject.should include described_class.attribute_to_hash(:type,
+      subject.should include AlleApi::Type::Auction.attribute_to_hash(:type,
                                                                 auction[:type])
     end
 
     it "includes hash for attribute :condition" do
-      subject.should include described_class.attribute_to_hash(:condition,
+      subject.should include AlleApi::Type::Auction.attribute_to_hash(:condition,
                                                                 auction[:condition],
                                                                 auction[:category_id])
     end
 
     it "includes hash for attribute :payment_methods" do
-      subject.should include described_class.attribute_to_hash(:payment_methods,
+      subject.should include AlleApi::Type::Auction.attribute_to_hash(:payment_methods,
                                                                 auction[:payment_methods])
     end
 
     it "includes hash for attribute :region" do
-      subject.should include described_class.attribute_to_hash(:region,
+      subject.should include AlleApi::Type::Auction.attribute_to_hash(:region,
                                                                 auction[:region])
     end
 
     it "includes hash for attribute :image_1_string" do
-      subject.should include described_class.attribute_to_hash(:image_1_string,
+      subject.should include AlleApi::Type::Auction.attribute_to_hash(:image_1_string,
                                                                 auction[:image_1_string])
     end
 
@@ -227,7 +228,7 @@ describe AlleApi::Type::Auction do
 
 
   describe '.attribute_to_hash' do
-    subject { described_class.attribute_to_hash(attribute, value) }
+    subject { AlleApi::Type::Auction.attribute_to_hash(attribute, value) }
 
     let(:attribute) { :some_attribute }
     let(:value)     { 'some value' }
@@ -237,8 +238,7 @@ describe AlleApi::Type::Auction do
       let(:value) { 1 }
 
       it_has_proper_fid
-      it_has_default_values_for_all_fvalues_except 'fvalue-int'
-      it_has_value_set_under_key 'fvalue-int'
+      it_has_value_set_under_key :fvalueInt
     end
 
     context 'when attribute is a Float' do
@@ -246,8 +246,7 @@ describe AlleApi::Type::Auction do
       let(:value) { 2.35 }
 
       it_has_proper_fid
-      it_has_default_values_for_all_fvalues_except 'fvalue-float'
-      it_has_value_set_under_key 'fvalue-float'
+      it_has_value_set_under_key :fvalueFloat
     end
 
     context 'when attribute is a String' do
@@ -255,8 +254,7 @@ describe AlleApi::Type::Auction do
       let(:value) { 'title' }
 
       it_has_proper_fid
-      it_has_default_values_for_all_fvalues_except 'fvalue-string'
-      it_has_value_set_under_key 'fvalue-string'
+      it_has_value_set_under_key :fvalueString
     end
 
     context 'when attribute is a ActiveSupport::SafeBuffer' do
@@ -264,8 +262,7 @@ describe AlleApi::Type::Auction do
       let(:value) { ActiveSupport::SafeBuffer.new 'title' }
 
       it_has_proper_fid
-      it_has_default_values_for_all_fvalues_except 'fvalue-string'
-      it_has_value_set_under_key 'fvalue-string'
+      it_has_value_set_under_key :fvalueString
     end
 
     context 'when attribute is a DateTime' do
@@ -273,45 +270,25 @@ describe AlleApi::Type::Auction do
       let(:value) { DateTime.parse('2011-11-11') }
 
       it_has_proper_fid
-      it_has_default_values_for_all_fvalues_except 'fvalue-datetime'
-      it 'has value converted #to_i under key fvalue-datetime' do
-        subject['fvalue-datetime'].should == value.to_i
+      it 'has value converted #to_i under key fvalueDatetime' do
+        subject[:fvalueDatetime].should == value.to_i
       end
-    end
-
-    context 'when attribute is a TrueClass' do
-      let(:attribute) { :covers_delivery_costs }
-      let(:value) { true }
-
-      it_has_proper_fid
-      it_has_default_values_for_all_fvalues_except 'fvalue-boolean'
-      it_has_value_set_under_key 'fvalue-boolean'
-    end
-
-    context 'when attribute is a FalseClass' do
-      let(:attribute) { :covers_delivery_costs }
-      let(:value) { false }
-
-      it_has_proper_fid
-      it_has_default_values_for_all_fvalues_except 'fvalue-boolean'
-      it_has_value_set_under_key 'fvalue-boolean'
     end
 
     context 'when attribute is a :condition' do
       let(:attribute) { :condition }
       let(:category) { create :category }
-      let(:value) { described_class::CONDITION_USED }
+      let(:value) { AlleApi::Type::Auction::CONDITION_USED }
       let(:expected_condition_fid) { 23 }
-      subject { described_class.attribute_to_hash(attribute, value, category.id) }
+      subject { AlleApi::Type::Auction.attribute_to_hash(attribute, value, category.id) }
       before do
-        described_class.expects(:fid_for_condition).with(category.id).returns(expected_condition_fid)
+        AlleApi::Type::Auction.expects(:fid_for_condition).with(category.id).returns(expected_condition_fid)
       end
 
       it 'has fid equal to .fid_for_condition for specific category_id' do
-        subject['fid'].should == expected_condition_fid
+        subject[:fid].should == expected_condition_fid
       end
-      it_has_default_values_for_all_fvalues_except 'fvalue-int'
-      it_has_value_set_under_key 'fvalue-int'
+      it_has_value_set_under_key :fvalueInt
     end
 
     context 'when attribute is a :image_1_string' do
@@ -321,27 +298,26 @@ describe AlleApi::Type::Auction do
         let(:value) { 'base64string' }
 
         it_has_proper_fid
-        it_has_default_values_for_all_fvalues_except 'fvalue-image'
-        it_has_value_set_under_key 'fvalue-image'
+        it_has_default_values_for_all_fvalues_except :fvalueImage
+        it_has_value_set_under_key :fvalueImage
       end
 
       context "and it is nil" do
         let(:value) { nil }
 
         it_has_proper_fid
-        it_has_default_values_for_all_fvalues_except 'fvalue-image'
+        it_has_default_values_for_all_fvalues_except :fvalueImage
 
-        it 'has default value for fvalue-image' do
-          subject['fvalue-image'].should == " "
+        it 'has default value for fvalueImage' do
+          subject[:fvalueImage].should == " "
         end
       end
-
     end
   end
 
 
   describe '.fid_for_attribute' do
-    def fid_for(attribute); described_class.fid_for_attribute(attribute.to_sym); end
+    def fid_for(attribute); AlleApi::Type::Auction.fid_for_attribute(attribute.to_sym); end
 
     it 'has valid fid for :title' do
       fid_for(:title).should == 1
@@ -361,10 +337,6 @@ describe AlleApi::Type::Auction do
 
     it 'has valid fid for :amount' do
       fid_for(:amount).should == 5
-    end
-
-    it 'has valid fid for :price' do
-      fid_for(:price).should == 7
     end
 
     it 'has valid fid for :buy_now_price' do
@@ -431,12 +403,12 @@ describe AlleApi::Type::Auction do
       condition_fid = 123
       category_id = 321
 
-      described_class.
+      AlleApi::Type::Auction.
         expects(:fid_for_condition).
         with(category_id).
         returns(condition_fid)
 
-      fid = described_class.fid_for_attribute(:condition, category_id)
+      fid = AlleApi::Type::Auction.fid_for_attribute(:condition, category_id)
 
       fid.should == condition_fid
     end
@@ -448,7 +420,7 @@ describe AlleApi::Type::Auction do
     it 'returns category#fid_for_condition for specified category_id' do
       AlleApi::Category.any_instance.stubs(fid_for_condition: 23)
 
-      described_class.fid_for_condition(category.id).should == 23
+      AlleApi::Type::Auction.fid_for_condition(category.id).should == 23
     end
   end
 
