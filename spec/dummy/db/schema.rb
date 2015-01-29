@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140315150824) do
+ActiveRecord::Schema.define(:version => 20150129090600) do
 
   create_table "alle_api_accounts", :force => true do |t|
     t.datetime "created_at",                                               :null => false
@@ -229,6 +229,12 @@ ActiveRecord::Schema.define(:version => 20140315150824) do
   end
 
   add_index "alle_api_post_buy_forms", ["account_id"], :name => "index_alle_api_post_buy_forms_on_account_id"
+  add_index "alle_api_post_buy_forms", ["buyer_id"], :name => "index_alle_api_post_buy_forms_on_buyer_id"
+  add_index "alle_api_post_buy_forms", ["payment_id"], :name => "index_alle_api_post_buy_forms_on_payment_id"
+  add_index "alle_api_post_buy_forms", ["payment_status"], :name => "index_alle_api_post_buy_forms_on_payment_status"
+  add_index "alle_api_post_buy_forms", ["payment_type"], :name => "index_alle_api_post_buy_forms_on_payment_type"
+  add_index "alle_api_post_buy_forms", ["remote_id"], :name => "index_alle_api_post_buy_forms_on_remote_id"
+  add_index "alle_api_post_buy_forms", ["shipment_id"], :name => "index_alle_api_post_buy_forms_on_shipment_id"
 
   create_table "auctions_post_buy_forms", :force => true do |t|
     t.integer "post_buy_form_id", :null => false
