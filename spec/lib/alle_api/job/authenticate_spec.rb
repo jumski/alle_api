@@ -8,7 +8,7 @@ describe AlleApi::Job::Authenticate do
   subject { described_class.new }
   let(:account) { create :account }
 
-  it { should be_a AlleApi::Job::Base }
+  it_behaves_like 'a job for each account'
 
   context "#perform" do
     it 'calls api#authenticate' do

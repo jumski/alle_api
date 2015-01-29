@@ -16,7 +16,7 @@ describe AlleApi::Job::TriggerAuctionEvents do
 
   it_is_an 'unique job', 24.hours
 
-  it { should be_a AlleApi::Job::Base }
+  it_behaves_like 'a job for each account'
 
   it 'triggers every un-triggered event' do
     AlleApi::Account.any_instance.stubs(untriggered_events: @events)

@@ -7,8 +7,6 @@ describe AlleApi::Job::Base do
 
   include_context 'silenced logger'
 
-  it { should be_a Sidekiq::Worker }
-
   describe '.sidekiq_options' do
     subject { described_class.sidekiq_options_hash }
 

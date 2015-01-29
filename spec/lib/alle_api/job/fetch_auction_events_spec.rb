@@ -13,7 +13,7 @@ describe AlleApi::Job::FetchAuctionEvents do
 
   it_is_an 'unique job', 24.hours
 
-  it { should be_a AlleApi::Job::Base }
+  it_behaves_like 'a job for each account'
 
   before do
     AlleApi::Account.any_instance.
