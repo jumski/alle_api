@@ -1,7 +1,7 @@
 module AlleApi
   module Job
     class FetchPostBuyForms < Base
-      sidekiq_options unique: true, unique_job_expiration: 24.hours
+      sidekiq_options unique: true, unique_job_expiration: 3.minutes
 
       def perform(account_id)
         account = AlleApi::Account.find(account_id)
