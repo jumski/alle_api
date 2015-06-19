@@ -18,7 +18,6 @@ class AlleApi::AuctionTemplate < ActiveRecord::Base
 
   attr_accessible *ACCESSIBLE_ATTRIBUTES
 
-  before_validation :steal_title_from_auctionable, unless: :title
   after_update :finish_current_auction!, if: :finish_current_immediately
   before_destroy :disable_publishing!
 
@@ -66,10 +65,5 @@ class AlleApi::AuctionTemplate < ActiveRecord::Base
   def inspect
     "<##{id} enabled:#{publishing_enabled?}, published:#{current_auction.present?}>"
   end
-
-  private
-    def steal_title_from_auctionable
-      self.title = auctionable.title_for_auction
-    end
 
 end

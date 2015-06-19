@@ -27,24 +27,6 @@ describe AlleApi::AuctionTemplate do
 
   its(:publishing_enabled) { should be_true }
 
-  context 'when title is empty' do
-    before do
-      @template = build(:template)
-      @template.title = nil
-    end
-
-    it 'steals title from auctionable when validated' do
-      @template.auctionable = auctionable
-      @template.valid?
-
-      expect(@template.title).to eq(auctionable.title_for_auction)
-    end
-
-    it 'does not throw error if auctionable is not present' do
-      expect { @template.valid? }.to_not raise_error
-    end
-  end
-
   context 'when title is present' do
     it 'does not change title when validated' do
       template = build(:template)
