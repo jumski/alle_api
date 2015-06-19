@@ -50,6 +50,7 @@ module AlleApi
       attribute :zip_code,    String, default: '31-610'
 
       attribute :starts_at, DateTime
+      attribute :image_1_string, String
 
       EMPTY_HASH = {
         'fid'             => nil,
@@ -94,6 +95,7 @@ module AlleApi
         economic_letter_price: 41,
         priority_letter_price: 43,
         type: 29,
+        image_1_string: 16,
         # condition: it will be determined dynamically
         #            based on fid for specific category, look here:
         #            http://allegro.pl/webapi/news.php/page,2#news_350
@@ -110,9 +112,8 @@ module AlleApi
           hash = EMPTY_HASH.dup
           hash['fid'] = fid_for_attribute(attribute, category_id)
 
-          key = CLASS_TO_FVALUE_KEY[value.class]
-          value = value.to_i if value.kind_of? DateTime
-          hash[key] = value
+          key = fvalue_key_for_attribute(attribute, value)
+          hash[key] = value_for_attribute(attribute, value)
 
           hash
         end
@@ -125,6 +126,19 @@ module AlleApi
 
         def fid_for_condition(category_id)
           AlleApi::Category.find(category_id).fid_for_condition
+        end
+
+        def fvalue_key_for_attribute(attribute, value)
+          return 'fvalue-image' if attribute == :image_1_string
+
+          CLASS_TO_FVALUE_KEY[value.class]
+        end
+
+        def value_for_attribute(attribute, value)
+          return value.to_i if value.kind_of? DateTime
+          return " " if attribute == :image_1_string && value.nil?
+
+          value
         end
       end
 

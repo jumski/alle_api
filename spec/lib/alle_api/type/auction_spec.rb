@@ -218,6 +218,11 @@ describe AlleApi::Type::Auction do
                                                                 auction[:region])
     end
 
+    it "includes hash for attribute :image_1_string" do
+      subject.should include described_class.attribute_to_hash(:image_1_string,
+                                                                auction[:image_1_string])
+    end
+
   end
 
 
@@ -307,6 +312,30 @@ describe AlleApi::Type::Auction do
       end
       it_has_default_values_for_all_fvalues_except 'fvalue-int'
       it_has_value_set_under_key 'fvalue-int'
+    end
+
+    context 'when attribute is a :image_1_string' do
+      let(:attribute) { :image_1_string }
+
+      context "and it has value" do
+        let(:value) { 'base64string' }
+
+        it_has_proper_fid
+        it_has_default_values_for_all_fvalues_except 'fvalue-image'
+        it_has_value_set_under_key 'fvalue-image'
+      end
+
+      context "and it is nil" do
+        let(:value) { nil }
+
+        it_has_proper_fid
+        it_has_default_values_for_all_fvalues_except 'fvalue-image'
+
+        it 'has default value for fvalue-image' do
+          subject['fvalue-image'].should == " "
+        end
+      end
+
     end
   end
 
