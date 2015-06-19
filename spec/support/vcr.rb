@@ -6,6 +6,10 @@ VCR.configure do |config|
   config.cassette_library_dir = 'spec/support/cassettes'
   config.hook_into :webmock
   config.default_cassette_options = { :record => :once }
+
+  if ENV['VCR_DEBUG'].present?
+    config.debug_logger = File.open('log/vcr.log', 'w')
+  end
 end
 
 RSpec.configure do |config|
