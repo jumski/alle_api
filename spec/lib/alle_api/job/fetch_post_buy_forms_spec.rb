@@ -10,7 +10,7 @@ describe AlleApi::Job::FetchPostBuyForms do
 
   subject { described_class.new }
 
-  it_is_an 'unique job', 24.hours
+  it_is_an 'unique job', 3.minutes
 
   it_behaves_like 'a job for each account'
 

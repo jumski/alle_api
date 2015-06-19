@@ -14,7 +14,7 @@ describe AlleApi::Job::TriggerAuctionEvents do
       :triggered, auction: auction, account: account
   end
 
-  it_is_an 'unique job', 24.hours
+  it_is_an 'unique job', 3.minutes
 
   it_behaves_like 'a job for each account'
 
