@@ -3,7 +3,8 @@ require 'shared/auction'
 require 'rspec/freezed_time_context'
 
 describe AlleApi::Auction do
-  let(:auction) { build_stubbed :auction }
+  let(:auctionable) { build_stubbed :auctionable }
+  let(:auction) { build_stubbed :auction, auctionable: auctionable }
 
   context "relations" do
     it { should belong_to(:template).class_name('::AlleApi::AuctionTemplate') }
@@ -164,8 +165,9 @@ describe AlleApi::Auction do
   context "instance" do
     describe '#to_hash' do
       let(:expected_datetime)    { auction.created_at.to_datetime }
-      let(:expected_description) do
-        'some rendered description'
+      let(:expected_description) { 'some rendered description' }
+      let(:expected_image_1_string) do
+        Base64.urlsafe_encode64 File.read(auctionable.image_1_path)
       end
       let(:expected_hash) do
         hash = auction.attributes.symbolize_keys
@@ -180,6 +182,7 @@ describe AlleApi::Auction do
         hash[:description]   = expected_description
         hash[:duration]      = default_duration
         hash[:type]          = default_type
+        hash[:image_1_string] = expected_image_1_string
 
         hash
       end

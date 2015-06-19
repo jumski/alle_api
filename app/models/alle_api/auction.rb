@@ -109,6 +109,10 @@ class AlleApi::Auction < ActiveRecord::Base
     hash[:duration]      = AlleApi.config[:default_duration]
     hash[:type]          = AlleApi.config[:default_type]
 
+    File.read(auctionable.image_1_path).tap do |contents|
+      hash[:image_1_string] = Base64.urlsafe_encode64 contents
+    end
+
     hash
   end
 
