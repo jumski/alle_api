@@ -100,18 +100,15 @@ class AlleApi::Auction < ActiveRecord::Base
     hash.delete :auctionable_id
     hash.delete :auctionable_type
     hash.delete :id
-    hash[:buy_now_price] = hash.delete :price
-    hash[:country_id]    = AlleApi::Client::COUNTRY_POLAND
-    hash[:title]         = title
-    hash[:category_id]   = category_id
-    hash[:starts_at]     = created_at.to_datetime
-    hash[:description]   = description
-    hash[:duration]      = AlleApi.config[:default_duration]
-    hash[:type]          = AlleApi.config[:default_type]
-
-    File.read(auctionable.image_1_path).tap do |contents|
-      hash[:image_1_string] = Base64.urlsafe_encode64 contents
-    end
+    hash[:buy_now_price]  = hash.delete :price
+    hash[:country_id]     = AlleApi::Client::COUNTRY_POLAND
+    hash[:title]          = title
+    hash[:category_id]    = category_id
+    hash[:starts_at]      = created_at.to_datetime
+    hash[:description]    = description
+    hash[:duration]       = AlleApi.config[:default_duration]
+    hash[:type]           = AlleApi.config[:default_type]
+    hash[:image_1_string] = encoded_image_1_contents
 
     hash
   end
@@ -142,5 +139,13 @@ class AlleApi::Auction < ActiveRecord::Base
 
   def finish_remote!
     account.api.finish_auction(remote_id)
+  end
+
+  private
+
+  def encoded_image_1_contents
+    raw_contents = File.read(auctionable.image_1_path)
+
+    Base64.urlsafe_encode64 raw_contents
   end
 end
