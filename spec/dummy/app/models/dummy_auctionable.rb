@@ -11,7 +11,7 @@ class DummyAuctionable < ActiveRecord::Base
     666
   end
 
-  def image_1_path
-    Rails.root.join 'spec/support/fixtures/image.png'
+  def image_1_contents
+    File.read(Rails.root.join 'spec/support/fixtures/image.png')
   end
 end

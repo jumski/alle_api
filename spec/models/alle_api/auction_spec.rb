@@ -167,7 +167,7 @@ describe AlleApi::Auction do
       let(:expected_datetime)    { auction.created_at.to_datetime }
       let(:expected_description) { 'some rendered description' }
       let(:expected_image_1_string) do
-        Base64.urlsafe_encode64 File.read(auctionable.image_1_path)
+        Base64.urlsafe_encode64 auctionable.image_1_contents
       end
       let(:expected_hash) do
         hash = auction.attributes.symbolize_keys
