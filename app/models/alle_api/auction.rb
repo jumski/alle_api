@@ -1,3 +1,4 @@
+require 'open-uri'
 
 class AlleApi::Auction < ActiveRecord::Base
   include AlleApi::AuctionStateMachine
@@ -144,6 +145,6 @@ class AlleApi::Auction < ActiveRecord::Base
   private
 
   def encoded_image_1_contents
-    Base64.urlsafe_encode64 auctionable.image_1_contents
+    Base64.strict_encode64 auctionable.image_1_contents
   end
 end
