@@ -10,7 +10,6 @@ require 'workflow'
 require 'sidekiq'
 
 require 'rails'
-require 'pry' if Rails.env.development?
 
 require 'alle_api/engine'
 
