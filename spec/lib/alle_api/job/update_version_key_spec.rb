@@ -3,7 +3,7 @@ require 'rspec/sidekiq_examples'
 
 describe AlleApi::Job::UpdateVersionKey do
   it { should be_a AlleApi::Job::Base }
-  it_is_an 'unique job', 1.minute
+  it_is_an 'unique job', 15.seconds
 
   it '#perform triggers version update via Versions helper' do
     versions = stub
