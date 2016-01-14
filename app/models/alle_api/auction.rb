@@ -46,9 +46,9 @@ class AlleApi::Auction < ActiveRecord::Base
     def ended()                  where(state: 'ended')                  end
 
     def find_by_remote_url(url)
-      id = url.scan(/i(\d+)\.html/i).flatten.first
+      remote_id = url.scan(/i(\d+)\.html/i).flatten.first
 
-      AlleApi::Auction.find(id)
+      AlleApi::Auction.where(remote_id: remote_id).first!
     end
 
     def recently(state)
