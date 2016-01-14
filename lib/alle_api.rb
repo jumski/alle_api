@@ -61,6 +61,7 @@ require 'alle_api/action/get_fields_for_category'
 require 'alle_api/action/get_versions'
 require 'alle_api/action/get_payments'
 require 'alle_api/action/get_post_buy_forms_for_sellers'
+require 'alle_api/action/get_item_info'
 
 require 'alle_api/job/base'
 require 'alle_api/job/authenticate'

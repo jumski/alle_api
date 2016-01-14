@@ -59,5 +59,9 @@ module AlleApi
 
       result[:finished].include? remote_id
     end
+
+    def get_item_info(remote_id)
+      Action::GetItemInfo.new(client).do(remote_id)
+    end
   end
 end
