@@ -45,6 +45,12 @@ class AlleApi::Auction < ActiveRecord::Base
     def bought_now()             where(state: 'bought_now')             end
     def ended()                  where(state: 'ended')                  end
 
+    def find_by_remote_url(url)
+      id = url.scan(/i(\d+)\.html/i).flatten.first
+
+      AlleApi::Auction.find(id)
+    end
+
     def recently(state)
       where(state: state).
         where("#{table_name}.#{state}_at > ?", 7.days.ago).
