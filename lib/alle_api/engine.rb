@@ -22,5 +22,12 @@ module ::AlleApi
         FactoryGirl.definition_file_paths << path
       end
     end
+
+    initializer 'setup_multilogger' do
+      unless Rails.logger.respond_to?(:alle_api_debug)
+        require 'multi_logger'
+        MultiLogger.add_logger(:alle_api_debug)
+      end
+    end
   end
 end

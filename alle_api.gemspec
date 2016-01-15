@@ -18,6 +18,7 @@ Gem::Specification.new do |s|
   s.require_paths = ["lib"]
 
   s.add_dependency "rails", "~> 3.2"
+  s.add_dependency 'multi_logger'
   s.add_dependency 'virtus', '~> 0.5'
   s.add_dependency 'redis-namespace', '~> 1.0'
   s.add_dependency 'redis-objects', '~> 0.6'
