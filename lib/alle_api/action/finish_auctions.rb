@@ -32,12 +32,12 @@ module AlleApi::Action
     end
 
     def extract_results(result)
-      Rails.logger.alle_api_debug "result = #{result}"
+      Rails.logger.alle_api_debug.info "result = #{result}"
       {
         finished: [result[:finish_items_succeed][:item]].flatten.map(&:to_i),
         failed: []
       }.tap do |hash|
-        Rails.logger.alle_api_debug "extract_results = #{hash}"
+        Rails.logger.alle_api_debug.info "extract_results = #{hash}"
       end
     end
   end
