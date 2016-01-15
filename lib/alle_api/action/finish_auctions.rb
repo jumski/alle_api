@@ -16,6 +16,7 @@ module AlleApi::Action
     end
 
     def request_body(remote_ids)
+      Rails.logger.alle_api_debug.info "remote_ids = #{remote_ids}"
       {
         session_handle: client.session_handle,
         finish_items_list: {
@@ -25,14 +26,19 @@ module AlleApi::Action
               finish_cancel_reason:   '' }
             }
         }
-      }
+      }.tap do |hash|
+        Rails.logger.alle_api_debug.info "request_body = #{hash}"
+      end
     end
 
     def extract_results(result)
+      Rails.logger.alle_api_debug "result = #{result}"
       {
         finished: [result[:finish_items_succeed][:item]].flatten.map(&:to_i),
         failed: []
-      }
+      }.tap do |hash|
+        Rails.logger.alle_api_debug "extract_results = #{hash}"
+      end
     end
   end
 end
