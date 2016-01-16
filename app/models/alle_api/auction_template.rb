@@ -22,10 +22,11 @@ class AlleApi::AuctionTemplate < ActiveRecord::Base
   before_destroy :disable_publishing!
 
   def consider_republication
-    return unless publishing_enabled?
-    return if current_auction
+    if current_auction
+      Rails.logger.alle_api_debug.info("#consider_republication when current_auction => #{self}")
+    end
 
-    publish_next_auction
+    publish_next_auction if publishing_enabled?
   end
 
   def publish_next_auction

@@ -42,16 +42,6 @@ describe AlleApi::AuctionTemplate do
     context 'when #publishing_enabled? is true' do
       before { subject.stubs(publishing_enabled?: true)}
 
-      context "when there is current_auction present" do
-        before { subject.stubs(current_auction: build_stubbed(:auction)) }
-
-        it 'does not call publish_next_auction' do
-          subject.expects(:publish_next_auction).never
-
-          subject.consider_republication
-        end
-      end
-
       it 'calls publish_next_auction' do
         subject.expects(:publish_next_auction)
 
