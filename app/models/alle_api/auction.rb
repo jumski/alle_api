@@ -38,6 +38,10 @@ class AlleApi::Auction < ActiveRecord::Base
     end
   end
 
+  def finished_at
+    ended_at || bought_now_at
+  end
+
   class << self
     ########### SCOPES #################
     def published()              where(state: 'published')              end
