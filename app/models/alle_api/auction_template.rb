@@ -23,7 +23,13 @@ class AlleApi::AuctionTemplate < ActiveRecord::Base
 
   def consider_republication
     if current_auction
-      Rails.logger.alle_api_debug.info("DUPLICATES! #consider_republication called for template=#{self.id} when current_auction is online (current_auction=#{current_auction.id})")
+      msg = "#{DateTime.now.to_s(:db)} || AuctionTemplate#consider_republication called for template=#{id}, but there is current auction (#{current_auction.id}) present"
+
+      error = RuntimeError.new(msg)
+
+      Rails.logger.alle_api_debug.info(msg)
+      Airbrake.notify(error)
+      raise error
     end
 
     publish_next_auction if publishing_enabled?
