@@ -23,7 +23,7 @@ class AlleApi::AuctionTemplate < ActiveRecord::Base
 
   def consider_republication
     if current_auction
-      Rails.logger.alle_api_debug.info("DUPLICATES! #consider_republication called for #{self} when current_auction is online #{current_auction}")
+      Rails.logger.alle_api_debug.info("DUPLICATES! #consider_republication called for template=#{self.id} when current_auction is online (current_auction=#{current_auction.id})")
     end
 
     publish_next_auction if publishing_enabled?
