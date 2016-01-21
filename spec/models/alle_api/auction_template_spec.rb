@@ -38,25 +38,14 @@ describe AlleApi::AuctionTemplate do
     end
   end
 
-  describe '#consider_republication' do
-    context 'when #publishing_enabled? is true' do
-      before { subject.stubs(publishing_enabled?: true)}
+  describe '#consider_republication_async' do
+    it 'schedules a job' do
+      subject.consider_republication_async
 
-      it 'calls publish_next_auction' do
-        subject.expects(:publish_next_auction)
+      time = 2.seconds.from_now
+      expectation = have_queued_job_at(time, subject.id)
 
-        subject.consider_republication
-      end
-    end
-
-    context 'when #publishing_enabled? is false' do
-      before { subject.stubs(publishing_enabled?: false)}
-
-      it 'does not call publish_next_auction' do
-        subject.expects(:publish_next_auction).never
-
-        subject.consider_republication
-      end
+      expect(AlleApi::Job::ConsiderRepublication).to expectation
     end
   end
 

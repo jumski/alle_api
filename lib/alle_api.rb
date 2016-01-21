@@ -76,6 +76,7 @@ require 'alle_api/job/fetch_post_buy_forms'
 require 'alle_api/job/trigger_auction_events'
 require 'alle_api/job/publish_auction'
 require 'alle_api/job/finish_auction'
+require 'alle_api/job/consider_republication'
 
 module AlleApi
   module_function

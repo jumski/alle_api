@@ -130,8 +130,8 @@ describe AlleApi::AuctionStateMachine do
       it_does_not_change :remote_id
       it_calls_event_handler_if_present
 
-      it 'calls template#consider_republication' do
-        template.expects(:consider_republication)
+      it 'calls template#consider_republication_async' do
+        template.expects(:consider_republication_async)
         subject.end!
       end
     end

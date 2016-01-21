@@ -56,7 +56,7 @@ module AlleApi::AuctionStateMachine
   def end
     self.ended_at = DateTime.now
 
-    template.consider_republication
+    template.consider_republication_async
   end
 
   def buy_now

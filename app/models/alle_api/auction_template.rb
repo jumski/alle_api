@@ -21,18 +21,8 @@ class AlleApi::AuctionTemplate < ActiveRecord::Base
   after_update :finish_current_auction!, if: :finish_current_immediately
   before_destroy :disable_publishing!
 
-  def consider_republication
-    if current_auction
-      msg = "#{DateTime.now.to_s(:db)} || AuctionTemplate#consider_republication called for template=#{id}, but there is current auction (#{current_auction.id}) present"
-
-      error = RuntimeError.new(msg)
-
-      Rails.logger.alle_api_debug.info(msg)
-      Airbrake.notify(error)
-      raise error
-    end
-
-    publish_next_auction if publishing_enabled?
+  def consider_republication_async
+    AlleApi::Job::ConsiderRepublication.perform_at(2.seconds.from_now, id)
   end
 
   def publish_next_auction
