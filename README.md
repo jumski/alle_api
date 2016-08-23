@@ -16,11 +16,11 @@ This project rocks and uses MIT-LICENSE.
 
 ## You need Redis!
 
-Make sure your redis connection is available under `Redis.current`
+Make sure your redis connection is available under `Redis.current`.
+It is used to keep session handle and expire it after given time.
+Sidekiq jobs rely on host app sidekiq's configuration.
 
 ## Ruby 1.9 only
-
-Sorry folks, time to upgrade!
 
 ## Instalation
 
@@ -36,17 +36,17 @@ Sorry folks, time to upgrade!
     $ bundle
     ```
 
-2. Use generator to install required files:
+1. Use generator to install required files:
 
     ```bash
     rails g alle_api:install
     ```
 
-3. Fill in API credentials in `config/alle_api.yml`
+1. Fill in API credentials in `config/alle_api.yml`
 
-4. Set up description renderer in `config/initializers/alle_api.rb`
+1. Set up description renderer in `config/initializers/alle_api.rb`
 
-5. Run migrations:
+1. Run migrations:
 
     ```bash
     rake db:migrate
@@ -58,8 +58,8 @@ Sorry folks, time to upgrade!
 
 8. Implement missing methods on your auctionables:
 
-  - #title_for_auction: this will be used as an auction title
-  - #category_id_for_auction: this will privide allegro category for auction
+  - `#title_for_auction`: this will be used as an auction title
+  - `#category_id_for_auction`: this will privide allegro category for auction
 
 9. Run rake task to update API version key:
 
