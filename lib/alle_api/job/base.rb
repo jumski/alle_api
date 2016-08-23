@@ -9,7 +9,7 @@ module AlleApi
       sidekiq_options backtrace: true, queue: :alle_api
 
       def self.each_account_async
-        AlleApi::Account.pluck(:id).each { |id| perform_async(id) }
+        AlleApi::Account.active.pluck(:id).each { |id| perform_async(id) }
       end
     end
   end

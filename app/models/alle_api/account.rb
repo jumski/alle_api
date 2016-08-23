@@ -23,6 +23,10 @@ class AlleApi::Account < ActiveRecord::Base
     def utility
       where(utility: true).first
     end
+
+    def active
+      where(active: true)
+    end
   end
 
   def api

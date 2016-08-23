@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150129090600) do
+ActiveRecord::Schema.define(:version => 20160612170916) do
 
   create_table "alle_api_accounts", :force => true do |t|
     t.datetime "created_at",                                               :null => false
@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(:version => 20150129090600) do
     t.string   "phone_number"
     t.string   "email"
     t.string   "bank_account_number"
+    t.boolean  "active",                                :default => true
   end
 
   add_index "alle_api_accounts", ["login"], :name => "index_alle_api_accounts_on_login", :unique => true
