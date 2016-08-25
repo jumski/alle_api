@@ -52,8 +52,16 @@ if respond_to? :shared_context
     def authenticate_and_update!
       account.utility = true
       account.save!
-      AlleApi::Helper::Versions.new.update(:version_key)
-      AlleApi::Job::Authenticate.new.perform(account.id)
+
+      options = {match_requests_on: [:uri, :body]}
+
+      VCR.use_cassette(:version_key, options) do
+        AlleApi::Helper::Versions.new.update(:version_key)
+      end
+
+      VCR.use_cassette(:authenticate, options) do
+        AlleApi::Job::Authenticate.new.perform(account.id)
+      end
     end
 
     before do
