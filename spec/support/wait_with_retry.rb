@@ -12,12 +12,12 @@ module WaitWithRetry
     number_of_dots = (seconds/0.2).to_i
     retries_count = 0
 
+    puts
+    puts "Will try to retry '#{message}' #{iterations} times"
     begin
-      print "[retried #{retries_count} of #{iterations}] Wait #{seconds} seconds for #{message}"
-      number_of_dots.times { sleep sleep_duration; print '.' }
-      puts
+      print '.'
 
-      yield
+      yield.tap { puts }
     rescue
       raise "Waited for #{message}, but it failed!" if retries_count >= iterations
 

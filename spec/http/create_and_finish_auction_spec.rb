@@ -29,14 +29,14 @@ describe 'Happy Paths: create and finish auction', :http do
   private
 
   def fetch_journal_entry(remote_id)
-    wait_with_retry(for: 'WebAPI to propagate journal', seconds: 2, times: 60) do
+    wait_with_retry(for: 'fetching journal with just ended auction', seconds: 1, times: 90) do
       journal = api.get_journal(0)
       journal.find { |j| j.remote_auction_id == remote_id } or raise
     end
   end
 
   def finish_auction(remote_id)
-    wait_with_retry(for: "WebAPI to propagate new auction", seconds: 2, times: 60) do
+    wait_with_retry(for: 'ending just created auction', seconds: 1, times: 90) do
       results = api.finish_auctions([remote_id])
 
       results[:finished].first.tap do |id|
