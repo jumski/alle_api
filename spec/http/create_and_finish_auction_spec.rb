@@ -18,15 +18,25 @@ describe 'Happy Paths: create and finish auction', :http do
     remote_id = created_auction[:item_id].to_i
     expect(remote_id).to be > 0
 
-    finished_auction_id = wait_for_allegro_to_finish_auction(remote_id)
+    finished_auction_id = finish_auction(remote_id)
 
-    unless remote_id == finished_auction_id
-      raise "Cannot finish auction :("
+    expect(finished_auction_id).not_to be_blank
+    expect(finished_auction_id).to eq remote_id
+
+    journal_entry = fetch_journal_entry(remote_id)
+  end
+
+  private
+
+  def fetch_journal_entry(remote_id)
+    wait_with_retry(for: 'WebAPI to propagate journal', seconds: 2, times: 60) do
+      journal = api.get_journal(0)
+      journal.find { |j| j.remote_auction_id == remote_id } or raise
     end
   end
 
-  def wait_for_allegro_to_finish_auction(remote_id)
-    wait_with_retry(for: "WebAPI to propagate new auction", seconds: 2, times: 4) do
+  def finish_auction(remote_id)
+    wait_with_retry(for: "WebAPI to propagate new auction", seconds: 2, times: 60) do
       results = api.finish_auctions([remote_id])
 
       results[:finished].first.tap do |id|
