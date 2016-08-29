@@ -42,11 +42,9 @@ describe AlleApi::Action::GetVersions do
       it 'properly parses returned versions' do
         versions = api.get_versions
 
-        expect(versions).to be_a Hash
-
-        expect(versions[:version_key]).to eq("1414748778")
-        expect(versions[:categories_tree]).to eq("1.0.93")
-        expect(versions[:fields]).to eq("1.2.8")
+        expect(versions.fetch(:version_key).to_i).to be > 0
+        expect(versions.fetch(:categories_tree)).to match /\d+\.\d+\.\d+/
+        expect(versions.fetch(:fields)).to match /\d+\.\d+\.\d+/
       end
     end
 

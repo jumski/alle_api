@@ -35,10 +35,10 @@ if respond_to? :shared_context
       yaml = YAML::load(erb.result)
       Hashie::Mash.new(yaml)[Rails.env]
     end
-    let(:version_key)  { api_config[:version_key] }
-    let(:webapi_key)   { api_config[:webapi_key] }
-    let(:login)        { api_config[:login] }
-    let(:password)     { api_config[:password] }
+
+    let(:webapi_key)   { AlleApi.config.fetch('webapi_key') }
+    let(:login)        { AlleApi.config.fetch('login') }
+    let(:password)     { AlleApi.config.fetch('password') }
   end
 
   shared_context "real api client" do
