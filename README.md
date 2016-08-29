@@ -73,6 +73,22 @@ Sidekiq jobs rely on host app sidekiq's configuration.
     - execute `AlleApi.api.get_journal`
     - it should return an array of last events
 
+## Development
+
+You need valid API credentials to record cassettess. Either set `ALLE_API_CONFIG_PATH`
+env var to point alle api dev config, like this one:
+
+```yaml
+test:
+  webapi_key: 'key'
+  login: 'login'
+  password: 'password'
+  country_code: '1'
+```
+
+or set `ALLE_API_WEBAPI_KEY`, `ALLE_API_WEBAPI_LOGIN` and `ALLE_API_WEBAPI_PASSWORD`
+vars in order to record new cassettes and run actual ones.
+
 ## TODO
 - write documentation for implemented features
 - write decent TODO :-)
