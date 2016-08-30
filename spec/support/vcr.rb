@@ -20,9 +20,9 @@ RSpec.configure do |config|
   # wrap all specs with WSDL cassette
   config.around(:each) do |example|
     cassette = if AlleApi.config.sandbox
-                 :sandbox_wsdl
+                 :authenticate_and_update_sandbox
                else
-                 :wsdl
+                 :authenticate_and_update_production
                end
 
     VCR.use_cassette(cassette, match_requests_on: [:uri, :body]) do

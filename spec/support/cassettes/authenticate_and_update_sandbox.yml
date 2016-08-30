@@ -1,0 +1,149 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://webapi.allegro.pl.webapisandbox.pl/service.php
+    body:
+      encoding: US-ASCII
+      string: <?xml version="1.0" encoding="UTF-8"?><env:Envelope xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tns="urn:SandboxWebApi"
+        xmlns:env="http://schemas.xmlsoap.org/soap/envelope/"><env:Body><tns:DoQueryAllSysStatusRequest><tns:countryId>1</tns:countryId><tns:webapiKey>{webapi_key}</tns:webapiKey></tns:DoQueryAllSysStatusRequest></env:Body></env:Envelope>
+    headers:
+      Soapaction:
+      - ! '"#doQueryAllSysStatus"'
+      Content-Type:
+      - text/xml;charset=UTF-8
+      Content-Length:
+      - '407'
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 30 Aug 2016 09:41:00 GMT
+      Vary:
+      - Accept-Encoding
+      Set-Cookie:
+      - ws2=e51eef17a87f1b143763151d43fe60b6; expires=Tue, 30-Aug-2016 10:11:00 GMT;
+        path=/; domain=.allegro.pl.webapisandbox.pl
+      - ws3=N775a921dd0d781417e8bb911588f6eff; expires=Mon, 25-Mar-2115 09:41:00 GMT;
+        path=/; domain=.allegro.pl.webapisandbox.pl
+      - ws4=x; path=/; domain=.allegro.pl.webapisandbox.pl
+      Content-Length:
+      - '1327'
+      Content-Type:
+      - text/xml; charset=utf-8
+      X-Paser-Backend:
+      - allegro_qeppo_vte29_39380_dc4_2_121_80
+      X-Domain:
+      - webapi.allegro.pl.webapisandbox.pl
+      X-Director-Id:
+      - ''
+      Accept-Ranges:
+      - bytes
+      X-Backend:
+      - paser_10500_dc4_97_111_6081
+      Age:
+      - '0'
+      X-Hit:
+      - HIT 0
+      X-Origin:
+      - vte29-frontend-vte01
+      Grace:
+      - none
+      Connection:
+      - keep-alive
+      Cache-Control:
+      - private
+      X-Frame-Options:
+      - SAMEORIGIN
+    body:
+      encoding: US-ASCII
+      string: ! '<?xml version="1.0" encoding="UTF-8"?>
+
+        <SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/"
+        xmlns:ns1="urn:SandboxWebApi"><SOAP-ENV:Body><ns1:doQueryAllSysStatusResponse><ns1:sysCountryStatus><ns1:item><ns1:countryId>1</ns1:countryId><ns1:programVersion>1.0</ns1:programVersion><ns1:catsVersion>1.3.0</ns1:catsVersion><ns1:apiVersion>1.0</ns1:apiVersion><ns1:attribVersion>1.0</ns1:attribVersion><ns1:formSellVersion>1.6.88</ns1:formSellVersion><ns1:siteVersion>1.0</ns1:siteVersion><ns1:verKey>1467595479</ns1:verKey></ns1:item><ns1:item><ns1:countryId>56</ns1:countryId><ns1:programVersion>1.0</ns1:programVersion><ns1:catsVersion>1.0.48</ns1:catsVersion><ns1:apiVersion>1.0</ns1:apiVersion><ns1:attribVersion>1.0</ns1:attribVersion><ns1:formSellVersion>1.0.81</ns1:formSellVersion><ns1:siteVersion>1.0</ns1:siteVersion><ns1:verKey>1466733305</ns1:verKey></ns1:item><ns1:item><ns1:countryId>209</ns1:countryId><ns1:programVersion>1.0</ns1:programVersion><ns1:catsVersion>1.0.66</ns1:catsVersion><ns1:apiVersion>1.0</ns1:apiVersion><ns1:attribVersion>1.0</ns1:attribVersion><ns1:formSellVersion>1.0.79</ns1:formSellVersion><ns1:siteVersion>1.0</ns1:siteVersion><ns1:verKey>1466037534</ns1:verKey></ns1:item></ns1:sysCountryStatus></ns1:doQueryAllSysStatusResponse></SOAP-ENV:Body></SOAP-ENV:Envelope>
+
+'
+    http_version: 
+  recorded_at: Tue, 30 Aug 2016 09:41:01 GMT
+- request:
+    method: post
+    uri: https://webapi.allegro.pl.webapisandbox.pl/service.php
+    body:
+      encoding: US-ASCII
+      string: <?xml version="1.0" encoding="UTF-8"?><env:Envelope xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tns="urn:SandboxWebApi"
+        xmlns:env="http://schemas.xmlsoap.org/soap/envelope/"><env:Body><tns:DoLoginRequest><tns:userLogin>{webapi_login}</tns:userLogin><tns:userPassword>{webapi_password}</tns:userPassword><tns:countryCode>1</tns:countryCode><tns:webapiKey>{webapi_key}</tns:webapiKey><tns:localVersion>1467595479</tns:localVersion></tns:DoLoginRequest></env:Body></env:Envelope>
+    headers:
+      Soapaction:
+      - ! '"#doLogin"'
+      Content-Type:
+      - text/xml;charset=UTF-8
+      Content-Length:
+      - '522'
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 30 Aug 2016 09:41:01 GMT
+      Vary:
+      - Accept-Encoding
+      Set-Cookie:
+      - QXLDATA=tEWKV%2FPToNjfI1cKIHORrgwmCuo2Bxv1VlZnFBKRQl0%3D%23%23%23jBNndPhf2JZlryuVzdIt858w8Jov0HArMeKi7X8lrC90d%2BLpCHzG7eaYtjZ3z7Rsk5poK1zNu1tPqhrA%2FunuUPND%2B3vJ9mlcKFjmMAmW0TQfxdwUlpcBVDNybACxBTPFPWK370mfN5k%3D;
+        expires=Tue, 30-Aug-2016 15:41:01 GMT; path=/; domain=.allegro.pl.webapisandbox.pl
+      - TEST_QXLSESSID=a8530bc5a82a821a21f8a0d498f9fb9dd9c1e4370bcc68%2F%2F00; path=/;
+        domain=.allegro.pl.webapisandbox.pl
+      - _bS=0; expires=Fri, 09-Sep-2016 09:41:01 GMT; path=/; domain=.allegro.pl.webapisandbox.pl
+      - qeppo_login2=%7B%22welcome%22%3A%22Witaj%2C%22%2C%22id%22%3A%2248643834%22%2C%22username%22%3A%22{webapi_login}%22%2C%22fbConnected%22%3Afalse%2C%22qeppo_hash%22%3A%22GQFJkny3Y4VJXjNgV%5C%2FgeAi6T7A9ocE8Za99rfgv1ni0%3D%22%2C%22isCompany%22%3Afalse%7D;
+        path=/; domain=.allegro.pl.webapisandbox.pl
+      - qeppo_priv_cookie=NzViMlEAAVAEDVEGZTg3ZA%3D%3D; path=/; domain=.allegro.pl.webapisandbox.pl
+      - ws2=29ee3cf6d463e2dd91c8e001a2a8d2bd; expires=Tue, 30-Aug-2016 10:11:01 GMT;
+        path=/; domain=.allegro.pl.webapisandbox.pl
+      - ws3=Nae981e727fb42d47d0eae30c01c38116; expires=Mon, 25-Mar-2115 09:41:01 GMT;
+        path=/; domain=.allegro.pl.webapisandbox.pl
+      - ws4=x; path=/; domain=.allegro.pl.webapisandbox.pl
+      Cache-Control:
+      - private
+      Pragma:
+      - no-cache
+      Content-Length:
+      - '417'
+      Content-Type:
+      - text/xml; charset=utf-8
+      X-Paser-Backend:
+      - allegro_qeppo_vte29_39380_dc4_2_121_80
+      X-Domain:
+      - webapi.allegro.pl.webapisandbox.pl
+      X-Director-Id:
+      - ''
+      Accept-Ranges:
+      - bytes
+      X-Backend:
+      - paser_10500_dc4_97_111_6081
+      Age:
+      - '0'
+      X-Hit:
+      - HIT 0
+      X-Origin:
+      - vte29-frontend-vte01
+      Grace:
+      - none
+      Connection:
+      - keep-alive
+      X-Frame-Options:
+      - SAMEORIGIN
+    body:
+      encoding: US-ASCII
+      string: ! '<?xml version="1.0" encoding="UTF-8"?>
+
+        <SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/"
+        xmlns:ns1="urn:SandboxWebApi"><SOAP-ENV:Body><ns1:doLoginResponse><ns1:sessionHandlePart>a8530bc5a82a821a21f8a0d498f9fb9dd9c1e4370bcc68//00_1</ns1:sessionHandlePart><ns1:userId>48643834</ns1:userId><ns1:serverTime>1472550061</ns1:serverTime></ns1:doLoginResponse></SOAP-ENV:Body></SOAP-ENV:Envelope>
+
+'
+    http_version: 
+  recorded_at: Tue, 30 Aug 2016 09:41:01 GMT
+recorded_with: VCR 2.4.0

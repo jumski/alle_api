@@ -36,5 +36,10 @@ Rake::TestTask.new(:test) do |t|
   t.verbose = false
 end
 
+task :update_wsdls => [:environment] do
+  `wget -O lib/alle_api/wsdls/sandbox.wsdl 'https://webapi.allegro.pl.webapisandbox.pl/service.php?wsdl'`
+
+  `wget -O lib/alle_api/wsdls/production.wsdl 'https://webapi.allegro.pl/service.php?wsdl'`
+end
 
 task :default => :test

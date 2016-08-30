@@ -65,7 +65,7 @@ module AlleApi
 
     def client_options
       {
-        wsdl: wsdl_url,
+        wsdl: wsdl_path,
         open_timeout: 5.minutes,
         read_timeout: 5.minutes,
 
@@ -78,11 +78,11 @@ module AlleApi
       }
     end
 
-    def wsdl_url
+    def wsdl_path
       if AlleApi.config.sandbox
-        'https://webapi.allegro.pl.webapisandbox.pl/service.php?wsdl'
+        "#{AlleApi.root}/lib/alle_api/wsdls/sandbox.wsdl"
       else
-        'https://webapi.allegro.pl/service.php?wsdl'
+        "#{AlleApi.root}/lib/alle_api/wsdls/production.wsdl"
       end
     end
 
