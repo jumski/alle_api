@@ -2,12 +2,119 @@
 http_interactions:
 - request:
     method: post
-    uri: https://webapi.allegro.pl/service.php
+    uri: ! '{webapi_endpoint}'
     body:
       encoding: US-ASCII
       string: <?xml version="1.0" encoding="UTF-8"?><env:Envelope xmlns:xsd="http://www.w3.org/2001/XMLSchema"
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tns="https://webapi.allegro.pl/service.php"
-        xmlns:env="http://schemas.xmlsoap.org/soap/envelope/"><env:Body><tns:DoGetSiteJournalDealsRequest><tns:sessionId>0ce5cfc60a3f057ba8161dcf951ab012cadce8a3155a17//01_1</tns:sessionId><tns:journalStart>123</tns:journalStart></tns:DoGetSiteJournalDealsRequest></env:Body></env:Envelope>
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" {webapi_tns} xmlns:env="http://schemas.xmlsoap.org/soap/envelope/"><env:Body><tns:DoQueryAllSysStatusRequest><tns:countryId>1</tns:countryId><tns:webapiKey>{webapi_key}</tns:webapiKey></tns:DoQueryAllSysStatusRequest></env:Body></env:Envelope>
+    headers:
+      Soapaction:
+      - ! '"#doQueryAllSysStatus"'
+      Content-Type:
+      - text/xml;charset=UTF-8
+      Content-Length:
+      - '429'
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 31 Aug 2016 14:37:05 GMT
+      Server:
+      - Apache
+      Vary:
+      - Accept-Encoding
+      Set-Cookie:
+      - ws2=746f23398f2af5b0c0a17b8a2720981a; expires=Wed, 31-Aug-2016 15:07:05 GMT;
+        path=/; domain=.allegro.pl
+      - ws3=Na48d0ad3a0947ac04caa47cc72e814c6; expires=Tue, 26-Mar-2115 14:37:05 GMT;
+        path=/; domain=.allegro.pl
+      - ws4=x; path=/; domain=.allegro.pl
+      Content-Length:
+      - '1348'
+      Content-Type:
+      - text/xml; charset=utf-8
+      X-Frame-Options:
+      - SAMEORIGIN
+    body:
+      encoding: US-ASCII
+      string: ! '<?xml version="1.0" encoding="UTF-8"?>
+
+        <SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/"
+        {webapi_ns1}><SOAP-ENV:Body><ns1:doQueryAllSysStatusResponse><ns1:sysCountryStatus><ns1:item><ns1:countryId>1</ns1:countryId><ns1:programVersion>1.0</ns1:programVersion><ns1:catsVersion>1.3.28</ns1:catsVersion><ns1:apiVersion>1.0</ns1:apiVersion><ns1:attribVersion>1.0</ns1:attribVersion><ns1:formSellVersion>1.7.47</ns1:formSellVersion><ns1:siteVersion>1.0</ns1:siteVersion><ns1:verKey>1472637353</ns1:verKey></ns1:item><ns1:item><ns1:countryId>56</ns1:countryId><ns1:programVersion>1.0</ns1:programVersion><ns1:catsVersion>1.0.50</ns1:catsVersion><ns1:apiVersion>1.0</ns1:apiVersion><ns1:attribVersion>1.0</ns1:attribVersion><ns1:formSellVersion>1.0.86</ns1:formSellVersion><ns1:siteVersion>1.0</ns1:siteVersion><ns1:verKey>1471854027</ns1:verKey></ns1:item><ns1:item><ns1:countryId>209</ns1:countryId><ns1:programVersion>1.0</ns1:programVersion><ns1:catsVersion>1.0.68</ns1:catsVersion><ns1:apiVersion>1.0</ns1:apiVersion><ns1:attribVersion>1.0</ns1:attribVersion><ns1:formSellVersion>1.0.81</ns1:formSellVersion><ns1:siteVersion>1.0</ns1:siteVersion><ns1:verKey>1467856103</ns1:verKey></ns1:item></ns1:sysCountryStatus></ns1:doQueryAllSysStatusResponse></SOAP-ENV:Body></SOAP-ENV:Envelope>
+
+'
+    http_version: 
+  recorded_at: Wed, 31 Aug 2016 14:37:09 GMT
+- request:
+    method: post
+    uri: ! '{webapi_endpoint}'
+    body:
+      encoding: US-ASCII
+      string: <?xml version="1.0" encoding="UTF-8"?><env:Envelope xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" {webapi_tns} xmlns:env="http://schemas.xmlsoap.org/soap/envelope/"><env:Body><tns:DoLoginRequest><tns:userLogin>{webapi_login}</tns:userLogin><tns:userPassword>{webapi_password}</tns:userPassword><tns:countryCode>1</tns:countryCode><tns:webapiKey>{webapi_key}</tns:webapiKey><tns:localVersion>1472637353</tns:localVersion></tns:DoLoginRequest></env:Body></env:Envelope>
+    headers:
+      Soapaction:
+      - ! '"#doLogin"'
+      Content-Type:
+      - text/xml;charset=UTF-8
+      Content-Length:
+      - '539'
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 31 Aug 2016 14:37:06 GMT
+      Server:
+      - Apache
+      Vary:
+      - Accept-Encoding
+      Set-Cookie:
+      - QXLDATA=vvTRsOMKyqRtBzQVECRKQ5akznzPc0AF8AqeonDr7Q0%3D%23%23%23FcLG%2F%2BII7%2FkmK7NqnBm2mNlSQmN10Eceqzo2DUgG4Asu1p7uKkJfz6QpwDrHKm6TveYVDZ9DVDSq2LEUd%2FbN1bIfyzWiz5GfhfTHTzAKTMk73bCJ5kWI8uNAt4X6VvSHfJT1UKfeYw%3D%3D;
+        expires=Wed, 31-Aug-2016 20:37:06 GMT; path=/; domain=.allegro.pl
+      - QXLSESSID=904a97abfeeff484379ac89e812507eb6b6f2efd0bcc68%2F%2F00; path=/;
+        domain=.allegro.pl; HttpOnly
+      - _bS=0; expires=Sat, 10-Sep-2016 14:37:06 GMT; path=/; domain=.allegro.pl
+      - qeppo_login2=%7B%22welcome%22%3A%22Witaj%2C%22%2C%22id%22%3A%225697909%22%2C%22username%22%3A%22{webapi_login}%22%2C%22fbConnected%22%3Afalse%2C%22qeppo_hash%22%3A%22ZIwd7RPCsGW3%5C%2FOfzBDRHQEb%5C%2FXVMbuYJ4OjFFz9h2r1M%3D%22%2C%22isCompany%22%3Afalse%7D;
+        path=/; domain=.allegro.pl
+      - qeppo_priv_cookie=ZTQzNQMDDVRcBAo2NTRj; path=/; domain=.allegro.pl
+      - ws2=75207e73641a08ed719672ab39f481ca; expires=Wed, 31-Aug-2016 15:07:06 GMT;
+        path=/; domain=.allegro.pl
+      - ws3=Nd0ccdd84706b27006e29c61ce5ebc717; expires=Tue, 26-Mar-2115 14:37:06 GMT;
+        path=/; domain=.allegro.pl
+      - ws4=x; path=/; domain=.allegro.pl
+      Expires:
+      - Thu, 19 Nov 1981 08:52:00 GMT
+      Cache-Control:
+      - no-store, no-cache, must-revalidate, post-check=0, pre-check=0
+      Pragma:
+      - no-cache
+      Content-Length:
+      - '436'
+      Content-Type:
+      - text/xml; charset=utf-8
+      X-Frame-Options:
+      - SAMEORIGIN
+    body:
+      encoding: US-ASCII
+      string: ! '<?xml version="1.0" encoding="UTF-8"?>
+
+        <SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/"
+        {webapi_ns1}><SOAP-ENV:Body><ns1:doLoginResponse><ns1:sessionHandlePart>904a97abfeeff484379ac89e812507eb6b6f2efd0bcc68//00_1</ns1:sessionHandlePart><ns1:userId>5697909</ns1:userId><ns1:serverTime>1472654226</ns1:serverTime></ns1:doLoginResponse></SOAP-ENV:Body></SOAP-ENV:Envelope>
+
+'
+    http_version: 
+  recorded_at: Wed, 31 Aug 2016 14:37:10 GMT
+- request:
+    method: post
+    uri: ! '{webapi_endpoint}'
+    body:
+      encoding: US-ASCII
+      string: <?xml version="1.0" encoding="UTF-8"?><env:Envelope xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" {webapi_tns} xmlns:env="http://schemas.xmlsoap.org/soap/envelope/"><env:Body><tns:DoGetSiteJournalDealsRequest><tns:sessionId>904a97abfeeff484379ac89e812507eb6b6f2efd0bcc68//00_1</tns:sessionId><tns:journalStart>123</tns:journalStart></tns:DoGetSiteJournalDealsRequest></env:Body></env:Envelope>
     headers:
       Soapaction:
       - ! '"#doGetSiteJournalDeals"'
@@ -21,17 +128,17 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Tue, 30 Aug 2016 09:51:30 GMT
+      - Wed, 31 Aug 2016 14:37:07 GMT
       Server:
       - Apache
       Vary:
       - Accept-Encoding
       Set-Cookie:
-      - QXLSESSID=0ce5cfc60a3f057ba8161dcf951ab012cadce8a3155a17%2F%2F01; path=/;
+      - QXLSESSID=904a97abfeeff484379ac89e812507eb6b6f2efd0bcc68%2F%2F00; path=/;
         domain=.allegro.pl; HttpOnly
-      - ws2=4a38c6a6ac0ec7f9a7e9f1e3c06a0491; expires=Tue, 30-Aug-2016 10:21:30 GMT;
+      - ws2=1d83822a793be8ece2579dc7398ad9b6; expires=Wed, 31-Aug-2016 15:07:07 GMT;
         path=/; domain=.allegro.pl
-      - ws3=N54a09114e346b78006dec191ac4d0bfb; expires=Mon, 25-Mar-2115 09:51:30 GMT;
+      - ws3=Nd70e9f16f1ea78e993337b35e06bd32d; expires=Tue, 26-Mar-2115 14:37:07 GMT;
         path=/; domain=.allegro.pl
       - ws4=x; path=/; domain=.allegro.pl
       Expires:
@@ -51,9 +158,9 @@ http_interactions:
       string: ! '<?xml version="1.0" encoding="UTF-8"?>
 
         <SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/"
-        xmlns:ns1="https://webapi.allegro.pl/service.php"><SOAP-ENV:Body><ns1:doGetSiteJournalDealsResponse><ns1:siteJournalDeals/></ns1:doGetSiteJournalDealsResponse></SOAP-ENV:Body></SOAP-ENV:Envelope>
+        {webapi_ns1}><SOAP-ENV:Body><ns1:doGetSiteJournalDealsResponse><ns1:siteJournalDeals/></ns1:doGetSiteJournalDealsResponse></SOAP-ENV:Body></SOAP-ENV:Envelope>
 
 '
     http_version: 
-  recorded_at: Tue, 30 Aug 2016 09:51:30 GMT
+  recorded_at: Wed, 31 Aug 2016 14:37:10 GMT
 recorded_with: VCR 2.4.0

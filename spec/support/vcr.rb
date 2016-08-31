@@ -10,6 +10,15 @@ VCR.configure do |config|
   config.filter_sensitive_data('{webapi_key}')      { AlleApi.config.webapi_key }
   config.filter_sensitive_data('{webapi_login}')    { AlleApi.config.login }
   config.filter_sensitive_data('{webapi_password}') { AlleApi.config.password }
+  %w(ns1 tns).each do |ns_type|
+    config.filter_sensitive_data("{webapi_#{ns_type}}") do
+      if AlleApi.config.sandbox
+        "xmlns:#{ns_type}=\"urn:SandboxWebApi\""
+      else
+        "xmlns:#{ns_type}=\"https://webapi.allegro.pl/service.php\""
+      end
+    end
+  end
   config.filter_sensitive_data('{webapi_endpoint}') do
     if AlleApi.config.sandbox
       'https://webapi.allegro.pl.webapisandbox.pl/service.php'
