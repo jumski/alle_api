@@ -24,19 +24,6 @@ VCR.configure do |config|
 end
 
 RSpec.configure do |config|
-  # wrap all specs with WSDL cassette
-  config.around(:each) do |example|
-    cassette = if AlleApi.config.sandbox
-                 :authenticate_and_update_sandbox
-               else
-                 :authenticate_and_update_production
-               end
-
-    VCR.use_cassette(cassette, match_requests_on: [:uri, :body]) do
-      example.run
-    end
-  end
-
   config.around(:each) do |example|
     if example.metadata[:vcr].present?
       cassette = example.metadata[:vcr]
