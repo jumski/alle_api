@@ -22,7 +22,7 @@ describe AlleApi::Client do
   describe "#client" do
     its(:client) { should be_a Savon::Client }
 
-    it 'parses wsdl correctly', vcr: 'wsdl' do
+    it 'parses wsdl correctly' do
       expect(client.client.operations).to be_an Array
     end
 
@@ -32,20 +32,20 @@ describe AlleApi::Client do
       expect(opts[:convert_request_keys_to]).to eq :lower_camelcase
     end
 
-    it 'has proper wsdl for production mode' do
+    it 'has proper wsdl path for production mode' do
       AlleApi.config.stubs(sandbox: false)
 
       opts = client.client.globals
 
-      expect(opts[:wsdl]).to eq 'https://webapi.allegro.pl/service.php?wsdl'
+      expect(File.exist? opts[:wsdl]).to be_true
     end
 
-    it 'has proper wsdl for sandbox mode' do
+    it 'has proper wsdl path for sandbox mode' do
       AlleApi.config.stubs(sandbox: true)
 
       opts = client.client.globals
 
-      expect(opts[:wsdl]).to eq 'https://webapi.allegro.pl.webapisandbox.pl/service.php?wsdl'
+      expect(File.exist? opts[:wsdl]).to be_true
     end
   end
 
