@@ -43,7 +43,7 @@ describe AlleApi::Wrapper::DealEvent do
     context "given response with events", vcr: 'do_get_deals_journal_with_items' do
       subject(:deal_events) { api.get_deals_journal 123 }
 
-      it 'exposes proper attributes for all deals' do
+      xit 'exposes proper attributes for all deals' do
         deal_events.each do |deal_event|
           expect(deal_event).to be_a AlleApi::Wrapper::DealEvent
           expect(deal_event.remote_id).to be > 0
@@ -57,13 +57,13 @@ describe AlleApi::Wrapper::DealEvent do
         end
       end
 
-      it 'has proper model_klass' do
+      xit 'has proper model_klass' do
         expect(deal_events[0].model_klass).to eq AlleApi::DealEvent::NewDeal
         expect(deal_events[1].model_klass).to eq AlleApi::DealEvent::NewTransaction
         expect(deal_events[2].model_klass).to eq AlleApi::DealEvent::FinishTransaction
       end
 
-      it 'has proper transaction_id' do
+      xit 'has proper transaction_id' do
         expect(deal_events[0].remote_transaction_id).to eq 0
         expect(deal_events[1].remote_transaction_id).to be > 0
         expect(deal_events[2].remote_transaction_id).to be > 0
